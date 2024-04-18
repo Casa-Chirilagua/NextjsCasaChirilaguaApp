@@ -1,0 +1,124 @@
+.grid-card-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 37rem);
+  padding-bottom: 1rem;
+
+  .grid-card {
+    border-radius: 0.75rem;
+    font-size: 1.4rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    background-color: white;
+    display: grid;
+    grid-template-rows: 3rem 20rem 5rem 6rem;
+    gap: 0.5rem;
+    padding: 1rem;
+    .dots-container {
+      // background-color: blue;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      .dots-border-container {
+        border-radius: 100%;
+        padding: 0.5rem;
+        &:hover {
+          box-shadow:
+            rgba(0, 0, 0, 0.25) 0px 54px 55px,
+            rgba(0, 0, 0, 0.12) 0px -12px 30px,
+            rgba(0, 0, 0, 0.12) 0px 4px 6px,
+            rgba(0, 0, 0, 0.17) 0px 12px 13px,
+            rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+      }
+    }
+    .remove-button-container{
+      display: flex;
+      justify-content: center;
+    }
+    .avatar-card-container {
+      display: flex;
+      justify-content: center;
+    }
+    .grid-card-link {
+      display: flex;
+      justify-content: center;
+    }
+    &:hover {
+      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    }
+    a,
+    a:link,
+    a:visited {
+      // text-decoration: none;
+      color: $color-saleforce-dash-blue;
+    }
+    a:link {
+      text-decoration: none;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    a:link:hover {
+      text-decoration: underline;
+    }
+  }
+  .grid-card img {
+    border-radius: 50%;
+    height: 20rem;
+    width: 20rem;
+    padding: 0.6rem;
+    object-fit: cover;
+    align-self: center;
+    justify-content: center;
+    // border: solid 0.4rem white;
+  }
+
+  .grid-card-add {
+    border-radius: 0.75rem;
+    font-size: 1.4rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    // background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: black;
+    font-size: 2rem;
+
+    &:hover {
+      box-shadow:
+        rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px,
+        rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px,
+        rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+  }
+  .grid-card-components-container {
+  }
+}
+
+.remove-button-container {
+  padding: 1rem;
+}
+
+.back-button {
+  padding-top: 1rem;
+
+  .card-back-button {
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: $color-primary-background-grey;
+    border: none;
+    color: black;
+    font-size: 600;
+    font-size: 1.6rem;
+    &:hover {
+      background-color: lightgrey;
+    }
+  }
+}

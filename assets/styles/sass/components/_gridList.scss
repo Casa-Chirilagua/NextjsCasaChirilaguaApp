@@ -1,0 +1,45 @@
+.grids-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
+.grid-list-container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: $primary-box-shadow;
+    padding: 3rem;
+    border-radius: 0.5rem;
+
+    gap: 1rem;
+    .select-list{
+        padding-bottom:3rem;
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+        gap: 1rem;
+        height: 14rem;
+        overflow-y: scroll;
+        .list-item{
+          box-shadow: $primary-box-shadow;
+          background-color: white;
+          border-radius: 0rem;
+          padding: 1rem;
+          text-align: center;
+        }
+      }
+    .search-bar{
+        width: 100%;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: 0.1rem solid $color-purple-dark;
+    }
+
+    .search-bar:hover{
+        border: .1rem solid $color-purple-dark;
+
+    }
+    .search-bar:focus{
+        outline: solid 1px #523F8E;
+    }
+}

@@ -1,0 +1,45 @@
+.login-container {
+    position: relative;
+    height: 100vh;
+    background-image: url("../../../../public/casa_login_background.jpeg");
+    background-size: cover;
+    background-position: top;
+    
+  
+    // Add this pseudo-element
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.5;
+    }
+    // background-image:
+    // url("https://res.cloudinary.com/dnmsdb199/image/upload/v1713132875/CasaApp/aiwr8nz6d3upj1tdvntz.jpg");
+    // background-size: cover;
+    // background-position: top;
+    // /* padding : 30px; */
+    // clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  
+    .casa-logo-container {
+      position: absolute;
+      top: 4rem;
+      left: 4rem;
+    }
+  
+    .casa-logo {
+      height: 5rem;
+    }
+  
+    .text-box {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  }
+  

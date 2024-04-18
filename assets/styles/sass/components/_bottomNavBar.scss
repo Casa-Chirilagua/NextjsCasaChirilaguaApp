@@ -1,0 +1,140 @@
+@use '../../sass/abstract/variables' as v;
+
+.main-navbar-container {
+  background-color: v.$color-white;
+  width: 100vw;
+  margin-top: 6rem;
+
+  .navbar-nav {
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 1rem;
+  }
+
+  .icon {
+    font-size: 1.6rem;
+  }
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2rem;
+  
+  @include respond(phone) {
+    font-size: 1rem; //1 rem = 9px, 9/16 = 50%
+  }
+
+  left: 0;
+  right: 0;
+  margin: 0;
+  border-radius: 3%;
+}
+.main-navbar-container .item.active-item {
+  color: inherit;
+}
+
+.item .icon {
+  margin-bottom: 0rem;
+  /* Adjust as needed */
+}
+
+.nav-link{
+  box-sizing: border-box;
+  padding:0;
+  padding-bottom: 0.2rem;
+}
+
+.all:hover .nav-link,
+.all:hover .list-icon {
+  color: $color-orange !important;
+}
+
+.all:hover .nav-link {
+  border-bottom: 0.2rem solid $color-orange;
+}
+
+.home:hover .nav-link,
+.home:hover .home-icon {
+  color: $color-green !important;
+}
+
+.home:hover .nav-link {
+  border-bottom: 0.2rem solid $color-green !important;
+}
+
+.volunteers:hover .nav-link,
+.volunteers:hover .volunteer-icon {
+  color: $color-green !important;
+}
+
+.volunteers:hover .nav-link {
+  border-bottom: 0.2rem solid $color-green !important;
+}
+
+.students:hover .nav-link,
+.students:hover .student-icon {
+  color: $color-purple-dark !important;
+}
+
+.students:hover .nav-link {
+  border-bottom: 0.2rem solid $color-purple-dark !important;
+}
+.mentors:hover .nav-link,
+.mentors:hover .mentor-icon {
+  color: $color-orange !important;
+}
+.mentors:hover .nav-link {
+  border-bottom: 0.2rem solid $color-orange !important;
+}
+
+.parents:hover .nav-link,
+.parents:hover .parent-icon {
+  color: $color-light-green !important;
+}
+.parents:hover .nav-link {
+  border-bottom: 0.2rem solid $color-light-green !important;
+}
+
+.programs:hover .nav-link,
+.programs:hover .program-icon {
+  color: $color-green !important;
+}
+.programs:hover .nav-link {
+  border-bottom: 0.2rem solid $color-green !important;
+}
+.families:hover .nav-link,
+.families:hover .family-icon {
+  color: $color-purple-dark !important;
+}
+.families:hover .nav-link {
+  border-bottom: 0.2rem solid $color-purple-dark !important;
+}
+
+.employee:hover .nav-link,
+.employee:hover .employee-icon {
+  color: $color-purple-dark !important;
+}
+.employee:hover .nav-link {
+  border-bottom: 0.2rem solid $color-purple-dark !important;
+}
+.dashboard:hover .nav-link,
+.dashboard:hover .dashboard-icon {
+  color: $color-green !important;
+}
+.dashboard:hover .nav-link {
+  border-bottom: 0.2rem solid $color-green !important;
+}
+
+.reports:hover .nav-link,
+.reports:hover .report-icon {
+  color: $color-light-green !important;
+}
+.reports:hover .nav-link {
+  border-bottom: 0.2rem solid $color-light-green !important;
+}

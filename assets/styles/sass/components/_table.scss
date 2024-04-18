@@ -1,0 +1,158 @@
+.responsive-table-container {
+  width: 100%;
+  overflow: scroll;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+.table-with-searchbar {
+  width: 95vw;
+}
+
+.student-search-container {
+  padding-left: 2rem;
+  padding-right: 3rem;
+  width: 100%;
+}
+
+.table-container {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  margin-top: 0rem;
+  overflow: scroll;
+  width: 100%;
+  @include respond(phone) {
+    width: 92vw;
+  }
+  a {
+    outline: none;
+    color: #696969;
+  }
+}
+.label-icon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.table-container th {
+  background-color: $color-purple-dark;
+  color: $color-white;
+  font-weight: 400;
+  font-size: 1.4rem;
+  height: 4.5rem;
+  padding: 0.5rem;
+  // padding-left: 2rem;
+  text-align: left;
+  border-bottom: 1px solid #d3d3d3;
+  // border: 0.1rem solid transparent;
+  // border-right: 0.1rem solid transparent;
+  // border-left: 0.1rem solid transparent;
+
+}
+
+.table-container th:first-child {
+  padding-left: 2.5rem;
+}
+
+#green th {
+  background-color: $color-green;
+}
+
+#orange th {
+  background-color: $color-orange;
+}
+
+#light-green th {
+  background-color: $color-light-green;
+}
+
+th:hover {
+  // border-right: 0.01rem solid #f1f3f5;
+  // border-left: 0.01rem solid #f1f3f5;
+}
+
+.table-container tr:hover td {
+  background-color: #f1f3f5;
+}
+
+.table-container {
+  a:link {
+    text-decoration: none;
+  }
+  a,
+  a:link,
+  a:visited {
+    text-decoration: underline;
+    color: #495057;
+  }
+  a:link:hover {
+    text-decoration: underline;
+  }
+}
+.table-container tr td {
+  color: #8c8c8c;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+tr {
+  background-color: white;
+  line-height: 1rem !important;
+
+}
+.up-down-arrow {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+
+.up-arrow {
+  font-size: 1rem;
+  display: inline-block;
+  padding-left: 1rem;
+}
+
+.down-arrow {
+  font-size: 1rem;
+  display: inline-block;
+  padding-left: 1rem;
+}
+
+.table-container th:first-child {
+  border-top-left-radius: 1rem;
+}
+
+.table-container th:last-child {
+  border-top-right-radius: 1rem;
+}
+.table-container tr:not(:last-child) td {
+  border-bottom: 1px solid #d3d3d3;
+}
+.table-container tr:last-child {
+  border-radius: 1rem;
+}
+.table-container tr td {
+  margin-top: 2rem;
+  padding: 0.1rem;
+}
+.table-container td {
+  font-size: 1.2rem;
+}
+.border-b-2 {
+  border-radius: 0.1rem;
+}
+
+.avatar-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.4rem;
+  padding-left: 2rem;
+
+  .avatar-table {
+    height: 2.8rem;
+    width: 2.8rem;
+  }
+}

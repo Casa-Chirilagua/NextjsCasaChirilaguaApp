@@ -1,0 +1,203 @@
+.profile-container {
+  padding: top 2px;
+  width: 100%;
+  height: 100%;
+  background-color: $color-white;
+  box-shadow: $primary-box-shadow;
+  border-radius: 1rem;
+  padding: 2rem;
+  padding-top: 2.5rem;
+  margin-bottom: 2rem;
+  .profile-icon {
+    font-size: 3rem;
+  }
+  .field-list {
+    font-size: 1rem;
+
+    @include respond(phone) {
+      columns: 1;
+    }
+    columns: 2;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 1rem;
+
+    #green .row-item {
+      border: solid 0.1rem $color-green;
+    }
+    #light-green .row-item {
+      border: solid 0.1rem $color-light-green;
+    }
+    #orange .row-item {
+      border: solid 0.1rem $color-orange;
+    }
+
+    .row-item {
+      display: grid;
+      grid-template-columns: 1fr 2fr 2rem;
+      align-self: center;
+      justify-content: center;
+      gap: 0.2rem;
+      border: solid 0.1rem #ced4da;
+      border-top-color: $color-white;
+      border-right-color: $color-white;
+      border-left-color: $color-white;
+      // padding: 0.2rem;
+
+      .field-key {
+        grid-column: 1/2;
+        font-weight: 500;
+        color: #343a40;
+        font-size: 1.2rem;
+        align-self: center;
+      }
+
+      .field-value {
+        align-self: center;
+        font-size: 1.2rem;
+        // background-color: red;
+        align-self: center;
+        grid-column: 2/3;
+        color: #868e96;
+      }
+
+      .edit-icon-container {
+        grid-column: 3/4;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0;
+
+        .edit-icon {
+          font-size: 1.4rem;
+          align-self: right;
+        }
+        .edit-profile-button{
+          color: #adb5bd;
+          border-radius: 100%;
+          padding: 0.6rem;
+        }
+        .edit-profile-button:hover {
+          color: black;
+          transform: translateY(-3px);
+          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  }
+
+  #green .profile-heading-container {
+    background-color: $color-green;
+  }
+  #light-green .profile-heading-container {
+    background-color: $color-light-green;
+  }
+  #orange .profile-heading-container {
+    background-color: $color-orange;
+  }
+
+  .profile-heading-container {
+    background-color: $color-purple-dark;
+    border-radius: 0.5rem;
+    height: 3.5rem;
+    padding: 1rem;
+    text-align: left;
+    padding-bottom: 2rem;
+
+    .chevron-icon {
+      color: $color-white;
+      font-size: 1.6rem;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      color: $color-white;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 1rem;
+    }
+    &.collapsed {
+      padding-bottom: 3rem;
+      margin-bottom: 2rem;
+    }
+  }
+}
+.delete-container{
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+  padding: 3rem;
+  h3{
+    font-weight: 800;
+    color: black;
+  }
+  h6{
+    padding-bottom: 1rem;
+  }
+
+}
+.profile-page {
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 3.5rem;
+  padding-bottom: 2rem;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: $color-primary-background-grey;
+}
+
+.delete-button {
+  //   background-color: lightgrey;
+    // padding-left: 1rem;
+    // padding-right: 1rem;
+    // padding-top: 0.7rem;
+    // padding-bottom: 0.3rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: end;
+    border-radius: 2rem;
+    font-weight: 600;
+    // box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    background-color: #C0C0C0;
+  
+    .delete-button-content{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap:0.75rem;
+      .trash-icon{
+        font-size: 1.6rem;
+        color: black;
+     
+      }
+    }
+
+    
+  }
+  
+  .delete-button h5 {
+    color: black;
+    align-self: baseline;
+    font-size: 1.4rem;
+    font-weight: 600;
+
+  }
+  .delete-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  }
+  .delete-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5rem 1rem rgba(0, 0, 0, 0.2);
+  }
+  

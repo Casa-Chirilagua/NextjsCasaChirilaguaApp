@@ -1,0 +1,98 @@
+.dash-container {
+  width: 100vw;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-rows: 6rem 20rem 18rem repeat(3, 20rem);
+  grid-template-columns: repeat(5, 1fr);
+
+
+  .item {
+    background-color: white;
+    border-radius: 0.4rem;
+    box-shadow: $dashboard-card-shadow;
+  }
+  .card-name {
+    font-family: $roboto;
+    font-size: 2rem;
+  }
+  .custom-table-paper {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px; /* Replace with your desired box-shadow values */
+  }
+
+  .item--3 {
+    grid-column: span 3;
+  }
+  .item--5 {
+    border-radius: 3rem;
+    grid-row: 5/7;
+    grid-column: 1/7;
+
+  }
+
+  .item--6{
+    grid-column: 3/4;
+
+    grid-row: span 1;
+  }
+  .item--7{
+    grid-row: span 1;
+    grid-column: 4/5;
+    // grid-column: 3/4;
+  }
+
+  h2 {
+    color: $color-green;
+  }
+
+  .dashboard-page-header {
+    grid-column: 1/7;
+  }
+
+  .dashboard-page-header h1{
+    font-size: 3rem;
+    font-weight: 500;
+    font-family: $dm-sans;
+    color: $color-saleforce-dash-blue;
+  
+  }
+
+  #orange-gradient {
+    background: rgb(254, 186, 79);
+    background: radial-gradient(
+      circle,
+      rgba(254, 186, 79, 1) 0%,
+      rgba(247, 143, 40, 1) 100%
+    );
+  }
+
+  #purple-gradient {
+    background: rgb(143, 120, 215);
+    background: radial-gradient(
+      circle,
+      rgba(143, 120, 215, 1) 0%,
+      rgba(82, 63, 142, 1) 100%
+    );
+  }
+
+  #light-green-gradient {
+    background: rgb(194, 238, 120);
+    background: radial-gradient(
+      circle,
+      rgba(194, 238, 120, 1) 0%,
+      rgba(151, 201, 66, 1) 100%
+    );
+  }
+
+  #green-gradient {
+    background: rgb(151, 201, 66);
+    background: radial-gradient(
+      circle,
+      rgba(151, 201, 66, 1) 0%,
+      rgba(52, 168, 83, 1) 100%
+    );
+  }
+}

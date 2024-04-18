@@ -1,0 +1,96 @@
+.notes-container {
+  width: 100%;
+  background-color: $color-white;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: $primary-box-shadow;
+  font-size: 1.2rem;
+  height: 60vh;
+
+  // Notes Top contains the title and the add button
+  .notes-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: $color-primary-text;
+    border-bottom: solid 1px #e9ecef;
+    padding-bottom: 2rem;
+  }
+
+  /** Notes Body contains the list of all the notes*/
+  .notes-body {
+    height: 80%;
+    overflow-y: scroll;
+    padding: 1rem;
+    .notes-list{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .note-list-item{
+        background-color: #e9ecef;
+        border-radius: 0.5rem;
+        padding: 1rem;
+      }
+      .note-list-item-header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .note-list-item-title{
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: $color-primary-text;
+        }
+      }
+
+    }
+
+    
+  }
+}
+
+
+.textarea-container {
+  background-color: white;
+  padding: 1rem;
+  height: 100%;
+  width: 100%;
+
+  .notes-textarea {
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    border: solid 1px #dee2e6;
+
+    &:focus {
+      outline: none;
+
+    }
+  }
+  
+  .save-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    .note-save-button{
+      align-self: center;
+    }
+  }
+}
+
+.note-body-paragraph{
+  font-size: 1.2rem;
+  color: $color-primary-text;
+  font-weight: 300;
+  padding:0;
+  margin-bottom: 0;
+}

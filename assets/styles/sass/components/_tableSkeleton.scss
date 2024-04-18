@@ -1,0 +1,22 @@
+.skeleton-table-container {
+  display: grid;
+  grid-template-rows: 6rem 5rem 1fr 5rem;
+  gap: 1rem;
+  padding: 2rem;
+
+  .skeleton-search-bar-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    .skeleton-download-button{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 1rem;
+    }
+  }
+
+  .skeleton-filter {
+  }
+
+  .skeleton-table {
+  }
+}

@@ -1,0 +1,55 @@
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-grey-dark: #777;
+$color-white: #fff;
+$color-background: #f5f5f5;
+
+$color-nav-bar: #1d2f3e;
+$color-primary-background-grey: #f2f6f8;
+$color-saleforce-dash-blue: #091a3e;
+
+$color-purple-dark: #4b0082;
+$color-orange: #f78f28;
+$color-green: #1db954;
+$color-light-green: #f78f28;
+
+$color-primary-text:#212529;
+
+//typography
+$heading-font-family: 'Montserrat', sans-serif;
+$body-font-family: 'Open Sans', sans-serif;
+$base-font-size: 1.8rem;
+$base-font-weight: 400;
+
+//font families
+$dm-sans: 'DM Sans', sans-serif;
+$roboto: 'Roboto', sans-serif;
+
+$light: 300;
+$normal: 400;
+$semibold: 500;
+$bold: 700;
+
+//font sizes
+$smaller-font: 1.6rem;
+$small-font: 1.8rem;
+$medium-font: 1.9rem;
+$larger-font: 2rem;
+$larger-font: 2.2rem;
+
+//box shadow
+$primary-box-shadow:
+  rgba(9, 30, 66, 0.25) 0px 1px 1px,
+  rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+$dashboard-card-shadow:rgba(17, 17, 26, 0.1) 0px 1px 0px,
+  rgba(17, 17, 26, 0.1) 0px 8px 24px,
+  rgba(17, 17, 26, 0.1) 0px 16px 48px;
+
+
+  //Border Radius
+  $dashboard-card-radius: 2rem;
+
+  //Padding
+  $dashboard-padding: 3rem;

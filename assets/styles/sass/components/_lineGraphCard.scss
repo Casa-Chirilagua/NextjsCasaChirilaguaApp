@@ -1,0 +1,11 @@
+.line-chart-container{
+    grid-column: 1/4;
+    grid-row: 3/5;
+    background-color: white;
+    box-shadow: $dashboard-card-shadow;
+    border-radius: $dashboard-card-radius;
+    padding: $dashboard-padding;
+    color: black;
+    font-family: $dm-sans;
+    
+}

@@ -1,0 +1,87 @@
+@use '../../sass/abstract/variables' as v;
+.navbar-container {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+}
+.navbar-container {
+  background-color: $color-saleforce-dash-blue;
+  padding: 1em;
+  width: 100vw;
+  display: flex;
+  left: 0;
+  right: 0;
+  margin: 0;
+  justify-content: space-between;
+  align-items: center;
+  height: 6rem;
+  
+  .navbar-left {
+    flex: 1;
+    padding-left: 2rem;
+  }
+ 
+  .navbar-right {
+
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+    gap:1rem;
+    text-align: bottom;
+    margin-right: 1rem;
+
+    .greeting {
+      color: white;
+      font-size: 1.4rem;
+      // background-color: blue;
+    }
+
+    .right-box {
+      background-color: pink;
+      display: flex;
+      gap: 2rem;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .user-icon-container {
+      width: 3.5rem;
+      border-radius: 1.2rem;
+      .user-icon {
+        height: 3.5rem;
+        border-radius: 5rem;
+        border-color: red;
+
+        &:hover {
+          box-shadow:
+            rgba(0, 0, 0, 0.25) 0px 54px 55px,
+            rgba(0, 0, 0, 0.12) 0px -12px 30px,
+            rgba(0, 0, 0, 0.12) 0px 4px 6px,
+            rgba(0, 0, 0, 0.17) 0px 12px 13px,
+            rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+      }
+    }
+
+    .left-box {
+      text-align: bottom;
+      bottom: 0px;
+      padding-top: 1rem;
+    }
+  }
+
+  .logo {
+    font-size: 1rem;
+    &:hover {
+      outline: 0.1rem solid v.$color-white !important;
+      border-radius: 0.3rem;
+    }
+    &:focus {
+      outline: 0.1rem solid v.$color-white;
+      border-radius: 0.3rem;
+    }
+  }
+}

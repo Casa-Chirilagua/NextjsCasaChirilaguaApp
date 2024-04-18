@@ -1,0 +1,352 @@
+.login-button:link,
+.login-button:visited {
+  text-transform: uppercase;
+  background-color: white;
+  color: #777;
+  display: inline-block;
+}
+
+.login-button {
+  background-color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  color: #777;
+  display: inline-block;
+  border-radius: 10rem;
+  width: 60%;
+  height: 5rem;
+  transition: all 0.2s;
+  position: relative;
+  font-size: 1.6rem;
+}
+
+.login-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.login-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.login-button::after {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+  background-color: white;
+}
+
+.login-button:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.login-button-animated {
+  animation: moveInBotton 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.login-button a {
+  font-size: 16rem;
+}
+
+.login-button-purple:link,
+.login-button-purple:visited {
+  // text-transform: uppercase;
+  background-color: $color-purple-dark;
+  color: 'white';
+  display: inline-block;
+}
+
+.login-button-purple {
+  border: none;
+  box-shadow: $primary-box-shadow;
+  background-color: white;
+  text-decoration: none;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  color: $color-purple-dark;
+  display: inline-block;
+  border-radius: 1rem;
+  width: 100%;
+  height: 5rem;
+  transition: all 0.2s;
+  position: relative;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.login-button-purple:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.login-button-purple:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.login-button-purple::after {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+  background-color: white;
+}
+
+.login-button-purple:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.login-button-animated {
+  animation: moveInBotton 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.login-button-purple a {
+  font-size: 16rem;
+}
+
+.select-item:link,
+.select-item:visited {
+  // text-transform: uppercase;
+  background-color: white;
+  color: $color-purple-dark;
+  display: inline-block;
+}
+
+.select-item {
+  border: none;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: white;
+  // text-transform: uppercase;
+  text-decoration: none;
+  /* padding: 15px, 40px; */
+  /* padding: 1.2rem; */
+  // padding-top:1.2rem;
+  // padding-bottom: 1.2rem;
+  color: $color-purple-dark;
+  display: inline-block;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 6rem;
+  transition: all 0.2s;
+  position: relative;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.select-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.select-item:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.select-item::after {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+  background-color: white;
+}
+
+.select-item:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.login-button-animated {
+  animation: moveInBotton 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.select-item a {
+  font-size: 16rem;
+}
+
+.card-remove-button {
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: white;
+  width: 20rem;
+  border: solid 0.1rem black;
+  &:hover {
+    background-color: #e5e4e2;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.grid-list-button {
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: white;
+  width: 100%;
+  max-height: 8rem;
+  border: solid 0.1rem lightgray;
+  &:hover {
+    background-color: #e5e4e2;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.table-add-button {
+  border-radius: 2rem;
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: white;
+  // width: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: none;
+  border: solid 0.1rem lightgray;
+  &:hover {
+    background-color: #e5e4e2;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.profile-card-add-button {
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: white;
+  width: 100%;
+  max-height: 8rem;
+  border: none;
+  // border: solid 0.1rem black;
+  &:hover {
+    background-color: #e5e4e2;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.notes-button {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  background-color: white;
+  max-height: 8rem;
+  border: none;
+  box-shadow:
+    rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  width: 10rem;
+  height: 3.5rem;
+  font-size: 1.2rem;
+  &:hover {
+    background-color: #e5e4e2;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.notes-save {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+  gap:0.5rem;
+  background-color: white;
+  max-height: 8rem;
+  border: none;
+  color: white;
+  background-color: #212529;
+  box-shadow:
+    rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  width: 10rem;
+  height: 3.5rem;
+  font-size: 1.2rem;
+  &:hover {
+    background-color: #e5e4e2;
+    color: #212529;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}

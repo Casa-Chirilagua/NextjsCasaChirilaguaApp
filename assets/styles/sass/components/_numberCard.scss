@@ -1,0 +1,49 @@
+.number-card-container {
+  display: grid;
+  grid-template-rows: 20% 60% 15%;
+  gap: 1rem;
+  padding: 3rem;
+  border-radius: 2rem;
+  box-shadow:
+    rgba(17, 17, 26, 0.1) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 48px;
+  .card-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+  }
+
+  .card-name h4 {
+    font-size: 1.4rem;
+  }
+  .card-number {
+    font-size: 6rem;
+    align-self: center;
+    justify-self: center;
+  }
+
+  a,
+  a:link,
+  a:visited {
+    color: #ced4da;
+  }
+  a:link {
+    font-size: 1.4rem;
+    color: black;
+    text-decoration: none;
+  }
+
+  a:link:hover {
+    text-decoration: underline;
+  }
+  a:link {
+    text-decoration: none;
+  }
+
+  a:link:hover {
+    text-decoration: underline;
+  }
+}

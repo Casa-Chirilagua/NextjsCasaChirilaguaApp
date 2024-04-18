@@ -1,0 +1,33 @@
+.grid-card-container-with-title {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 6rem 1fr;
+  padding: 2rem;
+
+  .grid-card-skeleton-contaienr {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 37rem);
+    padding: 1rem;
+    gap: 1rem;
+    .grid-card-skeleton-container {
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    }
+    .menu-icon-skeleton {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+    .profile-picture-skeleton {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      // justify-content: center;
+    }
+    .profile-button-skeleton {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,143 @@
+.subtitle-container h4 {
+  grid-column: span 2;
+  display: flex;
+  text-align: center;
+  width: 40rem;
+  margin-top: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2.6rem;
+  line-height: 3.5rem;
+  padding-bottom: 4rem;
+  color: #212529;
+  margin-bottom: 4rem;
+}
+
+.section:not(first-child) {
+  // background-color: red;
+  display: flex;
+  height: 6rem;
+  margin-top: 4rem;
+}
+
+.section:nth-child(1) {
+  margin-top: 0;
+}
+
+.subtitle-container h6 {
+  // margin-top: 2.4rem;
+  height: 1.8rem;
+  left: 15.1rem;
+  top: 29.4rem;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.3em;
+  // padding-left: 1rem;
+  color: #212529;
+}
+
+.form-item {
+  padding-bottom: 2rem;
+  grid-column: 1/-1;
+}
+.subtitle-container input {
+  // padding: 1.5rem;
+  height: 4rem;
+}
+.subtitle-container label {
+  height: 1.8rem;
+  left: 15.1rem;
+  top: 29.4rem;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  color: #343a40;
+}
+.subtitle-container select {
+  height: 3rem;
+
+}
+
+.student-info,
+.mothers-info,
+.fathers-info,
+.emergency-info,
+.primary-info {
+  padding-bottom: 10rem;
+}
+
+.form-container {
+  @include respond(phone) {
+    display: grid;
+    padding: 2rem;
+  }
+  display: grid;
+  grid-template-rows: 6rem repeat(1, 1fr);
+  grid-template-columns: 1fr;
+  border-radius: 2rem;
+  background-color: $color-white;
+  padding-right: 5rem;
+  padding-left: 5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-radius: 0;
+  margin-bottom: 2rem;
+  box-shadow: $primary-box-shadow;
+  border-radius: 0.75rem;
+}
+
+.form-container-modal {
+  .subtitle-container input {
+    height: 6rem;
+  }
+}
+
+.form-container-modal label {
+  height: 1.8rem;
+  left: 15.1rem;
+  top: 29.4rem;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.3em;
+}
+.form-container-modal input {
+  border: 0.1rem solid $color-saleforce-dash-blue;
+  height: 4rem;
+}
+
+.student-form-box {
+  padding-left: 2rem;
+  padding-right: 3rem;
+  width: 90vw;
+  margin: 0 auto;
+  input:checked {
+    font-size: 1.4rem;
+  }
+  align-items: center;
+}
+.subtitle-container input:not(.span2):only-child {
+  grid-column: span 2;
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.form-label {
+  height: 1.8rem;
+  left: 15.1rem;
+  top: 29.4rem;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
