@@ -16,7 +16,6 @@
     box-shadow: $dashboard-card-shadow;
   }
   .card-name {
-    font-family: $roboto;
     font-size: 2rem;
   }
   .custom-table-paper {
@@ -55,7 +54,7 @@
   .dashboard-page-header h1{
     font-size: 3rem;
     font-weight: 500;
-    font-family: $dm-sans;
+ 
     color: $color-saleforce-dash-blue;
   
   }

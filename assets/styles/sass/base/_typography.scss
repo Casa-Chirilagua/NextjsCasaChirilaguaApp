@@ -56,7 +56,6 @@
 .page-title {
     display: flex;
     height: 7.6rem;
-    font-family: $dm-sans;
     font-style: normal;
     font-weight: $semibold;
     font-size: 3rem;
@@ -109,7 +108,7 @@
     height: 3rem;
     left: 15.1rem;
     top: 15.6rem;
-    font-family: $dm-sans;
+
     font-style: normal;
     font-weight: $bold;
     font-size: 3.4rem;
@@ -125,7 +124,7 @@
     width: 47.5rem;
     left: 15.1rem;
     top: 15.6rem;
-    font-family: $dm-sans;
+ 
     font-style: normal;
     // background-color: red;
     font-size: 1.6rem;
@@ -137,14 +136,14 @@
 
   .dashboard-table-heading{
 
-    font-family: $dm-sans;
+ 
     font-size: 2rem;
   }
 
   .modal-title{
     display: flex;
     height: 7rem;
-    font-family: $dm-sans;
+ 
     font-style: normal;
     font-weight: $light;
     font-size: 2rem;

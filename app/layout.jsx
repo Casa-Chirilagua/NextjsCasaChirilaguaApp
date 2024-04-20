@@ -1,10 +1,17 @@
-import React from "react";
-// import { UserProvider } from '@auth0/nextjs-auth0/client';
-import AuthProvider from "@/components/AuthProvider";
-import "@/assets/styles/globals.scss";
-// import { redirect } from 'next/navigation';
-// import { useUser } from '@auth0/nextjs-auth0';
 
+import React from "react";
+import AuthProvider from "@/components/AuthProvider";
+
+//Components
+import MainNavigationBar from "@/components/navigation_bar/MainNavigationBar";
+import SecondaryNavigationBar from "@/components/navigation_bar/SecondaryNavigationBar";
+
+import "@/assets/styles/globals.scss";
+import { Inter } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+})
 
 export const metadata = {
   title: 'Casa Chirilagua | Nonprofit in Alexandria, VA',
@@ -16,11 +23,11 @@ const MainLayout = ({ children }) => {
   return (
     <AuthProvider>
       <html lang="en">
-        {/* <UserProvider> */}
-        <body>
-          <div>{children}</div>
+        <body className={inter.className}>
+          <MainNavigationBar />
+          <SecondaryNavigationBar />
+          <main>{children}</main>
         </body>
-        {/* </UserProvider> */}
       </html>
     </AuthProvider>
 

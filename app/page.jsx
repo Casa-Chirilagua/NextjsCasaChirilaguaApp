@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 
-
 const HomePage = () => {
   const handleSignOut = async () => {
     await signOut({ redirect: false, callbackUrl: '/login' });
