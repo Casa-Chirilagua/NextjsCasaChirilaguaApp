@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-import { HiBars3 } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+'use client';
+import { useState } from "react";
+import Link from "next/link";
 import { IconContext } from "react-icons";
+import { usePathname } from 'next/navigation';
+
+import { HiBars3 } from "react-icons/hi2";
 
 function SideNav({ SidebarData, selectedColor }) {
   const [sidebar, setSidebar] = useState(false);
+  const pathname = usePathname();
   const [hoveredItem, setHoveredItem] = useState(null);
   const white = "#fff";
 
@@ -23,27 +27,30 @@ function SideNav({ SidebarData, selectedColor }) {
       <ul className="nav-menu-items" onClick={showSidebar}>
         <IconContext.Provider value={{ color: selectedColor }}>
           <li className="navbar-toggle">
-            <Link to="#" className="menu-bars">
-              <HiBars3 />
-            </Link>
+            <div className="menu-bars flex items-center justify-center text-4xl" onClick={showSidebar}>
+              <HiBars3 style={{color: selectedColor}} />
+            </div>
           </li>
         </IconContext.Provider>
         {SidebarData.map((item, index) => {
+          const isActive = pathname === item.path;
           return (
-            <li key={index} className={`list-item ${item.cName}`}>
-              <Link
-                style={{
-                  color: hoveredItem === index ? white : selectedColor,
-                  backgroundColor:
-                    hoveredItem === index ? selectedColor : white,
-                }}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={handleMouseLeave}
-                to={item.path}
-                className='sidebar-list-item'
-              >
-                {item.icon}
-                <span className='sidenav-item-text' style={{ marginLeft: "1.6rem", color: hoveredItem === index ? white : "#343a40"}}>{item.title}</span>
+            <li key={index} className={`list-item nav-text`}>
+              <Link className='sidebar-list-item' href={item.path}>
+                <p
+                  style={{
+                    color: isActive ? white : (hoveredItem === index ? selectedColor : "#343a40"),
+                    backgroundColor: isActive ? selectedColor : (hoveredItem === index ? selectedColor : white),
+                  }}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                  className='sidebar-list-item'
+                >
+                  {item.icon}
+                  <span style={{ marginLeft: "1.6rem", color: isActive ? white : (hoveredItem === index ? white : "#343a40") }}>
+                    {item.label}
+                  </span>
+                </p>
               </Link>
             </li>
           );

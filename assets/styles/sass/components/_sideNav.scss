@@ -1,38 +1,78 @@
-.menu-bars {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  text-align: center;
-  font-size: 2rem;
-  height: 4rem;
-  width: 4rem;
-  display: block;
-  &:hover {
-    background-color: lightgray;
-    border-radius: 100%;
-    height: 4rem;
-    width: 4rem;
-  }
-}
-
 .nav-menu {
-  background-color: white;
+  // padding: rem;
   min-width: 18rem;
-  width: auto;
+  width: 18%;
   height: auto;
   min-height: 100vh;
   transition: 600ms;
-  @include respond(phone){
+  padding: 1rem;
+  @include respond(phone) {
     min-width: 8rem;
     padding: 1rem;
+  }
+
+  ul {
+    .sidebar-list-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      width: 100%;
+      font-size: 1.4rem;
+    }
+
+    .navbar-toggle {
+      width: 100%;
+      height: 8rem;
+      padding: 2rem;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      .menu-bars {
+        &:hover {
+          background-color: #f1f3f5;
+          border-radius: 100%;
+          padding: 1rem;
+        }
+      }
+    }
+
+    .nav-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      height: 6rem;
+    }
+
+    .nav-text a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      border-radius: 0.75rem;
+      @include respond(phone) {
+        height: 3rem;
+        width: 6rem;
+        font-size: 1.8rem;
+      }
+    }
+
+    .nav-text a:hover {
+      color: white;
+    }
   }
 }
 
 .nav-menu.active {
-  background-color: #f2f6f8;
+  background-color: #f8f9fa ;
   transition: all 0.5s ease-in-out;
-  min-width: 5rem;
+  min-width: 7rem;
+  width: 5rem;
   @include respond(phone) {
     width: 3rem;
   }
@@ -40,48 +80,6 @@
 
 .nav-menu.active .nav-text {
   display: none;
-}
-
-.nav-text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  height: 6rem;
-  color: black;
-}
-
-.nav-text a {
-  text-decoration: none;
-  font-size: 1.5rem;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 1rem;
-  border-radius: 0.75rem;
-  @include respond(phone) {
-    height: 3rem;
-    width: 6rem;
-    font-size: 1.8rem;
-  }
-}
-
-.nav-text a:hover {
-  color: white;
-}
-
-.nav-menu-items {
-  width: 100%;
-  padding-right: 1rem;
-}
-
-.navbar-toggle {
-  width: 100%;
-  height: 8rem;
-  display: flex;
-  justify-content: start;
-  align-items: center;
 }
 
 .sidenav-item-text {
@@ -96,9 +94,4 @@
     align-items: center;
     text-align: center;
   }
-}
-
-.list-item {
-  height: 5rem;
-  border-radius: 100% !important;
 }
