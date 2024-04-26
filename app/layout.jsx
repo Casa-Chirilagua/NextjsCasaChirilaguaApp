@@ -1,6 +1,7 @@
 
 import React from "react";
 import AuthProvider from "@/components/AuthProvider";
+import StoreProvider from "./StoreProvider";
 
 //Components
 import MainNavigationBar from "@/components/navigation_bar/MainNavigationBar";
@@ -22,13 +23,15 @@ const MainLayout = ({ children }) => {
 
   return (
     <AuthProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <MainNavigationBar />
-          <SecondaryNavigationBar />
-          <main>{children}</main>
-        </body>
-      </html>
+      <StoreProvider>
+        <html lang="en">
+          <body className={inter.className}>
+            <MainNavigationBar />
+            <SecondaryNavigationBar />
+            <main>{children}</main>
+          </body>
+        </html>
+      </StoreProvider>
     </AuthProvider>
 
   );
