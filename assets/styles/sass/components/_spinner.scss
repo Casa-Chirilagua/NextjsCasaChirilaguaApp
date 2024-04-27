@@ -1,0 +1,32 @@
+.spinner-container {
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .spinner {
+    border: 0.5rem solid #f3f3f3; /* Light grey border */
+    border-top:0.5rem solid #b2f2bb; /* Blue border top */
+    border-radius: 50%;
+    width: 14rem;
+    height: 14rem;
+    animation: spin 1s linear infinite;
+    position: absolute; /* Ensures spinner is on the same plane as the image */
+  }
+  
+  .logo-loading {
+    position: absolute; /* Keeps the image stationary at the center */
+    z-index: 10; /* Ensures the image stays above the spinning border */
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

@@ -85,6 +85,42 @@ const sideNavigationItems = {
     path: "/program/registration",
     color: Colors["color-green"],
   },
+  student_Dashboard: {
+    label: "Student",
+    icon: <PiStudent className="student-icon icon" />,
+    path: "/dashboard/student",
+    color: Colors["color-purple-dark"],
+  },
+  parent_Dashboard: {
+    label: "Parent",
+    icon: <RiParentLine className="parent-icon icon" />,
+    path: "/dashboard/parent",
+    color: Colors["color-light-green"],
+  },
+  family_Dashboard: {
+    label: "Family",
+    icon: <IoHomeOutline className="family-icon icon" />,
+    path: "/dashboard/family",
+    color: Colors["color-purple-dark"],
+  },
+  volunteer_Dashboard: {
+    label: "Volunteer",
+    icon: <BiDonateHeart className="volunteer-icon icon" />,
+    path: "/dashboard/volunteers",
+    color: Colors["color-green"],
+  },
+  mentor_Dashboard: {
+    label: "Mentor",
+    icon: <IoPersonOutline className="mentor-icon icon" />,
+    path: "/dashboard/mentors",
+    color: Colors["color-orange"],
+  },
+  program_Dashboard: {
+    label: "Program",
+    icon: <HiOutlineUserGroup className="program-icon icon" />,
+    path: "/dashboard/programs",
+    color: Colors["color-green"],
+  },
 };
 
 export default sideNavigationItems;

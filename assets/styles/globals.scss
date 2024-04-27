@@ -3,7 +3,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
 //Abstract
 @import "sass/abstract/functions";
 @import "sass/abstract/mixins";
@@ -15,148 +14,150 @@
 @import "sass/base/typography";
 
 //Components
-@import 'sass/components/barChartCard';
-@import 'sass/components/bottomNavBar';
-@import 'sass/components/button';
-@import 'sass/components/cardGrid';
-@import 'sass/components/columnChartCard';
-@import 'sass/components/dashboardTableCard';
-@import 'sass/components/filterBar';
-@import 'sass/components/footer';
-@import 'sass/components/gaugeCard';
-@import 'sass/components/gridCardSkeleton';
-@import 'sass/components/lineGraphCard';
-@import 'sass/components/modal';
-@import 'sass/components/notes';
-@import 'sass/components/numberCard';
-@import 'sass/components/pieChartCard';
-@import 'sass/components/popUpMenu';
-@import 'sass/components/profile';
-@import 'sass/components/profileCard';
-@import 'sass/components/profileSkeleton';
-@import 'sass/components/registrationSkeleton';
-@import 'sass/components/sideNav';
-@import 'sass/components/table';
-@import 'sass/components/tableSearchBar';
-@import 'sass/components/tableSkeleton';
-@import 'sass/components/tooltip';
-@import 'sass/components/topNavigationBar';
-@import 'sass/components/gridList';
+@import "sass/components/barChartCard";
+@import "sass/components/bottomNavBar";
+@import "sass/components/button";
+@import "sass/components/cardGrid";
+@import "sass/components/columnChartCard";
+@import "sass/components/dashboardTableCard";
+@import "sass/components/filterBar";
+@import "sass/components/footer";
+@import "sass/components/gaugeCard";
+@import "sass/components/gridCardSkeleton";
+@import "sass/components/lineGraphCard";
+@import "sass/components/modal";
+@import "sass/components/notes";
+@import "sass/components/numberCard";
+@import "sass/components/pieChartCard";
+@import "sass/components/popUpMenu";
+@import "sass/components/profile";
+@import "sass/components/profileCard";
+@import "sass/components/profileSkeleton";
+@import "sass/components/registrationSkeleton";
+@import "sass/components/sideNav";
+@import "sass/components/spinner";
+@import "sass/components/table";
+@import "sass/components/tableSearchBar";
+@import "sass/components/tableSkeleton";
+@import "sass/components/tooltip";
+@import "sass/components/topNavigationBar";
+@import "sass/components/gridList";
 
-@import 'sass/layout/header';
-@import 'sass/layout/primaryPage';
+@import "sass/layout/header";
+@import "sass/layout/primaryPage";
 
-@import 'sass/pages/dashboardPage.scss';
-@import 'sass/pages/loginPage.scss';
-@import 'sass/pages/studentPage.scss';
-@import 'sass/pages/studentSignUp';
-@import 'sass/pages/tablesWithParam';
-@import 'sass/pages/userProfilePage';
+@import "sass/pages/dashboardPage.scss";
+@import "sass/pages/loginPage.scss";
+@import "sass/pages/studentPage.scss";
+@import "sass/pages/studentSignUp";
+@import "sass/pages/tablesWithParam";
+@import "sass/pages/userProfilePage";
 
 button > svg {
-    margin-right: 5px;
+  margin-right: 5px;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+
+  @include respond(tab-land) {
+    //width < 900
+    font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
   }
-  
-  *,
-  *::after,
-  *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+
+  @include respond(tab-port) {
+    //width < 600
+    font-size: 50%; //1 rem = 8px,8/16 = 50%
   }
-  
-  html {
-    font-size: 62.5%;
-  
-    @include respond(tab-land) {
-      //width < 900
-      font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
-    }
-  
-    @include respond(tab-port) {
-      //width < 600
-      font-size: 50%; //1 rem = 8px,8/16 = 50%
-    }
-  
-    @include respond(big-desktop) {
-      font-size: 75%; // 1rem = 12px, 12/16
-    }
+
+  @include respond(big-desktop) {
+    font-size: 75%; // 1rem = 12px, 12/16
   }
-  
-  body {
-    font-family: Inter;
-    font-weight: 400;
-    line-height: 1.7;
-    color: $color-grey-dark;
-    box-sizing: border-box;
+}
+
+body {
+  font-family: Inter;
+  font-weight: 400;
+  line-height: 1.7;
+  color: $color-grey-dark;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.login-container h1 {
+  color: $color-white;
+}
+
+.page {
+  background-color: $color-background;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translate(-10rem);
   }
-  
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
-    box-sizing: border-box;
+
+  80% {
+    transform: translate(1rem);
   }
-  
-  .login-container h1 {
-    color: $color-white;
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
   }
-  
-  .page {
-    background-color: $color-background;
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translate(10rem);
   }
-  
-  @keyframes moveInLeft {
-    0% {
-      opacity: 0;
-      transform: translate(-10rem);
-    }
-  
-    80% {
-      transform: translate(1rem);
-    }
-  
-    100% {
-      opacity: 1;
-      transform: translate(0);
-    }
+
+  80% {
+    transform: translate(-1rem);
   }
-  
-  @keyframes moveInRight {
-    0% {
-      opacity: 0;
-      transform: translate(10rem);
-    }
-  
-    80% {
-      transform: translate(-1rem);
-    }
-  
-    100% {
-      opacity: 1;
-      transform: translate(0);
-    }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
   }
-  
-  .subtitle-container {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    align-self: center;
-    border-radius: 0.75rem;
-    padding-bottom: 2rem;
-  }
-  
-  .error-message {
-    color: red;
-  }
-  
-  .card-1 {
-    background-color: white;
-  }
-  .Toastify__toast--success {
-    background: teal;
-  }
+}
+
+.subtitle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  align-self: center;
+  border-radius: 0.75rem;
+  padding-bottom: 2rem;
+}
+
+.error-message {
+  color: red;
+}
+
+.card-1 {
+  background-color: white;
+}
+.Toastify__toast--success {
+  background: teal;
+}
+

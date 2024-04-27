@@ -1,13 +1,18 @@
+'use client'
+
 import SideNav from "@/components/side_navigation_bar/SideNav";
 import sideNavigationItems from "@/data/SideNavigationItems";
+import { useSession } from 'next-auth/react';
 
 const layout = ({ children }) => {
-  
-    return (
-    <div className="primary-container my-custom-background">
+  const { data: session } = useSession();
+
+  return (
+    session && <div className="primary-container my-custom-background">
         <SideNav SidebarData={[sideNavigationItems.students, sideNavigationItems.student_registration]} selectedColor={sideNavigationItems.students.color}/>
         {children}
     </div>
+
   )
 }
 

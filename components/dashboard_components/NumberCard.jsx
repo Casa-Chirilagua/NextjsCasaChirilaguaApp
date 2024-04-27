@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+
 function NumberCard({
   name,
   number,
@@ -23,7 +24,7 @@ function NumberCard({
         {number}
       </div>
       <div className="card-link">
-        <Link to={urlLink}>{linkLabel}</Link>
+        <Link href={urlLink}>{linkLabel}</Link>
       </div>
     </div>
   );

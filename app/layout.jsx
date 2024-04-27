@@ -3,6 +3,10 @@ import React from "react";
 import AuthProvider from "@/components/AuthProvider";
 import StoreProvider from "./StoreProvider";
 
+//User Session
+
+
+
 //Components
 import MainNavigationBar from "@/components/navigation_bar/MainNavigationBar";
 import SecondaryNavigationBar from "@/components/navigation_bar/SecondaryNavigationBar";
@@ -25,7 +29,7 @@ const MainLayout = ({ children }) => {
     <AuthProvider>
       <StoreProvider>
         <html lang="en">
-          <body className={inter.className}>
+         <body className={inter.className}>
             <MainNavigationBar />
             <SecondaryNavigationBar />
             <main>{children}</main>

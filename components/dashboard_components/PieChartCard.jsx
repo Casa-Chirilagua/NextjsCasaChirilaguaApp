@@ -1,5 +1,5 @@
 import { PieChart, Cell, Pie, Sector, ResponsiveContainer } from 'recharts';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import React, { useState, useCallback } from 'react';
 
 const renderActiveShape = (props) => {
@@ -125,7 +125,7 @@ function PieChartCard({
         </PieChart>
       </ResponsiveContainer>
       <div className="card-link">
-        <Link to={urlLink}>{linkLabel}</Link>
+        <Link href={urlLink}>{linkLabel}</Link>
       </div>
     </div>
   );
