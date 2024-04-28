@@ -12,7 +12,6 @@ import Family from "@/app/models/Family";
 export const GET = async (request, { params }) => {
   try {
     await connectDB();
-    console.log("HERE");
     const students = await Student.findById(params._id);
 
     if (!students) {

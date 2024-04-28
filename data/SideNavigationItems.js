@@ -106,19 +106,19 @@ const sideNavigationItems = {
   volunteer_Dashboard: {
     label: "Volunteer",
     icon: <BiDonateHeart className="volunteer-icon icon" />,
-    path: "/dashboard/volunteers",
+    path: "/dashboard/volunteer",
     color: Colors["color-green"],
   },
   mentor_Dashboard: {
     label: "Mentor",
     icon: <IoPersonOutline className="mentor-icon icon" />,
-    path: "/dashboard/mentors",
+    path: "/dashboard/mentor",
     color: Colors["color-orange"],
   },
   program_Dashboard: {
     label: "Program",
     icon: <HiOutlineUserGroup className="program-icon icon" />,
-    path: "/dashboard/programs",
+    path: "/dashboard/program",
     color: Colors["color-green"],
   },
 };

@@ -1,13 +1,15 @@
 .dash-container {
   width: 100vw;
+  height: 100vh;
   margin-top: 2rem;
   margin-left: 2rem;
   margin-right: 2rem;
   margin-bottom: 2rem;
   display: grid;
   grid-gap: 2rem;
-  grid-template-rows: 6rem 20rem 18rem repeat(3, 20rem);
+  grid-template-rows: 8rem 20rem 18rem repeat(3, 20rem);
   grid-template-columns: repeat(5, 1fr);
+
 
 
   .item {

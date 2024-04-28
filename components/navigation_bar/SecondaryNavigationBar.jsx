@@ -18,7 +18,7 @@ function SecondaryNavigationBar() {
   }, [pathname]);
 
   const getItemStyle = (item) => {
-    return { color: item.label === activeItem ? item.color : "#888888" };
+    return { color: item.label === activeItem ? item.color : "#495057" };
   };
 
   const getBorderBottomColor = (item) => {

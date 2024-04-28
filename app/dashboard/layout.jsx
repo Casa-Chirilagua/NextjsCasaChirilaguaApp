@@ -1,3 +1,4 @@
+'use client'
 import SideNav from '@/components/side_navigation_bar/SideNav'
 import sideNavigationItems from '@/data/SideNavigationItems'
 import { useSession } from 'next-auth/react';

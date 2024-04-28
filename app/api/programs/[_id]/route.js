@@ -53,7 +53,7 @@ export const PATCH = async (request, { params }) => {
       // Handles adding students without duplicates
       updateOptions["$addToSet"] = { [key]: { $each: value } };
     } else if (key.startsWith("remove") && value) {
-      console.log("Here");
+     
       const fieldToRemoveFrom = key.replace("remove", "").toLowerCase();
       updateOptions["$pull"] = { [fieldToRemoveFrom]: value };
     } else if (["history", "notes"].includes(key) && Array.isArray(value)) {

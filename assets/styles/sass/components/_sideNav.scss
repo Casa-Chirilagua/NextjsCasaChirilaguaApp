@@ -2,11 +2,12 @@
   // padding: rem;
   min-width: 18rem;
   width: 18%;
+
   height: auto;
   min-height: 100vh;
   transition: 600ms;
   padding: 1rem;
-  @include respond(phone) {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;    @include respond(phone) {
     min-width: 8rem;
     padding: 1rem;
   }

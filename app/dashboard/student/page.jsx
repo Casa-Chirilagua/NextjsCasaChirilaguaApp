@@ -53,6 +53,7 @@ function StudentDash() {
     doFetchParents();
     doFetchPrograms();
     doFetchFamilies();
+    console.log('fetching data');
   }, [doFetchParents, doFetchPrograms, doFetchStudents, doFetchFamilies]);
 
   if (!students) {
@@ -92,6 +93,10 @@ function StudentDash() {
     isLoadingPrograms ||
     isLoadingStudents
   ) {
+    console.log("isLoadingFamilies", isLoadingFamilies);
+    console.log("isLoadingParents", isLoadingParents);
+    console.log("isLoadingPrograms", isLoadingPrograms);
+    console.log("isLoadingStudents", isLoadingStudents);
     // content = <GridCardsSkeleton numberOfCards={30} />;
     content = <div className='primary-page'>Loading...</div>;
   } else if (
@@ -100,11 +105,15 @@ function StudentDash() {
     loadingProgramError ||
     loadingStudentError
   ) {
+    console.log("loadingFamiliesError", loadingFamiliesError);
+    console.log("loadingParentsError", loadingParentsError);
+    console.log("loadingProgramError", loadingProgramError);
+    console.log("isLoadingStudents", loadingStudentError);
     content = <div>Error fetching data...</div>;
   } else {
     content = (
       <>
-        <div className="dashboard-page-header"><h1>Student Dashboard</h1><div className="dashboard-subheading">Welcomr to the student Dashboard</div></div>
+        <div className="dashboard-page-header"><h1>Student Dashboard</h1><div className="dashboard-subheading">Welcome to the student Dashboard</div></div>
         <NumberCard
           labelColor={'black'}
           numberColor={'black'}
@@ -166,13 +175,13 @@ function StudentDash() {
           icon={MainNavigationItems.families.icon}
           classN="item--7"
         />
-        <div className="item item--5">
+        {/* <div className="item item--5">
           <DashboardTable
             fontColor={'black'}
             backgroundColor={'white'}
             studentsWithIds={studentsWithIds}
           />
-        </div>
+        </div> */}
 
 
         {/* <NumberCard

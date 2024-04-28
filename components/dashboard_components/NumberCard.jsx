@@ -23,9 +23,9 @@ function NumberCard({
       <div style={{ color: numberColor }} className="card-number">
         {number}
       </div>
-      <div className="card-link">
+      {urlLink && <div className="card-link">
         <Link href={urlLink}>{linkLabel}</Link>
-      </div>
+      </div>}
     </div>
   );
 }
