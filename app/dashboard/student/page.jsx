@@ -87,19 +87,7 @@ function StudentDash() {
   const COLORS = [Colors['color-green'], '#D0F0C0', '#00853E', '#71BC78'];
 
   let content;
-  if (
-    isLoadingFamilies ||
-    isLoadingParents ||
-    isLoadingPrograms ||
-    isLoadingStudents
-  ) {
-    console.log("isLoadingFamilies", isLoadingFamilies);
-    console.log("isLoadingParents", isLoadingParents);
-    console.log("isLoadingPrograms", isLoadingPrograms);
-    console.log("isLoadingStudents", isLoadingStudents);
-    // content = <GridCardsSkeleton numberOfCards={30} />;
-    content = <div className='primary-page'>Loading...</div>;
-  } else if (
+ if (
     loadingFamiliesError ||
     loadingParentsError ||
     loadingProgramError ||
@@ -139,7 +127,7 @@ function StudentDash() {
           backgroundColor={Colors['color-green']}
           col="3"
           name={'Active Parents'}
-          number={parents.length}
+          number={parents?.length}
           linkLabel={'Parent table'}
           urlLink={'/parents/table'}
           icon={MainNavigationItems.parents.icon}
@@ -171,7 +159,7 @@ function StudentDash() {
           name={'Active Families'}
           linkLabel={'Families table'}
           urlLink={'/families/table'}
-          number={families.length}
+          number={families?.length}
           icon={MainNavigationItems.families.icon}
           classN="item--7"
         />

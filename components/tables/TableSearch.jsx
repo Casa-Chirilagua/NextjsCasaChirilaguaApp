@@ -1,10 +1,14 @@
-import React from 'react';
+'use client'
+
+//React
 import { useEffect, useState } from 'react';
+
+//Unique ID
 import { v4 as uuidv4 } from 'uuid';
+
+//Components
 import SortableTable from '../tables/SortableTable';
-import TableSearchBar from '../search_bar/TableSearchBar';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import TableSearchBar from '@/components/search_bar/TableSearchBar';
 
 function StudentTable({
   config,
@@ -12,68 +16,45 @@ function StudentTable({
   title,
   color,
   searchTitleColor,
-  configFilterBar,
 }) {
   const [searchText, setSearchText] = useState('');
-  const [filteredData, setFilteredData] = useState([]);
-  const [activeFilter, setActiveFilter] = useState('Enrolled');
+  const [filteredData, setFilteredData] = useState(data);
+
   const keyFn = (fruit) => {
     return fruit.name;
   };
 
   useEffect(() => {
-    //Set to default
-    if (activeFilter === 'Enrolled' || activeFilter === 'Active') {
-      //Active
-      setFilteredData(data);
 
-      //Search text
-      let filtered;
-      try {
-        if (data && Array.isArray(data)) {
-          filtered = data?.filter((obj) => {
-            if (obj.first_name) {
-              return obj.first_name
-                .toLowerCase()
-                .includes(searchText.toLowerCase());
-            } else if (obj.name) {
-              return obj.name.toLowerCase().includes(searchText.toLowerCase());
-            } else {
-              return obj.family_name
-                .toLowerCase()
-                .includes(searchText.toLowerCase());
-            }
-          });
-        }
-        setFilteredData(filtered);
-        return;
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    //Look for filter label which is equal to activeFilter
-    const configItem = configFilterBar.filter((elem) => {
-      let filterLabel;
-      if (elem.filter_label === 'Active') {
-        filterLabel = 'Enrolled';
-      } else {
-        filterLabel = elem.filter_label;
-      }
-      return filterLabel === activeFilter;
-    });
-
-    //Now that we have our configItem filter the data based on the key_name_to_filter_by
+    //Search text
     let filtered;
-    if (configItem.length > 0 && Array.isArray(data)) {
-      filtered = data?.filter(
-        (elem) =>
-          elem[`${configItem[configItem.length - 1].key_name_to_filter_by}`] ===
-          configItem.desired_field_value,
-      );
-      setFilteredData(filtered);
+
+    if (data && Array.isArray(data)) {
+      filtered = data?.filter((obj) => {
+
+        /**
+         * 1. Check if the object has a first_name, name, or family_name property
+         * 2. If it does, check if the value of the property includes the search text
+         * 3. If it does, return true
+         */
+        if (obj.first_name) {
+          return obj.first_name
+            .toLowerCase()
+            .includes(searchText.toLowerCase());
+        } else if (obj.name) {
+          return obj.name.toLowerCase().includes(searchText.toLowerCase());
+        } else {
+          return obj.family_name
+            .toLowerCase()
+            .includes(searchText.toLowerCase());
+        }
+      });
     }
-  }, [data, searchText, activeFilter, configFilterBar]);
+    setFilteredData(filtered);
+    return;
+
+
+  }, [data, searchText]);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -100,15 +81,13 @@ function StudentTable({
     <div className="student-search-container">
       {Array.isArray(data) ? (
         <>
-          {(
-            <TableSearchBar
-              color={searchTitleColor}
-              filteredData={filteredData}
-              onChange={handleSearch}
-              value={searchText}
-              title={title}
-            />
-          ) || <Skeleton />}
+          <TableSearchBar
+            color={searchTitleColor}
+            filteredData={filteredData}
+            onChange={handleSearch}
+            value={searchText}
+            title={title}
+          />
           {/* <FilterBar
             config={configFilterBar}
             unfilteredData={data}
@@ -117,16 +96,14 @@ function StudentTable({
             searchText={searchText}
             setActiveFilter={setActiveFilter}
           /> */}
-          {
-            <SortableTable
-              key={uuidv4()}
-              className="span2"
-              color={color}
-              data={filteredData}
-              config={config}
-              keyFn={keyFn}
-            ></SortableTable>
-          }
+          <SortableTable
+            key={uuidv4()}
+            className="span2"
+            color={color}
+            data={filteredData}
+            config={config}
+            keyFn={keyFn}
+          ></SortableTable>
         </>
       ) : (
         <></>

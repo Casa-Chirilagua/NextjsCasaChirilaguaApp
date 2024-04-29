@@ -1,6 +1,9 @@
 import React from 'react';
 
+//csv
 import { CSVLink } from 'react-csv';
+
+//Icons
 import { CiMenuFries } from 'react-icons/ci';
 
 // Components

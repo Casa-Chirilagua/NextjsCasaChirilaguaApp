@@ -37,7 +37,7 @@ function SortableTable(props) {
       header: () => (
         <th
           id={color}
-          className="cursor-pointer hover:bg-gray-100"
+          className="cursor-pointer "
           onClick={() => handleClick(column.label)}
         >
           <div className="label-icon-container">

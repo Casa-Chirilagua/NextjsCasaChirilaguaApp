@@ -45,7 +45,7 @@ function Table({ data, config, keyFn, color }) {
         <thead style={{borderRadius: '1rem'}}>
           <tr className="border-b-2">{renderedHeaders}</tr>
         </thead>
-        <tbody>{renderedRows}</tbody>
+        <tbody className='table-body'>{renderedRows}</tbody>
       </table>
     </div>
   );
