@@ -14,7 +14,7 @@ function VolunteerConfig() {
                   className="avatar-table"
                   src={volunteer ? volunteer.profile_image[0].url : defaultProfilePicture}
                 ></Avatar>
-                <Link href={`/profile/${volunteer._id}`}>
+                <Link href={`/volunteer-profile/${volunteer._id}`}>
                   {volunteer.first_name}
                 </Link>
               </div>

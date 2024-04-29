@@ -19,7 +19,7 @@ function StudentConfig() {
                   : defaultProfilePicture
               }
             ></Avatar>
-            <Link href={`/profile/${student._id}`}>
+            <Link href={`/student-profile/${student._id}`}>
               {student.first_name}
             </Link>
           </div>

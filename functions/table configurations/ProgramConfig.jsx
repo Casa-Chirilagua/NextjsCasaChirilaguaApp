@@ -20,7 +20,7 @@ function ProgramConfig() {
                   : defaultProfilePicture
               }
             ></Avatar>
-            <Link href={`/profile/${program._id}`}>
+            <Link href={`/program-profile/${program._id}`}>
               {HandleName(program)}
             </Link>
           </div>

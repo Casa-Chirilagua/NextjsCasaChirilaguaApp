@@ -17,7 +17,7 @@ function FamilyConfig() {
                   : defaultProfilePicture
               }
             ></Avatar>
-            <Link href={`/profile/${family._id}`}>
+            <Link href={`/family-profile/${family._id}`}>
               {family?.family_name}
             </Link>
           </div>

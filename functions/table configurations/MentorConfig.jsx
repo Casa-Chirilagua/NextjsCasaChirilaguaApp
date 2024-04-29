@@ -14,7 +14,7 @@ function MentorConfig() {
                   className="avatar-table"
                   src={volunteer ? volunteer.profile_image[0].url : defaultProfilePicture}
                 ></Avatar>
-                <Link href={`/profile/${volunteer._id}`}>
+                <Link href={`/mentor-profile/${volunteer._id}`}>
                   {volunteer.first_name}
                 </Link>
               </div>

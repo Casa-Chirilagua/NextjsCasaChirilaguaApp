@@ -13,7 +13,7 @@ function ParentConfig() {
               className="avatar-table"
               src={parent ? parent.profile_image[0].url : defaultProfilePicture}
             ></Avatar>
-            <Link href={`/profile/${parent._id}`}>
+            <Link href={`/parent-profile/${parent._id}`}>
               {parent.first_name}
             </Link>
           </div>
