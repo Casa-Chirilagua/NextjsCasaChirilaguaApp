@@ -1,23 +1,28 @@
+'use client'
 import { useState } from 'react';
+
+//React
 import { useForm, Controller } from 'react-hook-form';
+import { toast } from 'react-toastify';
+
+//Icon and Avatar
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
-
 import { BsFillCameraFill } from 'react-icons/bs';
 
-import { toast } from 'react-toastify';
+
 
 //Components
 import Modal from '../modal/Modal';
 
 //Data
-import Colors from '../../data/Colors';
+import Colors from '@/data/Colors';
 
 //Services
-import { updateProfileImageById } from '../../features/profile image/profileImageSlice';
+// import { updateProfileImageById } from '@/features/profile image/profileImageSlice';
 
 //thunks
-import { useThunk } from '../../hooks/use-thunk';
+import { useThunk } from '@/hooks/use-thunk';
 
 //Icon
 import { GrAdd } from 'react-icons/gr';
@@ -42,28 +47,28 @@ const PersonCard = ({
     formState: { errors },
   } = useForm();
 
-  //Update Student
-  const [
-    doUpdateProfilePicture,
-    isUpdatingProfilePicture,
-    updatingPrfoilePictureError,
-  ] = useThunk(updateProfileImageById);
+  // //Update Student
+  // const [
+  //   doUpdateProfilePicture,
+  //   isUpdatingProfilePicture,
+  //   updatingPrfoilePictureError,
+  // ] = useThunk(updateProfileImageById);
 
   const onSubmit = async (data) => {
-    try {
-      const fd = new FormData();
-      fd.append('profile_image', data.profile_image[0]);
-      fd.append('id', id);
-      fd.append('url', objectType);
+    // try {
+    //   const fd = new FormData();
+    //   fd.append('profile_image', data.profile_image[0]);
+    //   fd.append('id', id);
+    //   fd.append('url', objectType);
 
-      let updateProfilePicture = doUpdateProfilePicture(fd);
-      const [updatStudentResult] = await Promise.all([updateProfilePicture]);
+    //   let updateProfilePicture = doUpdateProfilePicture(fd);
+    //   const [updatStudentResult] = await Promise.all([updateProfilePicture]);
 
-      if (updatStudentResult.payload.status === 'success') {
-        toast.success('Successfully Updated Profile Picture');
-        setOpenModal(false);
-      }
-    } catch (error) {}
+    //   if (updatStudentResult.payload.status === 'success') {
+    //     toast.success('Successfully Updated Profile Picture');
+    //     setOpenModal(false);
+    //   }
+    // } catch (error) {}
   };
 
 

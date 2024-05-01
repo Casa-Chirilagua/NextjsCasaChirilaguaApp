@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+'use client'
+import { useState } from 'react';
 import { IoChevronDown, IoChevronForward } from 'react-icons/io5';
 import { RiPencilFill } from 'react-icons/ri';
 

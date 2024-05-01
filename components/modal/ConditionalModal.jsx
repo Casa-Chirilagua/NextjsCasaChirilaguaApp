@@ -1,25 +1,28 @@
+'use client'
+
+//React
 import { useState, useEffect } from 'react';
 
 //Functions
-import HandleArrayUpdateData from '../../functions/HandleArrayUpdateData';
+import GenerateUpdateData from '@/functions/conditional modal/GenerateUpdateData';
 
 //Components
 import ModalClick from './ModalClick';
 import ConditionalGridList from '../list/ConditionalGridList';
-import LoadingToast from '../../functions/LoadingToast';
-import SuccessToast from '../../functions/SuccessToast';
+import LoadingToast from '@/functions/LoadingToast';
+import SuccessToast from '@/functions/SuccessToast';
 
 //Services
-import { addItemToArrayByStudentID } from '../../features/student/studentSlice';
-import { addItemToArrayByParentID } from '../../features/parent/parentSlice';
-import { addItemToArrayByProgramID } from '../../features/program/programSlice';
-import { addItemToArrayByFamilyID } from '../../features/family/familySlice';
+import { updateStudentById } from '@/lib/features/student/studentSlice';
+import { updateParentById } from '@/lib/features/parent/parentSlice';
+import { updateProgramById } from '@/lib/features/program/programSlice';
+import { updateFamilyById } from '@/lib/features/family/familySlice';
 
 //Thunks
-import { useThunk } from '../../hooks/use-thunk';
+import { useThunk } from '@/hooks/use-thunk';
 
 //Data
-import Colors from '../../data/Colors';
+import Colors from '@/data/Colors';
 
 function ConditionalModal({
   objectTypeGrid,
@@ -31,28 +34,29 @@ function ConditionalModal({
   setOpenModal,
   openModal,
 }) {
+
   //Variables
   const [componentsForModal, setComponentsForModal] = useState();
   const [objectIdToAdd, setObjectIdToAdd] = useState();
 
   //Update Student
   const [doUpdateStudent, isUpdatingStudent, isUpdatingStudentError] = useThunk(
-    addItemToArrayByStudentID,
+    updateStudentById,
   );
 
   //Update Parent
   const [doUpdateParent, isUpdatingParent, isUpdatingParentError] = useThunk(
-    addItemToArrayByParentID,
+    updateParentById,
   );
 
   //Update Program
   const [doUpdateProgram, isUpdatingProgram, isUpdatingProgramError] = useThunk(
-    addItemToArrayByProgramID,
+    updateProgramById,
   );
 
   //Update Family
   const [doUpdateFamily, isUpdatingFamily, isUpdatingFamilyError] = useThunk(
-    addItemToArrayByFamilyID,
+    updateFamilyById,
   );
 
   const handleObjectId = (id) => {
@@ -77,7 +81,7 @@ function ConditionalModal({
    */
   const handleClickFunction = async () => {
     //Generate data to update
-    const data = HandleArrayUpdateData(objectTypeGrid, objectId, objectIdToAdd);
+    const data = GenerateUpdateData(objectTypeGrid, objectId, objectIdToAdd);
 
     //Update and set the promise
     let promise;

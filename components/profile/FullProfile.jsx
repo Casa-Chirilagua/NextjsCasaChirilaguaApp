@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import axios from 'axios';
+
 
 //Components
 import Modal from '../modal/Modal';

@@ -1,26 +1,26 @@
+'use client'
+
+//React
 import { useEffect } from 'react';
+
+//Components
 import GridList from './GridList';
 
-import LoadingToast from '../../functions/LoadingToast';
+
 //redux
 import { useSelector } from 'react-redux';
 
 //Thunk
-import { useThunk } from '../../hooks/use-thunk';
+import { useThunk } from '@/hooks/use-thunk';
 
 /**
  * Services
  *
  */
-
-// Parents
-import { fetchParentsWithName } from '../../features/parents/parentsSlice';
-// Programs
-import { fetchPrograms } from '../../features/programs/programSlice';
-// Families
-import { fetchFamilies } from '../../features/families/familiesSlice';
-// Students
-import { fetchStudents } from '../../features/students/studentsSlice';
+import { fetchParentsWithName } from '@/lib/features/parents/parentsSlice';
+import { fetchPrograms } from '@/lib/features/programs/programsSlice';
+import { fetchFamilies } from '@/lib/features/families/familiesSlice';
+import { fetchStudents } from '@/lib/features/students/studentsSlice';
 
 function ConditionalGridList({ objectType, handleObjectIdFunction }) {
   //Objects

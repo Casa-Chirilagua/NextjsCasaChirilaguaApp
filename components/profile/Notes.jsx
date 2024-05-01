@@ -1,12 +1,18 @@
-import React, { useState} from 'react';
+'use client'
+
+// React
+import { useState} from 'react';
+
+//Icons
 import { GrAdd } from 'react-icons/gr';
 import { TfiSave } from 'react-icons/tfi';
 
 //Functions
-import convertDate from '../../functions/ConvertDate';
+import convertDate from '@/functions/convertDate';
 
-//Auth0
-import { useAuth0 } from '@auth0/auth0-react';
+//Next Auth
+import { useSession } from "next-auth/react";
+
 
 //Components
 import PopUpMenu from '../pop up menu/PopUpMenu';
@@ -22,10 +28,11 @@ function Notes({
 }) {
 
   //Current user
-  const { user } = useAuth0();
+  const { data: session} = useSession();
+  const user = session?.user;
 
   //Get the username of current user
-  const username = user?.name.split('@')[0];
+  const username = user?.nickname;
 
   //State to store the note text
   const [noteText, setNoteText] = useState('');

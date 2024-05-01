@@ -1,7 +1,8 @@
+'use client'
 import { useState } from 'react';
-import HandleName from '../../functions/HandleName';
 
-import Colors from '../../data/Colors';
+import HandleName from '@/functions/HandleName';
+import Colors from '@/data/Colors';
 function GridList({
   items,
   label,
