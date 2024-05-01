@@ -32,7 +32,7 @@ function Notes({
   const user = session?.user;
 
   //Get the username of current user
-  const username = user?.nickname;
+  const username = user?.name;
 
   //State to store the note text
   const [noteText, setNoteText] = useState('');

@@ -1,4 +1,4 @@
-function DataToUpdate(fieldData, fieldName, param, objName, data) {
+function DataToUpdate(fieldData, fieldName, id, objName, data) {
   /**
    * Represents the data stored in the `fieldData` variable.
    * @type {any}
@@ -9,12 +9,12 @@ function DataToUpdate(fieldData, fieldName, param, objName, data) {
     let result;
     if (!fieldDataCopy.hasObject) {
       result = {
-        id: param.id,
+        id: id,
         updatedFields: { [fieldName]: data[fieldDataCopy.name_of_json_field] },
       };
     } else {
       result = {
-        id: param.id,
+        id: id,
         updatedFields: {
           [objName]: { [fieldName]: data[fieldDataCopy.name_of_json_field] },
         },

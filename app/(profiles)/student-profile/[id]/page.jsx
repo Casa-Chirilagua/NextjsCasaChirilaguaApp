@@ -52,7 +52,7 @@ const page = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  
+
   const { id } = useParams();
 
   const router = useRouter();
@@ -124,7 +124,7 @@ const page = () => {
     const objName = fieldData.objectName;
     let studentData;
     if (fieldData) {
-      studentData = DataToUpdate(fieldData, fieldName, param, objName, data);
+      studentData = DataToUpdate(fieldData, fieldName, id, objName, data);
     }
 
     let updateStudent = doUpdateStudent(studentData);
@@ -168,6 +168,7 @@ const page = () => {
       id: id,
       updatedFields: { notes: notes, history: [{}] },
     };
+
 
     const studentPromise = doUpdateStudent(notesData);
 
