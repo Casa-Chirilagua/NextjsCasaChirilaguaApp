@@ -250,7 +250,7 @@ const page = () => {
 
   // Add more data for additional persons...
   try {
-    return <div> {content}</div>;
+    return <div className='primary-container'> {content}</div>;
   } catch (error) {
     console.log(error);
   }

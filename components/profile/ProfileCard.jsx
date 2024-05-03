@@ -55,20 +55,7 @@ const PersonCard = ({
   // ] = useThunk(updateProfileImageById);
 
   const onSubmit = async (data) => {
-    // try {
-    //   const fd = new FormData();
-    //   fd.append('profile_image', data.profile_image[0]);
-    //   fd.append('id', id);
-    //   fd.append('url', objectType);
 
-    //   let updateProfilePicture = doUpdateProfilePicture(fd);
-    //   const [updatStudentResult] = await Promise.all([updateProfilePicture]);
-
-    //   if (updatStudentResult.payload.status === 'success') {
-    //     toast.success('Successfully Updated Profile Picture');
-    //     setOpenModal(false);
-    //   }
-    // } catch (error) {}
   };
 
 
@@ -102,8 +89,7 @@ const PersonCard = ({
                   style={{
                     background: `linear-gradient(to top,      white 0%,
       white 50%,
-      ${color} 50%,
-      ${color} 100%)`,
+       ${color} 50%, ${color} 100%)`,
                   }}
                   className="profile-card-title-container"
                 >

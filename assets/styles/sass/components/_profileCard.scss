@@ -4,6 +4,7 @@
   margin-bottom: 2rem;
   border-radius: 1rem;
   box-shadow: $primary-box-shadow;
+
   font-size: 1.2rem;
   a,
   a:link,
@@ -20,15 +21,20 @@
   }
 
   .profile-card-title-container {
-    height: 24rem;
-    background: linear-gradient(
-      to top,
-      white 0%,
-      white 50%,
-      $color-purple-dark 50%,
-      $color-purple-dark 100%
-    );
+    height: 27rem;
+    // background: linear-gradient(
+    //   to top,
+    //   white 0%,
+    //   white 50%,
+    //   $color-purple-dark 50%,
+    //   $color-purple-dark 100%
+    // );
 
+    background-image: url("https://res.cloudinary.com/dnmsdb199/image/upload/v1713132875/CasaApp/aiwr8nz6d3upj1tdvntz.jpg");
+    background-size: cover;
+    background-position: top;
+    // clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+    position:relative;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
@@ -45,7 +51,6 @@
         color: white;
 
         .toggle-switch-label {
-       
           font-size: 1.4rem;
         }
         font-size: 1rem;
@@ -96,10 +101,11 @@
         width: 100%;
         gap: 1rem;
 
-        // background-color: blue;
         .profile-card-add-button {
-          box-shadow:
-            rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
             rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
           width: 15rem;
           height: 4rem;
@@ -149,6 +155,9 @@
   padding: 2rem;
 
   .card-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     border-radius: 0.5rem;
     margin-bottom: 0.5rem;
   }

@@ -108,13 +108,13 @@ function FullProfile({
         />
 
         {/* Section with delete */}
-        <DeleteCard
+        {/* <DeleteCard
           color={profileColor}
           mainHeading={mainHeading}
           subHeading={subHeading}
           buttonLabel={deleteButtonLabel}
           setOpenModalDelete={setOpenModalDelete}
-        />
+        /> */}
       </div>
     </>
   );
