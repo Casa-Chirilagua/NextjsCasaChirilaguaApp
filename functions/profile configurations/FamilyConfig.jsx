@@ -30,28 +30,28 @@ function FamilyConfig(family) {
     },
     Address: {
       Street: {
-        value: family.primary_address.street,
+        value: family.primary_address?.street,
         name_of_json_field: 'street',
         database_field_name: 'street',
         hasObject: true,
         objectName: 'primary_address',
       },
       City: {
-        value: family.primary_address.city,
+        value: family.primary_address?.city,
         name_of_json_field: 'city',
         database_field_name: 'city',
         hasObject: true,
         objectName: 'primary_address',
       },
       State: {
-        value: family.primary_address.state,
+        value: family.primary_address?.state,
         name_of_json_field: 'state',
         database_field_name: 'state',
         hasObject: true,
         objectName: 'primary_address',
       },
       Zip: {
-        value: family.primary_address.zip,
+        value: family.primary_address?.zip,
         name_of_json_field: 'zip',
         database_field_name: 'zip',
         hasObject: true,

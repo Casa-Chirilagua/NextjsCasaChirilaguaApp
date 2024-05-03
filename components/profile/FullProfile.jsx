@@ -49,8 +49,10 @@ function FullProfile({
         object.first_name + ' ' + object.middle_name + ' ' + object.last_name;
     } else if (object.first_name && object.last_name) {
       fullName = object.first_name + ' ' + object.last_name;
-    } else {
+    } else if (object.name) {
       fullName = object.name;
+    } else {
+      fullName = object.family_name;
     }
   }
 
@@ -94,8 +96,8 @@ function FullProfile({
             setOpenModal={setOpenModal}
             setNameOfJson={setFieldData}
             name={object ? object.name : ''}
-            headings={headings}
-            fields={fields}
+            headings={headings ? headings : []}
+            fields={fields ? fields : []}
             color={profileColor}
           />
         </form>

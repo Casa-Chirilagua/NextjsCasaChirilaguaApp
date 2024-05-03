@@ -107,7 +107,7 @@ const page = () => {
   let componentsDelete = UpdateDeleteComponent(program);
 
   const handleClickFunction = async () => {
-    navigate('/programs/table');
+    router.push('/programs/table');
 
     const studentPromise = doDeleteProgram(id);
     const [studentResult] = await Promise.all([studentPromise]);
