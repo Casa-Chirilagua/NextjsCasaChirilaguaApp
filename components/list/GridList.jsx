@@ -17,6 +17,7 @@ function GridList({
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedItemsId, setSelectedItemsid] = useState([]);
+  console.log(items);
 
   let labelColor = color ? color : '	#28282B';
   let itemTextColors = itemTextColor ? itemTextColor: '#28282B';

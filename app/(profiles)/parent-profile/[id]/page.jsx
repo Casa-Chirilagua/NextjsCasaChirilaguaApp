@@ -18,7 +18,7 @@ import FullProfile from "@/components/profile/FullProfile";
 
 //Data
 import Colors from "@/data/Colors";
-import GuardianOne from '@/data/Student Form Data/GuardainOne';
+import GuardianOne from '@/data/Student Form Data/GuardianOne';
 
 //Functions
 import ParentConfig from '@/functions/profile configurations/ParentConfig'; 
