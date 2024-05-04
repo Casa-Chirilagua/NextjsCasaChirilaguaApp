@@ -322,7 +322,7 @@ const page = () => {
   }
   try {
     return (
-      <div className="student-form-box" style={{ paddingTop: '3rem' }}>
+      <div className="primary-container" style={{ paddingTop: '3rem' }}>
         <div className="subtitle-container">
           <form
             onSubmit={handleSubmit(onSubmit)}

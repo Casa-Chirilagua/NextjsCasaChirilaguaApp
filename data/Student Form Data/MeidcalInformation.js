@@ -4,7 +4,7 @@ const MedicalInformation = {
   fields: [
     {
       type: 'radio',
-      label: 'DOES THE STUDENT HAVE ALLERGIES?',
+      label: 'Does the student have allergies? (optional)',
       hasMoreFields: false,
       data: [
         {
@@ -58,7 +58,7 @@ const MedicalInformation = {
     },
     {
       type: 'radio',
-      label: 'DOES THE STUDENT HAVE ASTHMA?',
+      label: 'Does the student have asthma? (optional)',
       hasMoreFields: false,
       data: [
         {
@@ -87,7 +87,7 @@ const MedicalInformation = {
     },
     {
       type: 'radio',
-      label: 'DOES THE STUDENT HAVE ANY FOOD RESTRICTIONS?',
+      label: 'Does the student have any food restrictions? (optional)',
       hasMoreFields: false,
       data: [
         {
@@ -115,7 +115,7 @@ const MedicalInformation = {
     },
     {
       type: 'radio',
-      label: 'DOES THE STUDENT HAVE OTHER RESTRICTIONS?',
+      label: 'Does the student have any other medical restrictions? (optional)',
       hasMoreFields: false,
       data: [
         {

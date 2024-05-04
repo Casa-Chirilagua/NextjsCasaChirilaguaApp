@@ -73,7 +73,7 @@ const GuardianOne = {
       required: false,
       required_message: '',
       data: {},
-      label: 'Address Line 2',
+      label: 'Address Line 2 (optional)',
       id: '',
     },
     {
@@ -108,7 +108,7 @@ const GuardianOne = {
     },
     {
       type: 'radio',
-      label: 'CAN RECEIVE MESSAGES?',
+      label: 'Can receive messages?',
       hasMoreFields: false,
       name_of_json_field: 'guardian_one_can_recieve_messages',
 

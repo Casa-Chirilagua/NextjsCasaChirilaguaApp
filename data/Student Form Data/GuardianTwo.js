@@ -49,7 +49,7 @@ const GuardianTwo = {
         required: false,
         required_message: 'Please enter your email.',
         data: {},
-        label: 'Email',
+        label: 'Email (optional)',
         id: '',
       },
       {
@@ -68,7 +68,7 @@ const GuardianTwo = {
         required: false,
         required_message: '',
         data: {},
-        label: 'Address Line 2',
+        label: 'Address Line 2 (optional)',
         id: '',
       },
       {
@@ -103,7 +103,7 @@ const GuardianTwo = {
       },
       {
         type: 'radio',
-        label: 'CAN RECEIVE MESSAGES?',
+        label: 'Can receive messages? (optional)',
         hasMoreFields: false,
         data: [
           {
@@ -120,15 +120,15 @@ const GuardianTwo = {
           },
         ],
       },
-      { type: 'section', label: 'GUARDIAN 2 PROFILE PICTURE' },
-      {
-        type: 'file',
-        name: 'profile_image',
-        name_of_json_field: 'guardian_two_profile_picture',
-        data: {},
-        label: 'Select an image file',
-        id: 'avatar',
-      },
+      // { type: 'section', label: 'GUARDIAN 2 PROFILE PICTURE' },
+      // {
+      //   type: 'file',
+      //   name: 'profile_image',
+      //   name_of_json_field: 'guardian_two_profile_picture',
+      //   data: {},
+      //   label: 'Select an image file',
+      //   id: 'avatar',
+      // },
       // {
       //   type: 'radio',
       //   label: 'LIVES IN SAME ADDRESS AS STUDENT?',

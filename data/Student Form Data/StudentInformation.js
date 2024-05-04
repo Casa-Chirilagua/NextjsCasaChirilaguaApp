@@ -22,7 +22,7 @@ const StudentInformation = {
       placeholder: 'Enter Midddle Name',
       required: false,
       data: {},
-      label: 'Middle Name',
+      label: 'Middle Name (optional)',
       id: '',
     },
     {
@@ -115,7 +115,7 @@ const StudentInformation = {
       required: false,
       required_message: 'Please enter your email.',
       data: {},
-      label: 'Email',
+      label: 'Email (optional)',
       id: '',
     },
 
@@ -151,7 +151,7 @@ const StudentInformation = {
     },
     {
       type: 'radio',
-      label: 'Does the student get free or reduced lunch?',
+      label: 'Does the student get free or reduced lunch? (optional)',
       data: [
         {
           id: 'ReducedLunch1',
@@ -247,7 +247,7 @@ const StudentInformation = {
     { type: 'section', label: 'Medical Information' },
     {
       type: 'radio',
-      label: 'DOES THE STUDENT HAVE ALLERGIES?',
+      label: 'Does the student have allergies?',
       hasMoreFields: false,
       data: [
         {
@@ -273,7 +273,7 @@ const StudentInformation = {
     },
     {
       type: 'radio',
-      label: 'DOES THE STUDENT HAVE EPILEPSY?',
+      label: 'Does the student have Epilepsy? (optional)',
       hasMoreFields: false,
       data: [
         {
@@ -301,7 +301,7 @@ const StudentInformation = {
     },
     {
       type: 'radio',
-      label: 'DOES THE STUDENT HAVE ASTHMA?',
+      label: 'Does the student have Asthma? (optional)',
       hasMoreFields: false,
       data: [
         {
@@ -330,7 +330,7 @@ const StudentInformation = {
     },
     {
       type: 'radio',
-      label: 'DOES THE STUDENT HAVE ANY FOOD RESTRICTIONS?',
+      label: 'Does the student have any food restrictions? (optional)',
       hasMoreFields: false,
       data: [
         {
@@ -358,7 +358,7 @@ const StudentInformation = {
     },
     {
       type: 'radio',
-      label: 'DOES THE STUDENT HAVE OTHER RESTRICTIONS?',
+      label: 'Does the student have other restrictions? (optional)',
       hasMoreFields: false,
       data: [
         {

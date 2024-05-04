@@ -28,7 +28,7 @@ function renderSingleField(field, register, errors, color) {
         {label}
         {required && <span style={{ color: 'red' }}> *</span>}
       </label>
-      <input style={{borderColor: color}}{...fieldProps} />
+      <input style={{borderColor: color, border: errors[name_of_json_field]? 'solid 0.1rem red':color}}{...fieldProps} />
       {errors[name_of_json_field] && (
         <div className="error-message">
           {errors[name_of_json_field].message}
@@ -146,7 +146,7 @@ function renderRadios(field, register, errors, required, color) {
           id: id,
         };
         return (
-          <div className="form-item" key={fieldProps.key}>
+          <div className="radios-item" key={fieldProps.key}>
             <input
               style={{
                 borderColor: color,
