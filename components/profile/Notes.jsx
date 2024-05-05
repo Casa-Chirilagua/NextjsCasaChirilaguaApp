@@ -95,13 +95,13 @@ function Notes({
         </PopUpMenu>
       </div>
       <div className="notes-body">
-        <div className="notes-list">
+        {object.notes.length> 0? (<div className="notes-list">
           {object?.notes.map((note) => {
             return (
               <div className="note-list-item">
                 <div className="note-list-item-header">
                   <div className="note-list-item-title">
-                    {note.original_author?.split('@')[0]}
+                    {note.original_author}
                   </div>
                   <div className="note-list-item-date">
                     {convertDate(note.date_created)}
@@ -113,7 +113,7 @@ function Notes({
               </div>
             );
           })}
-        </div>
+        </div>): <div className="no-notes">No notes</div>}
       </div>
     </div>
   );
