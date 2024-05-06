@@ -8,6 +8,7 @@ import ProfileCard from './ProfileCard';
 import profile_picture from './profile_picture.png';
 import ModalClick from '../modal/ModalClick';
 import Notes from './Notes';
+import MapCard from '../map/MapCard';
 
 function FullProfile({
   openModalDelete,
@@ -101,6 +102,8 @@ function FullProfile({
             color={profileColor}
           />
         </form>
+
+        <MapCard address={object ? object.address : {}} />
         <Notes
           handleSaveNoteClick={handleSaveNoteClick}
           object={object}

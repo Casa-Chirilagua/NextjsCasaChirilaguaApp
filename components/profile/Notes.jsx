@@ -95,8 +95,8 @@ function Notes({
         </PopUpMenu>
       </div>
       <div className="notes-body">
-        {object.notes.length> 0? (<div className="notes-list">
-          {object?.notes.map((note) => {
+        {object?.notes?.length> 0? (<div className="notes-list">
+          {object?.notes?.map((note) => {
             return (
               <div className="note-list-item">
                 <div className="note-list-item-header">

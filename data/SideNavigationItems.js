@@ -82,7 +82,7 @@ const sideNavigationItems = {
   program_registration: {
     label: "Registration",
     icon: <AiOutlineForm className="mentor-registration-icon icon" />,
-    path: "/program/registration",
+    path: "/programs/registration",
     color: Colors["color-green"],
   },
   student_Dashboard: {
