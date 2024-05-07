@@ -8,15 +8,13 @@ import { GrAdd } from 'react-icons/gr';
 import { TfiSave } from 'react-icons/tfi';
 
 //Functions
-import convertDate from '@/functions/convertDate';
+import ConvertDate from '@/functions/ConvertDate';
 
 //Next Auth
 import { useSession } from "next-auth/react";
 
-
 //Components
 import PopUpMenu from '../pop up menu/PopUpMenu';
-
 
 //Function to display the notes
 function Notes({
@@ -104,7 +102,7 @@ function Notes({
                     {note.original_author}
                   </div>
                   <div className="note-list-item-date">
-                    {convertDate(note.date_created)}
+                    {ConvertDate(note.date_created)}
                   </div>
                 </div>
                 <div className="note-list-item-body">
