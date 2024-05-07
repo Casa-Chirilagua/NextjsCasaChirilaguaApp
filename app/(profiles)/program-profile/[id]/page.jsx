@@ -27,6 +27,7 @@ import GetFieldByJsonFieldName from "@/functions/student functions/GetFieldByJso
 import DataToUpdate from "@/functions/DataToUpdate";
 import UpdateComponentData from "@/functions/UpdateComponentData";
 import UpdateDeleteComponent from "@/functions/UpdateDeleteComponent";
+import SuccessToast from "@/functions/SuccessToast";
 
 //Services
 import { fetchProgramById, updateProgramById, deleteProgramById } from "@/lib/features/program/programSlice";
@@ -72,6 +73,10 @@ const page = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
 
+  // Notes
+  const [openAddNoteMenu, setOpenAddNoteMenu] = useState(false);
+  const [notes, setNotes] = useState([]);
+
   useEffect(() => {
     doFetchProgram(id);
   }, [doFetchProgram, id]);
@@ -95,7 +100,6 @@ const page = () => {
     let programData = DataToUpdate(fieldData, fieldName, id, objName, data);
     let updateProgram = doUpdateProgram(programData);
     const [updateProgramResult] = await Promise.all([updateProgram]);
-
     if (updateProgramResult.payload.status === 'success') {
       toast.success('Successfully Updated Program');
       setOpenModal(false);
@@ -108,13 +112,28 @@ const page = () => {
 
   const handleClickFunction = async () => {
     router.push('/programs/table');
-
-    const studentPromise = doDeleteProgram(id);
-    const [studentResult] = await Promise.all([studentPromise]);
-    if (studentResult.payload.status === 'success') {
-      toast.success('Successfully Deleted Program');
-    }
+    const programPromise = doDeleteProgram(id);
+    SuccessToast(programPromise, 'Successfully Deleted Program');
   };
+
+
+  /*
+  This function is called when the user clicks the add note button:
+
+  - For instance, when a user clicks the add note button, a pop up
+    will display asking the user to add a note to a student.
+*/
+  const handleSaveNoteClick = async () => {
+    const notesData = {
+      id: id,
+      updatedFields: { notes: notes },
+    };
+    const programPromise = doUpdateProgram(notesData);
+    SuccessToast(programPromise, 'Successfully Added Note');
+    setOpenAddNoteMenu(false);
+  };
+
+
   let content;
   if (fetchingProgramError) {
     content = <div>Error fetching data...</div>;
@@ -142,6 +161,12 @@ const page = () => {
         subHeading={'This action will permanently remove program'}
         deleteButtonLabel={'Delete'}
         objectType={'programs'}
+        //Notes
+        handleSaveNoteClick={handleSaveNoteClick}
+        setOpenAddNoteMenu={setOpenAddNoteMenu}
+        openAddNoteMenu={openAddNoteMenu}
+        notes={notes}
+        setNotes={setNotes}
       />
     );
   }
