@@ -4,9 +4,11 @@ function DataToUpdate(fieldData, fieldName, id, objName, data) {
    * @type {any}
    */
   const fieldDataCopy = fieldData;
-  console.log(fieldName);
+
   try {
     let result;
+
+    /** */
     if (!fieldDataCopy.hasObject) {
       result = {
         id: id,
@@ -15,9 +17,8 @@ function DataToUpdate(fieldData, fieldName, id, objName, data) {
     } else {
       result = {
         id: id,
-        updatedFields: {
-          [objName]: { [fieldName]: data[fieldDataCopy.name_of_json_field] },
-        },
+        updatedFields:
+          { [`${objName + "." + fieldName}`]: data[fieldDataCopy.name_of_json_field], },
       };
     }
     return result;

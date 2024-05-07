@@ -25,7 +25,7 @@ import GetFieldByJsonFieldName from "@/functions/student functions/GetFieldByJso
 import DataToUpdate from "@/functions/DataToUpdate";
 import UpdateComponentData from "@/functions/UpdateComponentData";
 import UpdateDeleteComponent from "@/functions/UpdateDeleteComponent";
-
+import SuccessToast from '@/functions/SuccessToast';
 
 //Services
 import { fetchFamilyById, updateFamilyById, deleteFamilyById } from '@/lib/features/family/familySlice';
@@ -68,12 +68,13 @@ const page = () => {
 
   const [openModalDelete, setOpenModalDelete] = useState(false);
 
-
+  // Notes
+  const [openAddNoteMenu, setOpenAddNoteMenu] = useState(false);
+  const [notes, setNotes] = useState([]);
   useEffect(() => {
     doFetchFamily(id);
   }, [doFetchFamily, id]);
 
- console.log(family);
   let fields;
   let data;
   try {
@@ -94,12 +95,24 @@ const page = () => {
   const handleDeleteClickFunction = async () => {
     router.push('/families/table');
     const familyPromise = doDeleteFamily(id);
-    const [familyResult] = await Promise.all([familyPromise]);
-    if (familyResult.payload.status === 'success') {
-      toast.success('Successfully Deleted Student');
-    }
+    SuccessToast(familyPromise, 'Successfully Deleted Family');
   };
 
+  /*
+  This function is called when the user clicks the add note button:
+
+  - For instance, when a user clicks the add note button, a pop up
+    will display asking the user to add a note to a student.
+*/
+  const handleSaveNoteClick = async () => {
+    const notesData = {
+      id: id,
+      updatedFields: { notes: notes },
+    };
+    const familyPromise = doUpdateFamily(notesData);
+    SuccessToast(familyPromise, 'Successfully Added Note');
+    setOpenAddNoteMenu(false);
+  };
   let content;
   if (fetchingFamilyError) {
     content = <div>Error fetching data...</div>;
@@ -127,6 +140,13 @@ const page = () => {
         subHeading={'This action will permanently remove Family'}
         deleteButtonLabel={'Delete'}
         objectType={'families'}
+
+        //Notes
+        handleSaveNoteClick={handleSaveNoteClick}
+        setOpenAddNoteMenu={setOpenAddNoteMenu}
+        openAddNoteMenu={openAddNoteMenu}
+        notes={notes}
+        setNotes={setNotes}
       />
     );
   }

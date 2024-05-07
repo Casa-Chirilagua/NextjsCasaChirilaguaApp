@@ -3,6 +3,10 @@ import React from "react";
 import AuthProvider from "@/components/AuthProvider";
 import StoreProvider from "./StoreProvider";
 
+//Toast
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
+
 //User Session
 
 
@@ -29,10 +33,13 @@ const MainLayout = ({ children }) => {
     <AuthProvider>
       <StoreProvider>
         <html lang="en">
-         <body className={inter.className}>
+          <body className={inter.className}>
             <MainNavigationBar />
             <SecondaryNavigationBar />
-            <main>{children}</main>
+            <main>
+              {children}
+              <ToastContainer />
+            </main>
           </body>
         </html>
       </StoreProvider>

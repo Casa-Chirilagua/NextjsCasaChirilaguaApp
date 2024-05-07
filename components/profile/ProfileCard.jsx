@@ -58,7 +58,6 @@ const PersonCard = ({
 
   };
 
- console.log(data);
 
   let components = (
     <div className="form-item">
