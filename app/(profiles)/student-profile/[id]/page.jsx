@@ -31,6 +31,7 @@ import DataToUpdate from "@/functions/DataToUpdate";
 import UpdateComponentData from "@/functions/UpdateComponentData";
 import UpdateDeleteComponent from "@/functions/UpdateDeleteComponent";
 import HandleName from "@/functions/HandleName";
+import SuccessToast from "@/functions/SuccessToast";
 
 
 //Services
@@ -151,10 +152,7 @@ const page = () => {
   const handleDeleteClickFunction = async () => {
     router.push('/students/table');
     const studentPromise = doDeleteStudent(id);
-    const [studentResult] = await Promise.all([studentPromise]);
-    if (studentResult.payload.status === 'success') {
-      toast.success('Successfully Deleted Student');
-    }
+    SuccessToast(studentPromise, 'Successfully Deleted Student');
   };
 
   /*
@@ -166,19 +164,10 @@ const page = () => {
   const handleSaveNoteClick = async () => {
     const notesData = {
       id: id,
-      updatedFields: { notes: notes, history: [{}] },
+      updatedFields: { notes: notes},
     };
-
-
     const studentPromise = doUpdateStudent(notesData);
-
-    const [studentResult] = await Promise.all([studentPromise]);
-    if (studentResult.payload.status === 'success') {
-      toast.success('Successfully Added Note', {
-        className: 'toast-success-background',
-      });
-    }
-
+    SuccessToast(studentPromise, 'Successfully Added Note');
     setOpenAddNoteMenu(false);
   };
 

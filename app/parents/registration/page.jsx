@@ -20,6 +20,7 @@ import { useForm } from 'react-hook-form';
 
 //Functions
 import GenerateNewGuardianOneData from '@/functions/student functions/GenerateNewGuardianOneData';
+import SuccessToast from '@/functions/SuccessToast';
 
 
 //Services
@@ -40,7 +41,6 @@ const page = () => {
     useThunk(register_parent);
   const loadingToastId = useRef(null);
 
-
   /**
    * Function handles the submission of the Guardian One form
    * 
@@ -50,11 +50,7 @@ const page = () => {
     try {
       const parentData = GenerateNewGuardianOneData(true, data);
       const parentPromise = doCreateParent(parentData);
-      const [parentResult] = await Promise.all([parentPromise]);
-
-      if (parentResult.payload.status === 'success') {
-        toast.success('Successfully submitted application!');
-      }
+      SuccessToast(parentPromise, 'Successfully created parent');
     } catch (err) {
       toast.error('An error occurred while creating while creating parent');
     }
@@ -71,8 +67,7 @@ const page = () => {
       }
     }
   }, [isCreatingParent]);
-
-
+  
   return (
     <div className="primary-container" style={{ paddingTop: '3rem' }}>
       <div className="subtitle-container">

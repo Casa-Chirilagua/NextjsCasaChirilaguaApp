@@ -21,12 +21,14 @@ import Colors from "@/data/Colors";
 import GuardianOne from '@/data/Student Form Data/GuardianOne';
 
 //Functions
-import ParentConfig from '@/functions/profile configurations/ParentConfig'; 
+import ParentConfig from '@/functions/profile configurations/ParentConfig';
 import ParentProfileCardConfig from '@/functions/profile configurations/ParentProfileCardConfig';
 import GetFieldByJsonFieldName from '@/functions/student functions/GetFieldByJsonFieldName';
 import UpdateComponentData from '@/functions/UpdateComponentData';
 import UpdateDeleteComponent from '@/functions/UpdateDeleteComponent';
 import DataToUpdate from '@/functions/DataToUpdate';
+import SuccessToast from '@/functions/SuccessToast';
+
 
 //Services
 import { fetchParentById, updateParentById, deleteParentById } from "@/lib/features/parent/parentSlice";
@@ -64,6 +66,10 @@ const page = () => {
   const [doDeleteParent, isDeletingParent, deletingParentError] =
     useThunk(deleteParentById);
 
+  // Notes
+  const [openAddNoteMenu, setOpenAddNoteMenu] = useState(false);
+  const [notes, setNotes] = useState([]);
+
   useEffect(() => {
     doFetchParent(id);
   }, [doFetchParent, id]);
@@ -89,7 +95,6 @@ const page = () => {
     GuardianOne,
   );
 
-
   /**
    * 
    * Update the field values
@@ -100,12 +105,7 @@ const page = () => {
     const objName = fieldData.objectName;
     let studentData = DataToUpdate(fieldData, fieldName, id, objName, data);
     let updateParent = doUpdateParent(studentData);
-    const [updateParentResult] = await Promise.all([updateParent]);
-
-    if (updateParentResult.payload.status === 'success') {
-      toast.success('Successfully Updated Parent');
-      setOpenModal(false);
-    }
+    SuccessToast(updateParent, 'Successfully Updated Parent');
     reset();
   };
 
@@ -121,15 +121,27 @@ const page = () => {
 */
   const handleDeleteClickFunction = async () => {
     router.push('/parents/table');
-
     const parentPromise = doDeleteParent(id);
-    const [studentResult] = await Promise.all([parentPromise]);
-    if (studentResult.payload.status === 'success') {
-      toast.success('Successfully Deleted Student');
-    }
+    SuccessToast(parentPromise, 'Successfully Deleted Parent');
   };
 
- let content;
+  /*
+  This function is called when the user clicks the add note button:
+
+  - For instance, when a user clicks the add note button, a pop up
+    will display asking the user to add a note to a student.
+*/
+  const handleSaveNoteClick = async () => {
+    const notesData = {
+      id: id,
+      updatedFields: { notes: notes },
+    };
+    const parentPromise = doUpdateParent(notesData);
+    SuccessToast(parentPromise, 'Successfully Added Note');
+    setOpenAddNoteMenu(false);
+  };
+
+  let content;
   if (fetchingParentError) {
     content = <div>Error fetching data...</div>;
   } else {
@@ -156,6 +168,13 @@ const page = () => {
         subHeading={'This action will permanently remove parent'}
         deleteButtonLabel={'Delete'}
         objectType={'parents'}
+
+        //Notes
+        handleSaveNoteClick={handleSaveNoteClick}
+        setOpenAddNoteMenu={setOpenAddNoteMenu}
+        openAddNoteMenu={openAddNoteMenu}
+        notes={notes}
+        setNotes={setNotes}
       />
     );
   }
