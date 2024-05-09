@@ -6,8 +6,8 @@
  * @param {*} dataToBeSearched 
  * @returns 
  */
-function GetFieldByJsonFieldName(jsonFieldName, dataToBeSearched) {
-
+function GetItemByJsonFieldName(jsonFieldName, dataToBeSearched) {
+  
   const field = dataToBeSearched.fields.find(field => field.name_of_json_field === jsonFieldName);
 
   if (field) {
@@ -17,4 +17,4 @@ function GetFieldByJsonFieldName(jsonFieldName, dataToBeSearched) {
   }
 }
 
-export default GetFieldByJsonFieldName;
+export default GetItemByJsonFieldName;

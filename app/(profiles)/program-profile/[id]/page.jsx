@@ -25,7 +25,7 @@ import ProgramConfig from '@/functions/profile configurations/ProgramConfig';
 import ProgramProfileCardConfig from '@/functions/profile configurations/ProgramProfileCardConfig';
 import GetFieldByJsonFieldName from "@/functions/student functions/GetFieldByJsonFieldName";
 import DataToUpdate from "@/functions/DataToUpdate";
-import UpdateComponentData from "@/functions/UpdateComponentData";
+import CreateNewFormWithData from "@/functions/CreateNewFormWithData";
 import UpdateDeleteComponent from "@/functions/UpdateDeleteComponent";
 import SuccessToast from "@/functions/SuccessToast";
 
@@ -107,7 +107,7 @@ const page = () => {
     reset();
   };
 
-  let components = UpdateComponentData(formData, register, control, errors);
+  let components = CreateNewFormWithData(formData, register, control, errors);
   let componentsDelete = UpdateDeleteComponent(program);
 
   const handleClickFunction = async () => {

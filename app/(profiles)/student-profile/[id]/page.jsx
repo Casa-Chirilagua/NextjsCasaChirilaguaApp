@@ -24,11 +24,11 @@ import FullProfile from "@/components/profile/FullProfile";
 import ConditionalModal from "@/components/modal/ConditionalModal";
 
 //Functions
-import GetFieldByJsonFieldName from "@/functions/student functions/GetFieldByJsonFieldName";
+import GetItemByJsonFieldName from "@/functions/student functions/GetItemByJsonFieldName";
 import StudentConfig from "@/functions/profile configurations/StudentConfig";
 import StudentProfileCardConfig from "@/functions/profile configurations/StudentProfileCardConfig";
 import DataToUpdate from "@/functions/DataToUpdate";
-import UpdateComponentData from "@/functions/UpdateComponentData";
+import CreateNewFormWithData from "@/functions/CreateNewFormWithData";
 import UpdateDeleteComponent from "@/functions/UpdateDeleteComponent";
 import HandleName from "@/functions/HandleName";
 import SuccessToast from "@/functions/SuccessToast";
@@ -55,11 +55,9 @@ const page = () => {
   } = useForm();
 
   const { id } = useParams();
-
   const router = useRouter();
 
   const { student } = useSelector((state) => state.student);
-
 
   //Fetch Student
   const [doFetchStudent, isFetchingStudent, fetchingStudentError] =
@@ -83,9 +81,7 @@ const page = () => {
 
   //Opens moadl when Deleting
   const [openModalDelete, setOpenModalDelete] = useState(false);
-
   const [openModalProfile, setOpenModalProfile] = useState(false);
-
   const [clickedAddButton, setClickedAddButton] = useState();
 
   // Notes
@@ -98,20 +94,21 @@ const page = () => {
   }, [doFetchStudent, openModalProfile, id]);
 
   let fields;
-  let data;
+  let studentConfigData;
   if (student) {
     try {
-      data = StudentProfileCardConfig(student);
+      studentConfigData = StudentProfileCardConfig(student);
       fields = StudentConfig(student);
     } catch (error) {
       console.log(error);
     }
   }
 
-  const formData = GetFieldByJsonFieldName(
+  const formData = GetItemByJsonFieldName(
     fieldData.name_of_json_field,
     StudentInformation,
   );
+
 
   /*
     This function is called when a form is submitted:
@@ -129,19 +126,17 @@ const page = () => {
     }
 
     let updateStudent = doUpdateStudent(studentData);
-    const [updatStudentResult] = await Promise.all([updateStudent]);
-
-    if (updatStudentResult.payload.status === 'success') {
-      toast.success('Successfully Updated Student', {
-        className: 'toast-success-background',
-      });
-      setOpenModal(false);
-    }
+    SuccessToast(updateStudent, 'Successfully Updated Student');
+    setOpenModal(false);
     reset();
   };
 
-  let components = UpdateComponentData(formData, register, control, errors);
+
+  let formComponent = CreateNewFormWithData(fieldData.form_data, register, control, errors);
+  console.log("Field Data",fieldData.form_data);
   let componentsDelete = UpdateDeleteComponent(student);
+  
+ 
 
   /*
   This function is called when the user clicks the delete button:
@@ -172,8 +167,6 @@ const page = () => {
   };
 
   let content;
-
-
   /**
    *  1. If we have an error display the error message
    *  2. Otherwise dispay the profile
@@ -209,10 +202,10 @@ const page = () => {
             onSubmit={onSubmit}
             openModal={openModal}
             setOpenModal={setOpenModal}
-            components={components}
+            components={formComponent}
             profileColor={Colors['color-purple-dark']}
             object={student}
-            data={data}
+            data={studentConfigData}
             setFieldData={setFieldData}
             headings={StudentProfileHeading}
             fields={fields}
@@ -223,6 +216,7 @@ const page = () => {
             setClickedAddButton={setClickedAddButton}
             setOpenModalAdd={setOpenModalAdd}
             setModalLabelAdd={setModalLabelAdd}
+
             //Notes
             handleSaveNoteClick={handleSaveNoteClick}
             setOpenAddNoteMenu={setOpenAddNoteMenu}

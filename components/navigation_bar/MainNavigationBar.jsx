@@ -55,7 +55,7 @@ function NavigationBar() {
      session && <nav className="navbar-container">
         <div className="navbar-left">
           <Link href="dashboard/student-dashboard" className="logo">
-            <Image className="logo" src={Logo} alt="logo" height={100} width={100} />
+            <Image priority={false}  className="logo" src={Logo} alt="logo" height={100} width={100} />
           </Link>
         </div>
         <div className="navbar-center">{/* <SearchBar /> */}</div>

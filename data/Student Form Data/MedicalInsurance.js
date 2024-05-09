@@ -13,14 +13,14 @@ const MedicalInsurance = {
       {
         type: 'text',
         id: 'doctorsFirstName',
-        name_of_json_field: 'doctors_first_name',
+        name_of_json_field: 'first_name',
         placeholder: 'Enter First Name',
         label: "Doctor's First Name (optional)",
       },
       {
         type: 'text',
         id: 'doctorsLastName',
-        name_of_json_field: 'doctors_last_name',
+        name_of_json_field: 'last_name',
         placeholder: 'Enter Last Name',
         label: "Doctor's Last Name (optional)",
       },

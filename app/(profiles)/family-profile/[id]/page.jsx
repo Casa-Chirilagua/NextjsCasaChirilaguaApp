@@ -23,7 +23,7 @@ import FamilyConfig from '@/functions/profile configurations/FamilyConfig';
 import FamilyProfileCardConfig from '@/functions/profile configurations/FamilyProfileCardConfig';
 import GetFieldByJsonFieldName from "@/functions/student functions/GetFieldByJsonFieldName";
 import DataToUpdate from "@/functions/DataToUpdate";
-import UpdateComponentData from "@/functions/UpdateComponentData";
+import CreateNewFormWithData from "@/functions/CreateNewFormWithData";
 import UpdateDeleteComponent from "@/functions/UpdateDeleteComponent";
 import SuccessToast from '@/functions/SuccessToast';
 

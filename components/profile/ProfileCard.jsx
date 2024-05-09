@@ -129,6 +129,7 @@ const PersonCard = ({
                     <div className="profile-card-buttons-container">
                       {item.map(({ icon, text, objectName }, i) => (
                         <button
+                          key={i}
                           onClick={() => {
                             setClickedAddButton(objectName + 's');
                             setModalLabelAdd(objectName);

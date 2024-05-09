@@ -122,6 +122,12 @@ const StudentSchema = new mongoose.Schema({
     policy_number: {
       type: String,
     },
+    first_name: {
+      type: String,
+    },
+    last_name: {
+      type: String,
+    },
     doctor_name: {
       type: String,
     },

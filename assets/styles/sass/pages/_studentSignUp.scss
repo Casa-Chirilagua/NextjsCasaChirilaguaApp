@@ -31,70 +31,130 @@
     color: #212529;
   }
 
-  .form-container {
-    @include respond(phone) {
-      display: grid;
-      padding: 2rem;
-    }
+
+}
+
+.form-container-modalv2 {
+  @include respond(phone) {
     display: grid;
-    grid-template-rows: 6rem repeat(1, 1fr);
-    grid-template-columns: 1fr;
-    border-radius: 2rem;
-    background-color: $color-white;
-    padding-right: 5rem;
-    padding-left: 5rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    border-radius: 0;
-    margin-bottom: 2rem;
-    box-shadow: $primary-box-shadow;
-    border-radius: 0.75rem;
+    padding: 2rem;
+  }
+  display: grid;
+  grid-template-rows: 6rem repeat(1, 1fr);
+  grid-template-columns: 1fr;
+  border-radius: 2rem;
+  background-color: $color-white;
+  padding-right: 5rem;
+  padding-left: 5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-radius: 0;
+  margin-bottom: 2rem;
+  border-radius: 0.75rem;
 
-    .form-item {
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 2rem;
-      grid-column: 1/-1;
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+    grid-column: 1/-1;
 
-      input:focus-within {
-        border: 0.2rem solid #495057;
-      }
-      select:focus-within {
-        border: 0.2rem solid #495057;
-      }
-
-      input,
-      select {
-        border-radius: 0.5rem;
-        padding: 1rem;
-        height: 4rem;
-        outline: #dee2e6 solid 0.1rem;
-      }
-      textarea {
-        border-radius: 0.5rem;
-        padding: 1rem;
-        // height: 4rem;
-        outline: #dee2e6 solid 0.1rem;
-      }
-      label {
-        height: 1.8rem;
-        left: 15.1rem;
-        top: 29.4rem;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 1.2rem;
-        line-height: 1.5rem;
-        color: #343a40;
-      }
+    input:focus-within {
+      border: 0.2rem solid #495057;
+    }
+    select:focus-within {
+      border: 0.2rem solid #495057;
     }
 
-    // .radios-item{
-    //   display:flex;
-    //   flex-direction: row;
-    //   padding-bottom: 2rem;
-    //   grid-column: 1/-1;
-    // }
+    input,
+    select {
+      border-radius: 0.5rem;
+      padding: 1rem;
+      height: 4rem;
+      outline: #dee2e6 solid 0.1rem;
+    }
+    textarea {
+      border-radius: 0.5rem;
+      padding: 1rem;
+      // height: 4rem;
+      outline: #dee2e6 solid 0.1rem;
+    }
+    label {
+      height: 1.8rem;
+      left: 15.1rem;
+      top: 29.4rem;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      color: #343a40;
+    }
   }
+
+}
+
+.form-container {
+  @include respond(phone) {
+    display: grid;
+    padding: 2rem;
+  }
+  display: grid;
+  grid-template-rows: 6rem repeat(1, 1fr);
+  grid-template-columns: 1fr;
+  border-radius: 2rem;
+  background-color: $color-white;
+  padding-right: 5rem;
+  padding-left: 5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-radius: 0;
+  margin-bottom: 2rem;
+  box-shadow: $primary-box-shadow;
+  border-radius: 0.75rem;
+
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+    grid-column: 1/-1;
+
+    input:focus-within {
+      border: 0.2rem solid #495057;
+    }
+    select:focus-within {
+      border: 0.2rem solid #495057;
+    }
+
+    input,
+    select {
+      border-radius: 0.5rem;
+      padding: 1rem;
+      height: 4rem;
+      outline: #dee2e6 solid 0.1rem;
+    }
+    textarea {
+      border-radius: 0.5rem;
+      padding: 1rem;
+      // height: 4rem;
+      outline: #dee2e6 solid 0.1rem;
+    }
+    label {
+      height: 1.8rem;
+      left: 15.1rem;
+      top: 29.4rem;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      color: #343a40;
+    }
+  }
+
+  // .radios-item{
+  //   display:flex;
+  //   flex-direction: row;
+  //   padding-bottom: 2rem;
+  //   grid-column: 1/-1;
+  // }
 }
 
 .section:not(first-child) {

@@ -42,7 +42,7 @@ const page = () => {
     !session && (<div className="page">
       <div className="login-container">
         <div className="casa-logo-container">
-          <Image className="casa-logo" width={100} height={100} src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"} alt="Logo" />
+          <Image priority={false}  className="casa-logo" width={100} height={100} src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"} alt="Logo" />
         </div>
 
         <div className="text-box">

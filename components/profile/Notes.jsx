@@ -1,7 +1,7 @@
 'use client'
 
 // React
-import { useState} from 'react';
+import { useState } from 'react';
 
 //Icons
 import { GrAdd } from 'react-icons/gr';
@@ -26,7 +26,7 @@ function Notes({
 }) {
 
   //Current user
-  const { data: session} = useSession();
+  const { data: session } = useSession();
   const user = session?.user;
 
   //Get the username of current user
@@ -93,10 +93,10 @@ function Notes({
         </PopUpMenu>
       </div>
       <div className="notes-body">
-        {object?.notes?.length> 0? (<div className="notes-list">
-          {object?.notes?.map((note) => {
+        {object?.notes?.length > 0 ? (<div className="notes-list">
+          {object?.notes?.map((note, index) => {
             return (
-              <div className="note-list-item">
+              <div key={index} className="note-list-item">
                 <div className="note-list-item-header">
                   <div className="note-list-item-title">
                     {note.original_author}
@@ -111,7 +111,7 @@ function Notes({
               </div>
             );
           })}
-        </div>): <div className="no-notes">No notes</div>}
+        </div>) : <div className="no-notes">No notes</div>}
       </div>
     </div>
   );

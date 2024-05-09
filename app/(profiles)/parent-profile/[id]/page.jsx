@@ -24,7 +24,7 @@ import GuardianOne from '@/data/Student Form Data/GuardianOne';
 import ParentConfig from '@/functions/profile configurations/ParentConfig';
 import ParentProfileCardConfig from '@/functions/profile configurations/ParentProfileCardConfig';
 import GetFieldByJsonFieldName from '@/functions/student functions/GetFieldByJsonFieldName';
-import UpdateComponentData from '@/functions/UpdateComponentData';
+import CreateNewFormWithData from '@/functions/CreateNewFormWithData';
 import UpdateDeleteComponent from '@/functions/UpdateDeleteComponent';
 import DataToUpdate from '@/functions/DataToUpdate';
 import SuccessToast from '@/functions/SuccessToast';
@@ -109,7 +109,7 @@ const page = () => {
     reset();
   };
 
-  let components = UpdateComponentData(formData, register, control, errors);
+  let components = CreateNewFormWithData(formData, register, control, errors);
   let componentsDelete = UpdateDeleteComponent(parent);
 
 

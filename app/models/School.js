@@ -28,7 +28,7 @@ const SchoolSchema = new mongoose.Schema({
       required: [true, 'The zip code the school is in is'],
     },
   },
-  createdAt:{
+  created_at:{
     type: Date,
     default: Date.now(),
   },
