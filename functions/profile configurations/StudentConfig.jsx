@@ -8,6 +8,17 @@ import GetItemByJsonFieldName from "../student functions/GetItemByJsonFieldName"
 import StudentInformation from "../../data/Student Form Data/StudentInformation";
 
 function StudentConfig(student) {
+
+  const studentBooleanCheck = (value) => {
+    if (value === true) {
+      return "Yes";
+    } else if (value === false) {
+      return "No";
+    } else {
+      return value;
+    }
+  }
+
   const fields = {
     'Personal Information': {
       'First Name': {
@@ -194,6 +205,7 @@ function StudentConfig(student) {
         name_of_json_field: 'last_name',
         database_field_name: 'last_name',
         form_data: GetItemByJsonFieldName("last_name", StudentInformation),
+        hasObject: true,
         objectName: 'health_care',
       },
       'Doctors phone number': {
@@ -208,7 +220,7 @@ function StudentConfig(student) {
     'Medical Information': {
       'Does the student have allergies': {
         value: student.medical_information
-          ? student.medical_information.has_allergies
+          ? studentBooleanCheck(student.medical_information.has_allergies)
           : '',
         name_of_json_field: 'has_allergies',
         database_field_name: 'has_allergies',
@@ -228,7 +240,7 @@ function StudentConfig(student) {
       },
       'Does the student have epilepsy': {
         value: student.medical_information
-          ? student.medical_information.has_epilepsy
+          ? studentBooleanCheck(student.medical_information.has_epilepsy)
           : '',
         name_of_json_field: 'has_epilepsy',
         database_field_name: 'has_epilepsy',
@@ -238,7 +250,7 @@ function StudentConfig(student) {
       },
       'Epilepsy Description': {
         value: student.medical_information
-          ? student.medical_information.epilepsy_description
+          ? studentBooleanCheck(student.medical_information.epilepsy_description)
           : '',
         name_of_json_field: 'epilepsy_description',
         database_field_name: 'epilepsy_description',
@@ -248,7 +260,7 @@ function StudentConfig(student) {
       },
       'Does the student have asthma': {
         value: student.medical_information
-          ? student.medical_information.has_asthma
+          ? studentBooleanCheck(student.medical_information.has_asthma)
           : '',
         name_of_json_field: 'has_asthma',
         database_field_name: 'has_asthma',
@@ -268,7 +280,7 @@ function StudentConfig(student) {
       },
       'Does the student have food restrictions': {
         value: student.medical_information
-          ? student.medical_information.has_food_restrictions
+          ? studentBooleanCheck(student.medical_information.has_food_restrictions)
           : '',
         name_of_json_field: 'has_food_restrictions',
         database_field_name: 'has_food_restrictions',
@@ -288,7 +300,7 @@ function StudentConfig(student) {
       },
       'Does the student have other restrictions': {
         value: student.medical_information
-          ? student.medical_information.has_other_restrictions
+          ? studentBooleanCheck(student.medical_information.has_other_restrictions)
           : '',
         name_of_json_field: 'has_other_restrictions',
         database_field_name: 'has_other_restrictions',
@@ -296,7 +308,7 @@ function StudentConfig(student) {
         hasObject: true,
         objectName: 'medical_information',
       },
-      'Other Restrictions Description': {
+      'Other restrictions description': {
         value: student.medical_information
           ? student.medical_information.other_restrictions_description
           : '',

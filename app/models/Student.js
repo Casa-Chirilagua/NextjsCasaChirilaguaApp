@@ -95,7 +95,7 @@ const StudentSchema = new mongoose.Schema({
     has_asthma: {
       type: Boolean,
     },
-    has_food_restriction: {
+    has_food_restrictions: {
       type: Boolean,
     },
     has_other_restrictions: {
@@ -113,7 +113,7 @@ const StudentSchema = new mongoose.Schema({
     food_description: {
       type: String,
     },
-    other_description: {
+    other_restrictions_description: {
       type: String,
     },
   },
