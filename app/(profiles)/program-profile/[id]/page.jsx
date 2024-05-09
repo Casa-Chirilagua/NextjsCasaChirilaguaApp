@@ -23,7 +23,7 @@ import Colors from "@/data/Colors";
 //Functions
 import ProgramConfig from '@/functions/profile configurations/ProgramConfig';
 import ProgramProfileCardConfig from '@/functions/profile configurations/ProgramProfileCardConfig';
-import GetFieldByJsonFieldName from "@/functions/student functions/GetFieldByJsonFieldName";
+import GetItemByJsonFieldName from "@/functions/student functions/GetItemByJsonFieldName";
 import DataToUpdate from "@/functions/DataToUpdate";
 import CreateNewFormWithData from "@/functions/CreateNewFormWithData";
 import UpdateDeleteComponent from "@/functions/UpdateDeleteComponent";
@@ -90,7 +90,7 @@ const page = () => {
     console.log(error);
   }
 
-  const formData = GetFieldByJsonFieldName(
+  const formData = GetItemByJsonFieldName(
     fieldData.name_of_json_field,
     Program,
   );

@@ -23,7 +23,7 @@ import GuardianOne from '@/data/Student Form Data/GuardianOne';
 //Functions
 import ParentConfig from '@/functions/profile configurations/ParentConfig';
 import ParentProfileCardConfig from '@/functions/profile configurations/ParentProfileCardConfig';
-import GetFieldByJsonFieldName from '@/functions/student functions/GetFieldByJsonFieldName';
+import GetItemByJsonFieldName from '@/functions/student functions/GetItemByJsonFieldName';
 import CreateNewFormWithData from '@/functions/CreateNewFormWithData';
 import UpdateDeleteComponent from '@/functions/UpdateDeleteComponent';
 import DataToUpdate from '@/functions/DataToUpdate';
@@ -90,7 +90,7 @@ const page = () => {
     console.log(error);
   }
 
-  const formData = GetFieldByJsonFieldName(
+  const formData = GetItemByJsonFieldName(
     fieldData.name_of_json_field,
     GuardianOne,
   );

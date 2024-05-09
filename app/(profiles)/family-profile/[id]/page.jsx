@@ -8,7 +8,6 @@ import { useParams } from "next/navigation"
 import { useSelector } from 'react-redux';
 
 //React
-import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -21,7 +20,6 @@ import FullProfile from "@/components/profile/FullProfile";
 //Functions
 import FamilyConfig from '@/functions/profile configurations/FamilyConfig';
 import FamilyProfileCardConfig from '@/functions/profile configurations/FamilyProfileCardConfig';
-import GetFieldByJsonFieldName from "@/functions/student functions/GetFieldByJsonFieldName";
 import DataToUpdate from "@/functions/DataToUpdate";
 import CreateNewFormWithData from "@/functions/CreateNewFormWithData";
 import UpdateDeleteComponent from "@/functions/UpdateDeleteComponent";
