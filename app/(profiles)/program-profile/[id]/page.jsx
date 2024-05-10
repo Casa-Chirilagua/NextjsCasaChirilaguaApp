@@ -36,7 +36,6 @@ import { fetchProgramById, updateProgramById, deleteProgramById } from "@/lib/fe
 import { useThunk } from "@/hooks/use-thunk";
 
 const page = () => {
-
   const {
     control,
     register,
@@ -90,10 +89,6 @@ const page = () => {
     console.log(error);
   }
 
-  const formData = GetItemByJsonFieldName(
-    fieldData.name_of_json_field,
-    Program,
-  );
   const onSubmit = async (data) => {
     const fieldName = fieldData.database_field_name;
     const objName = fieldData.objectName;
@@ -107,7 +102,7 @@ const page = () => {
     reset();
   };
 
-  let components = CreateNewFormWithData(formData, register, control, errors);
+  let components = CreateNewFormWithData(fieldData.form_data, register, control, errors);
   let componentsDelete = UpdateDeleteComponent(program);
 
   const handleClickFunction = async () => {
@@ -115,7 +110,6 @@ const page = () => {
     const programPromise = doDeleteProgram(id);
     SuccessToast(programPromise, 'Successfully Deleted Program');
   };
-
 
   /*
   This function is called when the user clicks the add note button:
@@ -132,7 +126,6 @@ const page = () => {
     SuccessToast(programPromise, 'Successfully Added Note');
     setOpenAddNoteMenu(false);
   };
-
 
   let content;
   if (fetchingProgramError) {

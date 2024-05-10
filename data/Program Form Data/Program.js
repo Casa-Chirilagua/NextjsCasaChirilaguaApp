@@ -1,4 +1,4 @@
-const ProgramData = {
+const Program = {
 
   fields: [
     { type: 'section', label: 'Program Information',name_of_json_field: 'PI', },
@@ -119,4 +119,4 @@ const ProgramData = {
   ],
 };
 
-export default ProgramData;
+export default Program;

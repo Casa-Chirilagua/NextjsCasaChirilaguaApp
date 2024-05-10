@@ -90,10 +90,6 @@ const page = () => {
     console.log(error);
   }
 
-  const formData = GetItemByJsonFieldName(
-    fieldData.name_of_json_field,
-    GuardianOne,
-  );
 
   /**
    * 
@@ -106,10 +102,11 @@ const page = () => {
     let studentData = DataToUpdate(fieldData, fieldName, id, objName, data);
     let updateParent = doUpdateParent(studentData);
     SuccessToast(updateParent, 'Successfully Updated Parent');
+    setOpenModal(false);
     reset();
   };
 
-  let components = CreateNewFormWithData(formData, register, control, errors);
+  let components = CreateNewFormWithData(fieldData.form_data, register, control, errors);
   let componentsDelete = UpdateDeleteComponent(parent);
 
 
