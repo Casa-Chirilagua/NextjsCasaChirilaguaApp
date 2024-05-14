@@ -16,6 +16,7 @@ function StudentTable({
   title,
   color,
   searchTitleColor,
+  totalRecords,
 }) {
   const [searchText, setSearchText] = useState('');
   const [filteredData, setFilteredData] = useState(data);
@@ -87,6 +88,7 @@ function StudentTable({
             onChange={handleSearch}
             value={searchText}
             title={title}
+            totalRecords={totalRecords}
           />
           {/* <FilterBar
             config={configFilterBar}

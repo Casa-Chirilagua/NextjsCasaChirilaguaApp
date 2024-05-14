@@ -1,7 +1,7 @@
 'use client'
 
 //react
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 //redux
 import { useSelector } from 'react-redux';
@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 //components
 import TableSearch from '@/components/tables/TableSearch';
+import Pagination from '@/components/pagination/Pagination';
 
 //data
 import Colors from '@/data/Colors';
@@ -32,15 +33,28 @@ const page = () => {
   //Fetch Students
   const [doFetchStudents, isLoadingStudents, loadingStudentError] =
     useThunk(fetchStudents);
-  useEffect(() => {
-    doFetchStudents();
-  }, [doFetchStudents]);
 
+
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
+
+  useEffect(() => {
+    doFetchStudents({ page: page, pageSize: pageSize });
+  }, [doFetchStudents, page, pageSize]);
+  console.log(students);
   const config = StudentConfig();
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  }
+
+  const handlePageSizeChange = (newSize) => {
+    setPageSize(newSize);
+  }
 
   let content;
 
- if (loadingStudentError) {
+  if (loadingStudentError) {
     content = <div>Error fetching data...</div>;
   } else {
     content = (
@@ -49,14 +63,18 @@ const page = () => {
           key={uuidv4()}
           searchTitleColor={Colors['color-purple-dark']}
           config={config}
-          data={students}
+          data={students?.students}
+          totalRecords={students?.total}
           title={'Students'}
         />
+        <Pagination page={page} pageSize={pageSize} totalItems={students?.total} onPageChange={handlePageChange} onPageSizeChange={handlePageSizeChange} itemName="Students" />
+
       </>
     );
   }
   try {
-    return <div className="table-with-searchbar">{content}</div>;
+    return <div className="table-with-searchbar">{content}
+    </div>;
   } catch (error) {
     console.log(error);
   }

@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 //Components
 import MainNavigationBar from "@/components/navigation_bar/MainNavigationBar";
 import SecondaryNavigationBar from "@/components/navigation_bar/SecondaryNavigationBar";
+import Footer from "@/components/footer/Footer";
 
 import "@/assets/styles/globals.scss";
 import { Inter } from 'next/font/google';
@@ -39,6 +40,7 @@ const MainLayout = ({ children }) => {
             <main>
               {children}
               <ToastContainer />
+              <Footer />
             </main>
           </body>
         </html>

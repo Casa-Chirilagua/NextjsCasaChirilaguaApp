@@ -21,6 +21,7 @@ function TableSearchBar({
   filteredData,
   color,
   idName,
+  totalRecords,
 }) {
   try {
     return (
@@ -31,7 +32,7 @@ function TableSearchBar({
             id={color}
             className="table-label table-heading"
           >
-            {filteredData ? filteredData.length : '0'} {title}{' '}
+            {totalRecords} {title}{' '}
           </h1>
         </div>
         <div className="searchbar-table-container">

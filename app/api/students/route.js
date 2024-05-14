@@ -6,12 +6,25 @@ import Student from "@/app/models/Student";
     @desc Get all students
     @access Public
 */
-export const GET = async () => {
+export const GET = async (request) => {
   try {
     await connectDB();
-    const students = await Student.find({});
 
-    return new Response(JSON.stringify(students));
+    const page = request.nextUrl.searchParams.get("page") || 1; // Get page number from query string or or set default to 1
+    const pageSize = request.nextUrl.searchParams.get("pageSize") || 20; // Get page size from query string or set default to 10
+
+    const startIndex = (page - 1) * pageSize; 
+
+    const total = await Student.countDocuments({});
+
+    const students = await Student.find({}).skip(startIndex).limit(pageSize);
+
+    const results ={
+      total,
+      students,
+    }
+
+    return new Response(JSON.stringify(results));
   } catch (error) {
     console.log(error);
     return new Response("GET request failed", { status: 500 });
