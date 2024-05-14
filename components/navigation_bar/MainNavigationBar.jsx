@@ -5,6 +5,7 @@ import { VscSignOut } from 'react-icons/vsc';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { usePathname } from 'next/navigation';
 
 //Logo
 import Logo from '@/public/casa-logo.svg';
@@ -23,6 +24,7 @@ function NavigationBar() {
 
   const { data: session } = useSession();
   const profileImage = session?.user?.image;
+  const pathname = usePathname();
 
 
   const popupRef = useRef(); // Create a ref for the popup menu
@@ -52,7 +54,7 @@ function NavigationBar() {
 
   try {
     return (
- <nav className="navbar-container">
+      pathname !== '/login' && <nav className="navbar-container">
         <div className="navbar-left">
           <Link href="dashboard/students" className="logo">
             <Image priority={false} className="logo" alt="logo" src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"}  height={100} width={100} />
