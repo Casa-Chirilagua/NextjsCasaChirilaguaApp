@@ -56,8 +56,8 @@ function NavigationBar() {
     return (
       pathname !== '/login' && <nav className="navbar-container">
         <div className="navbar-left">
-          <Link href="dashboard/students" className="logo">
-            <Image priority={false} className="logo" alt="logo" src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"}  height={100} width={100} />
+          <Link href="/dashboard/student" className=" p-5">
+            <Image priority={false} className="logo p-1" alt="logo" src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"}  height={100} width={100} />
           </Link>
         </div>
         <div className="navbar-center">{/* <SearchBar /> */}</div>
