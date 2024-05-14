@@ -54,8 +54,8 @@ function NavigationBar() {
     return (
      session && <nav className="navbar-container">
         <div className="navbar-left">
-          <Link href="dashboard/student-dashboard" className="logo">
-            <Image priority={false} className="logo" src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"} alt="logo" height={100} width={100} />
+          <Link href="dashboard/students" className="logo">
+            <Image priority={false} className="logo" alt="logo" src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"}  height={100} width={100} />
           </Link>
         </div>
         <div className="navbar-center">{/* <SearchBar /> */}</div>
@@ -91,7 +91,7 @@ function PopUpMenu(signOut, picture, name, popupRef) {
   return (
     <div ref={popupRef} className="drop-down">
       <div className="drop-down-profile">
-        <img
+        <Image
           style={{
             height: '4rem',
             width: '4rem',

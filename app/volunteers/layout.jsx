@@ -1,6 +1,10 @@
 import SideNav from "@/components/side_navigation_bar/SideNav";
 import sideNavigationItems from "@/data/SideNavigationItems";
 
+export const metadata = {
+  title: 'Casa Chirilagua | Volunteers',
+  descrtiption: "Primary page for managing volunteers.",
+}
 const layout = ({ children }) => {
   
     return (

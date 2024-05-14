@@ -1,16 +1,16 @@
-'use client'
 import SideNav from "@/components/side_navigation_bar/SideNav";
 import sideNavigationItems from "@/data/SideNavigationItems";
-import { useSession } from 'next-auth/react';
 
-
+export const metadata = {
+  title: 'Casa Chirilagua | Families',
+  descrtiption: "Primary page for managing families.",
+}
 const layout = ({ children }) => {
-  const { data: session } = useSession();
 
-    return (
-    session && <div className="primary-container my-custom-background">
-        <SideNav SidebarData={[sideNavigationItems.families]} selectedColor={sideNavigationItems.families.color}/>
-        {children}
+  return (
+    <div className="primary-container my-custom-background">
+      <SideNav SidebarData={[sideNavigationItems.families]} selectedColor={sideNavigationItems.families.color} />
+      {children}
     </div>
   )
 }

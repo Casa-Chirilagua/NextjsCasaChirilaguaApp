@@ -9,7 +9,6 @@ import Student from "@/app/models/Student";
 export const GET = async () => {
   try {
     await connectDB();
-    console.log("HERE");
     const students = await Student.find({});
 
     return new Response(JSON.stringify(students));
@@ -28,8 +27,6 @@ export const POST = async (request) => {
   await connectDB();
 
   const body = await request.json(); // Assuming JSON payload
-  console.log(body);
-
   const {
     name,
     first_name,

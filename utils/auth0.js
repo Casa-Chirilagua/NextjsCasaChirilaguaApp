@@ -1,6 +1,7 @@
 import Auth0Provider from "next-auth/providers/auth0";
 import connectDB from "@/config/database";
 import User from "@/app/models/User";
+import NextAuth from "next-auth/next";
 
 export const authOptions = {
   // secret: process.env.AUTH0_SECRET,
@@ -10,14 +11,13 @@ export const authOptions = {
       clientId: process.env.AUTH0_CLIENT_ID,
       clientSecret: process.env.AUTH0_CLIENT_SECRET,
       issuer: process.env.AUTH0_ISSUER_BASE_URL,
-      secret: process.env.NEXTAUTH_SECRET,
       authorization: {
         params: {
           // audience: process.env.AUTH0_AUDIENCE,
           redirect_uri: `${process.env.NEXTAUTH_URL}/api/auth/callback/auth0`,
         },
       },
-      scope: "openid profile email",
+      scope: process.env.AUTH0_SCOPE,
       cacheLocation: "localStorage",
     }),
   ],
@@ -50,7 +50,6 @@ export const authOptions = {
         // 1. Add the user ID to the session
         const user = await User.findOne({email: session.user.email});
         // 2. Return the session
-
         if(user){
           session.user.id = user._id.toString();
         }
@@ -59,3 +58,6 @@ export const authOptions = {
     }
   }
 };
+
+
+export default NextAuth(authOptions);

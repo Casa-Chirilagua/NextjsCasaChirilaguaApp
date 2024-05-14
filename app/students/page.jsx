@@ -25,6 +25,7 @@ import { useThunk } from '@/lib/hooks/use-thunk';
 import { fetchStudents } from '@/lib/features/students/studentsSlice';
 
 
+
 const page = () => {
   const { students } = useSelector((state) => state.students);
 
