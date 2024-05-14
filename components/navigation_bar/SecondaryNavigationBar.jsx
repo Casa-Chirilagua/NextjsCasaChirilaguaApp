@@ -8,6 +8,7 @@ import { useSession } from 'next-auth/react';
 function SecondaryNavigationBar() {
   const { data: session } = useSession();
   const pathname = usePathname();
+  console.log(pathname);
   const [activeItem, setActiveItem] = useState(null);
 
   // Effect to update active item based on pathname
@@ -26,7 +27,7 @@ function SecondaryNavigationBar() {
   };
 
   return (
-    session && <nav className="main-navbar-container">
+    pathname !== '/login' && <nav className="main-navbar-container">
       <ul className="navbar-nav mr-auto">
         {Object.entries(navItems).map(([key, item], index) => (
           <li key={index} className={`nav-item ${item.label.toLowerCase()}`}>

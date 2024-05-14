@@ -52,7 +52,7 @@ function NavigationBar() {
 
   try {
     return (
-     session && <nav className="navbar-container">
+ <nav className="navbar-container">
         <div className="navbar-left">
           <Link href="dashboard/students" className="logo">
             <Image priority={false} className="logo" alt="logo" src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"}  height={100} width={100} />
@@ -89,7 +89,7 @@ function PopUpMenu(signOut, picture, name, popupRef) {
 
 
   return (
-    <div ref={popupRef} className="drop-down">
+    pathname !== '/login' && <div ref={popupRef} className="drop-down">
       <div className="drop-down-profile">
         <Image
           style={{
