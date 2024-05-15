@@ -12,7 +12,7 @@ import Colors from '../../data/Colors';
 
 function LineGraphCard({ bgColor, labelColor, data, lineKey, label }) {
     // Extract enrollment data and group by date
-    const enrollmentData = data.reduce((enrollments, student) => {
+    const enrollmentData = data?.reduce((enrollments, student) => {
 
       const enrollmentDate = new Date(student.enrollment_date);
       const formattedDate = `${enrollmentDate.getMonth() + 1}/${enrollmentDate.getDate()}/${enrollmentDate.getFullYear().toString().slice(2)}`;

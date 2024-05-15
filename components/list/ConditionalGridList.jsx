@@ -50,7 +50,7 @@ function ConditionalGridList({ objectType, handleObjectIdFunction }) {
 
   useEffect(() => {
     if (objectType === 'Students') {
-      doFetchStudents();
+      doFetchStudents({page:1});
     } else if (objectType === 'Parents') {
       doFetchParentsWithName();
     } else if (objectType === 'Programs') {
@@ -99,7 +99,7 @@ function ConditionalGridList({ objectType, handleObjectIdFunction }) {
   } else if (objectType === 'Students') {
     let component = (
       <GridList
-        items={students}
+        items={students.students}
         label="Add Student"
         handleItemId={handleObjectIdFunction}
         boxShadow={'none'}

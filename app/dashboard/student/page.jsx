@@ -49,21 +49,21 @@ function StudentDash() {
     useThunk(fetchParents);
 
   useEffect(() => {
-    doFetchStudents();
+    doFetchStudents({page:1});
     doFetchParents();
     doFetchPrograms();
     doFetchFamilies();
     console.log('fetching data');
   }, [doFetchParents, doFetchPrograms, doFetchStudents, doFetchFamilies]);
 
-  if (!students) {
-    return <div>Loading...</div>;
-  }
+  // if (!students) {
+  //   return <div>Loading...</div>;
+  // }
   let studentsWithIds;
   let percentage;
   let programWithIds;
   try {
-    studentsWithIds = students?.map((students) => ({
+    studentsWithIds = students?.students?.map((students) => ({
       ...students,
       id: uuidv4(),
     }));
@@ -74,8 +74,8 @@ function StudentDash() {
       number_of_students: item.students.length,
     }));
 
-    let totalStudents = students.length;
-    let freeReducedStudents = students.filter(
+    let totalStudents = students.total;
+    let freeReducedStudents = students?.students?.filter(
       (student) => student.free_and_reduced_lunch,
     ).length;
     percentage = (freeReducedStudents / totalStudents) * 100;
@@ -87,7 +87,7 @@ function StudentDash() {
   const COLORS = [Colors['color-green'], '#D0F0C0', '#00853E', '#71BC78'];
 
   let content;
- if (
+  if (
     loadingFamiliesError ||
     loadingParentsError ||
     loadingProgramError ||
@@ -107,7 +107,7 @@ function StudentDash() {
           numberColor={'black'}
           backgroundColor={'white'}
           name={'Students Enrolled'}
-          number={studentsWithIds.length}
+          number={students?.total}
           icon={MainNavigationItems.students.icon}
           linkLabel={'Students table'}
           urlLink={'/students/table'}
@@ -129,7 +129,7 @@ function StudentDash() {
           name={'Active Parents'}
           number={parents?.length}
           linkLabel={'Parent table'}
-          urlLink={'/parents/table'}
+          urlLink={'/parents'}
           icon={MainNavigationItems.parents.icon}
           classN="item--6"
         />
@@ -141,12 +141,12 @@ function StudentDash() {
           dataKey={'number_of_students'}
           color={Colors['color-green']}
           linkLabel={'Program table'}
-          urlLink={'/programs/table'}
+          urlLink={'/programs'}
           colors={COLORS}
         />
         <LineGraphCard
           label={'Enrollment Over Time'}
-          data={students}
+          data={students?.students ? students.students : []}
           lineKey={'enrollment_date'}
           bgColor={'blue'}
           labelColor={'black'}
@@ -158,31 +158,11 @@ function StudentDash() {
           col="3"
           name={'Active Families'}
           linkLabel={'Families table'}
-          urlLink={'/families/table'}
+          urlLink={'/families'}
           number={families?.length}
           icon={MainNavigationItems.families.icon}
           classN="item--7"
         />
-        {/* <div className="item item--5">
-          <DashboardTable
-            fontColor={'black'}
-            backgroundColor={'white'}
-            studentsWithIds={studentsWithIds}
-          />
-        </div> */}
-
-
-        {/* <NumberCard
-          labelColor={Colors['color-saleforce-dash-blue']}
-          numberColor={Colors['color-saleforce-dash-blue']}
-          backgroundColor={'white'}
-          col="3"
-          name={'Programs'}
-          number={programs.length}
-          icon={<MdOutlineDiversity2 />}
-          linkLabel={'Programs table'}
-          urlLink={'/programs/table'}
-        /> */}
       </>
     );
   }
