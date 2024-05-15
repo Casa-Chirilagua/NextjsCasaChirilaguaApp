@@ -4,11 +4,7 @@ import { CgProfile } from 'react-icons/cg';
 import { VscSignOut } from 'react-icons/vsc';
 import Link from 'next/link';
 import Image from 'next/image';
-
 import { usePathname } from 'next/navigation';
-
-//Logo
-import Logo from '@/public/casa-logo.svg';
 
 //User Session
 import { signOut, useSession } from 'next-auth/react';
@@ -57,7 +53,7 @@ function NavigationBar() {
       pathname !== '/login' && <nav className="navbar-container">
         <div className="navbar-left">
           <Link href="/dashboard/student" className=" p-5">
-            <Image priority={false} className="logo p-1" alt="logo" src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"}  height={100} width={100} />
+            <Image priority={false} className="logo p-1" alt="logo" src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"} height={100} width={100} />
           </Link>
         </div>
         <div className="navbar-center">{/* <SearchBar /> */}</div>
@@ -91,7 +87,7 @@ function PopUpMenu(signOut, picture, name, popupRef) {
 
 
   return (
-    pathname !== '/login' && <div ref={popupRef} className="drop-down">
+    <div ref={popupRef} className="drop-down">
       <div className="drop-down-profile">
         <Image
           style={{
@@ -103,6 +99,8 @@ function PopUpMenu(signOut, picture, name, popupRef) {
           className="user-icon"
           src={picture}
           alt={name}
+          height={100}
+          width={100}
         />
         <div>{name}</div>
       </div>
