@@ -50,6 +50,7 @@ const page = () => {
 
   const handlePageSizeChange = (newSize) => {
     setPageSize(newSize);
+    setPage(1);
   }
 
   let content;
