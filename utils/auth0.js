@@ -7,7 +7,6 @@ export const authOptions = {
   // secret: process.env.AUTH0_SECRET,
   providers: [
     Auth0Provider({
-    
       clientId: process.env.AUTH0_CLIENT_ID,
       clientSecret: process.env.AUTH0_CLIENT_SECRET,
       issuer: process.env.AUTH0_ISSUER_BASE_URL,
@@ -29,15 +28,15 @@ export const authOptions = {
         await connectDB();
 
         // 2. Check if the user exists in the database
-        const userExists = await User.findOne({email: profile.email});
+        const userExists = await User.findOne({email: profile?.email});
 
         // 3. If it does not, create a new user
         if(!userExists){
           await User.create({
-            email: profile.email,
-            nickname: profile.nickname,
-            name: profile.name,
-            image: profile.picture,
+            email: profile?.email,
+            nickname: profile?.nickname,
+            name: profile?.name,
+            image: profile?.picture,
           });
         }
         // 4. Return true to allow sign in
@@ -48,7 +47,7 @@ export const authOptions = {
     //Modifies the sessionn object
     async session({session}){
         // 1. Add the user ID to the session
-        const user = await User.findOne({email: session.user.email});
+        const user = await User.findOne({email: session?.user.email});
         // 2. Return the session
         if(user){
           session.user.id = user._id.toString();
@@ -59,5 +58,6 @@ export const authOptions = {
   }
 };
 
+export const handler = NextAuth(authOptions);
 
-export default NextAuth(authOptions);
+export {handler as GET, handler as POST};

@@ -9,18 +9,23 @@ import Parent from "@/app/models/Parent";
  * @desc Get all parents
  * @access Public
  */
-export const GET = async () => {
+export const GET = async (request) => {
   await connectDB();
 
   try {
-    const parents = await Parent.find();
+    const page = request.nextUrl.searchParams.get("page") || 1; // Get page number from query string or or set default to 1
+    const total = await Parent.countDocuments({});
+    const pageSize = await request.nextUrl.searchParams.get("pageSize") || total; // Get page size from query string or set default to 10
+    const startIndex = (page - 1) * pageSize; 
+    let parents = await Parent.find({}).skip(startIndex).limit(pageSize);
 
-    return new Response(JSON.stringify(parents), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+
+    const results ={
+      total,
+      parents,
+    }
+
+    return new Response(JSON.stringify(results));
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ status: 'fail', message: 'Cannot retrieve parents' }), {

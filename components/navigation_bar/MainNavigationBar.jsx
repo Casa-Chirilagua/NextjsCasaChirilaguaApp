@@ -5,7 +5,7 @@ import { VscSignOut } from 'react-icons/vsc';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-
+import { useRouter } from 'next/navigation'
 //User Session
 import { signOut, useSession } from 'next-auth/react';
 
@@ -78,11 +78,11 @@ function NavigationBar() {
 }
 
 function PopUpMenu(signOut, picture, name, popupRef) {
-
+  const router = useRouter()
   // Function to handle sign-out
-  const handleSignOut = async () => {
-    await signOut({ redirect: false, callbackUrl: '/login' });
-    window.location.href = '/login'; // Redirect to sign-in page or any other page
+  const handleSignOut = () => {
+    signOut();
+    router.push('/login') // Redirect to sign-in page or any other page
   };
 
 

@@ -50,7 +50,7 @@ function StudentDash() {
 
   useEffect(() => {
     doFetchStudents({page:1});
-    doFetchParents();
+    doFetchParents({ page: 1});
     doFetchPrograms();
     doFetchFamilies();
     console.log('fetching data');
@@ -127,7 +127,7 @@ function StudentDash() {
           backgroundColor={Colors['color-green']}
           col="3"
           name={'Active Parents'}
-          number={parents?.length}
+          number={parents?.total? parents.total : 0}
           linkLabel={'Parent table'}
           urlLink={'/parents'}
           icon={MainNavigationItems.parents.icon}

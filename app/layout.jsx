@@ -1,15 +1,13 @@
 
 import React from "react";
-import AuthProvider from "@/components/AuthProvider";
+import SessionProvider from "@/components/SessionProvider";
 import StoreProvider from "./StoreProvider";
+
+import { getServerSession } from "next-auth";
 
 //Toast
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify';
-
-//User Session
-
-
 
 //Components
 import MainNavigationBar from "@/components/navigation_bar/MainNavigationBar";
@@ -28,25 +26,26 @@ export const metadata = {
   descrtiption: "Casa Chirilagua is a local nonprofit located in Alexandria, VA. We are a community of families, staff, and volunteers who are committed to investing in our neighborhood, one life at a time.",
 }
 
-const MainLayout = ({ children }) => {
+const MainLayout = async ({ children }) => {
+
+  const session = await getServerSession();
 
   return (
-    <AuthProvider>
-      <StoreProvider>
-        <html lang="en">
-          <body className={inter.className}>
-            <MainNavigationBar />
-            <SecondaryNavigationBar />
+    <StoreProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <SessionProvider session={session}>
             <main>
+              <MainNavigationBar />
+              <SecondaryNavigationBar />
               {children}
               <ToastContainer />
               <Footer />
             </main>
-          </body>
-        </html>
-      </StoreProvider>
-    </AuthProvider>
-
+          </SessionProvider>
+        </body>
+      </html>
+    </StoreProvider>
   );
 };
 

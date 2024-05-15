@@ -1,19 +1,19 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Link from 'next/link'
-import Image
-  from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 
 const page = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
-
+  const router = useRouter()
 
   useEffect(() => {
     // Check if there is a session and if the session status is "authenticated"
     if (session) {
-      window.location.href = '/dashboard/student'; // Redirect to sign-in page or any other page
+      router.push('/dashboard/student'); // Redirect to sign-in page or any other page
 
     }
   }, [session]); // Dependencies to re-run this effect
@@ -29,20 +29,15 @@ const page = () => {
   })
 
 
-  const handleSignIn = async (providerId) => {
-    const res = await signIn(providerId, { prompt: 'login' });
-    if (res?.ok) {
-      window.location.href = '/dashboard/student'; // Redirect to sign-in page or any other page
-    }
+  const handleSignIn = () => {
+    signIn();
   }
-
-
 
   return (
     !session && (<div className="page">
       <div className="login-container">
         <div className="casa-logo-container">
-          <Image priority={false}  className="casa-logo" width={100} height={100} src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"} alt="Logo" />
+          <Image priority={false} className="casa-logo" width={100} height={100} src={"https://res.cloudinary.com/dnmsdb199/image/upload/v1713132785/CasaApp/awmmpuofao8kruog6k2f.svg"} alt="Logo" />
         </div>
 
         <div className="text-box">

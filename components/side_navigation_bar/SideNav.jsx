@@ -4,7 +4,7 @@ import Link from "next/link";
 import { IconContext } from "react-icons";
 import { usePathname } from 'next/navigation';
 
-import { HiBars3 } from "react-icons/hi2";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 function SideNav({ SidebarData, selectedColor }) {
   const [sidebar, setSidebar] = useState(false);
@@ -28,7 +28,7 @@ function SideNav({ SidebarData, selectedColor }) {
         <IconContext.Provider value={{ color: selectedColor }}>
           <li className="navbar-toggle">
             <div className="menu-bars flex items-center justify-center text-4xl" onClick={showSidebar}>
-              <HiBars3 style={{color: selectedColor}} />
+              <RxHamburgerMenu style={{color: selectedColor}} />
             </div>
           </li>
         </IconContext.Provider>

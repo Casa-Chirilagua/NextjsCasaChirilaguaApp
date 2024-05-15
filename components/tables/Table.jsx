@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 
 function Table({ data, config, keyFn, color }) {
-
+  // Render headers
   const renderedHeaders = config.map((column) => {
     if (column.header) {
       return (
@@ -18,31 +18,27 @@ function Table({ data, config, keyFn, color }) {
     );
   });
 
-  let renderedRows;
-  try {
-    renderedRows = data?.map((rowData) => {
-      const renderedCells = config.map((column) => {
-        return (
-          <td className="table-rows" key={column.label}>
-            {column.render(rowData)}
-          </td>
-        );
-      });
-
+  // Render rows and cells
+  const renderedRows = data?.map((rowData) => {
+    const renderedCells = config.map((column) => {
       return (
-        <tr className="border-b" key={keyFn(rowData)}>
-          {renderedCells}
-        </tr>
+        <td className="table-rows" key={column.label + keyFn(rowData)}>
+          {column.render(rowData)}
+        </td>
       );
     });
-  } catch (error) {
-    console.log(error);
-  }
+
+    return (
+      <tr className="border-b" key={keyFn(rowData)}>
+        {renderedCells}
+      </tr>
+    );
+  });
 
   return (
     <div className='responsive-table-container'>
-      <table className="table-container" id={color}>        
-        <thead style={{borderRadius: '1rem'}}>
+      <table className="table-container" id={color}>
+        <thead style={{ borderRadius: '1rem' }}>
           <tr className="border-b-2">{renderedHeaders}</tr>
         </thead>
         <tbody className='table-body'>{renderedRows}</tbody>

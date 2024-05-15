@@ -7,8 +7,9 @@ import { useSession } from 'next-auth/react';
 
 function SecondaryNavigationBar() {
   const { data: session } = useSession();
+  //.log(session);
   const pathname = usePathname();
-  console.log(pathname);
+  //.log(pathname);
   const [activeItem, setActiveItem] = useState(null);
 
   // Effect to update active item based on pathname
