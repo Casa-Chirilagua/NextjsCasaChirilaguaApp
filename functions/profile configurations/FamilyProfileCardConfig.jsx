@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { RiParentLine } from 'react-icons/ri';
+import {generateParamStringForGrid} from '../generateParamStringForGrid';
 
 function FamilyProfileCardConfig(family) {
   const data = [
@@ -10,7 +11,7 @@ function FamilyProfileCardConfig(family) {
         icon: <RiParentLine className="icon" />,
         text: (
           <Link
-            href={`/students-table/${family.family_name}/${family._id}/Family`}
+            href={generateParamStringForGrid({objName: family.family_name, id: family._id, objToRetrieve: "student", objMakingRequest: "family"})}
             state={{ from: family.students }}
           >
             {`Children (${family.students? family.students.length : '0'})`}
@@ -20,7 +21,7 @@ function FamilyProfileCardConfig(family) {
       {
         icon: <RiParentLine className="icon" />,
         text: (
-          <Link href={`/parents-table/${family.family_name}/${family._id}/Family`} state={{ from: family.parents }}>
+          <Link href={generateParamStringForGrid({objName: family.family_name, id: family._id, objToRetrieve: "parents", objMakingRequest: "family"})}>
             {`Parents (${family.parents.length})`}
           </Link>
         ),

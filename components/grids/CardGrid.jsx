@@ -1,15 +1,26 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { GrAdd } from 'react-icons/gr';
+'use client'
 
-import Avatar from '@mui/material/Avatar';
-import HandleName from '../../functions/HandleName';
-import defaultProfilePicture from '../profile/profile_picture.png';
-import { Link } from 'react-router-dom';
+//React
+import { useState } from 'react';
+
+//Next
+import {useRouter} from 'next/navigation';
+import Link from 'next/link';
+
+
+//Icons
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { GrAdd } from 'react-icons/gr';
+import Avatar from '@mui/material/Avatar';
+
+//Functions
+import HandleName from '@/functions/HandleName';
+
+//data
+import defaultProfilePicture from '@/public/profile_picture.png';
+
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ConditionalModal from '../modal/ConditionalModal';
 
 function CardGrid({
   data,
@@ -20,12 +31,13 @@ function CardGrid({
   objectId,
   objectTypeToUpdate,
 }) {
-  let navigate = useNavigate();
+  const router = useRouter()
+
   const [openPopUpMenu, setPopUpMenu] = useState(false);
   const [openModalAdd, setOpenModalAdd] = useState(false);
   const [modalLabelAdd, setModalLabelAdd] = useState();
   const handleNavigate = (urlParam, id) => {
-    navigate(`/${urlParam}/${id}`);
+    router.push(`/${urlParam}/${id}`);
   };
   const handleClick = (event) => {
     setPopUpMenu(event.target);
@@ -94,7 +106,7 @@ function CardGrid({
                   ></Avatar>
                 </div>
                 <div className="grid-card-link">
-                  <Link to={`/${urlParam}/${item._id}`}>
+                  <Link href={`/${urlParam}/${item._id}`}>
                     {HandleName(item)}
                   </Link>
                 </div>

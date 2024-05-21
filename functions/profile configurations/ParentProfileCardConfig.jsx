@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { RiParentLine } from 'react-icons/ri';
 import HandleName from '../HandleName';
+import {generateParamStringForGrid} from '../generateParamStringForGrid';
+
 
 function ParentProfileCardConfig(parent) {
   const data = [
@@ -9,7 +11,7 @@ function ParentProfileCardConfig(parent) {
         icon: <RiParentLine className="icon" />,
         text: (
           <Link
-            href={`/students-table/${HandleName(parent)}/${parent._id}/Parent`}
+            href={generateParamStringForGrid({objName: HandleName(parent), id: parent._id, objToRetrieve: "student", objMakingRequest: "parent"})}
             state={{ from: parent.students }}
           >
             {`Children (${parent.students.length})`}

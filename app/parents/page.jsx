@@ -52,7 +52,10 @@ const page = () => {
 
 
   let content;
-  if (loadingParentsError) {
+  if (isLoadingParents) {
+    content = <div>Loading...</div>;
+  }
+  else if (loadingParentsError) {
     content = <div>Error fetching data...</div>;
   }
   else {

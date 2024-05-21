@@ -103,12 +103,6 @@ const page = () => {
     }
   }
 
-  const formData = GetItemByJsonFieldName(
-    fieldData.name_of_json_field,
-    StudentInformation,
-  );
-
-
   /*
     This function is called when a form is submitted:
 

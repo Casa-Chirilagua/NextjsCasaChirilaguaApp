@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { MdOutlineDiversity2 } from 'react-icons/md';
 import { RiParentLine } from 'react-icons/ri';
 import HandleName from '../HandleName';
+import {generateParamStringForGrid} from '../generateParamStringForGrid';
 
 function StudentProfileCardConfig(student) {
     const data = [
@@ -11,7 +12,7 @@ function StudentProfileCardConfig(student) {
             icon: <RiParentLine className="icon" />,
             text: (
               <Link
-                href={`/parents-table/${HandleName(student)}/${student._id}/Student`}
+                href={generateParamStringForGrid({objName: HandleName(student), id: student._id, objToRetrieve: "parent", objMakingRequest: "student"})}
                 state={{ from: student.parents }}
               >
                 {`Parents (${student.parents.length})`}
@@ -23,7 +24,7 @@ function StudentProfileCardConfig(student) {
             icon: <MdOutlineDiversity2 className="icon"></MdOutlineDiversity2>,
             text: (
               <Link
-                href={`/programs-table/${HandleName(student)}/${student._id}/Student`}
+                href={generateParamStringForGrid({objName: HandleName(student), id: student._id, objToRetrieve: "program", objMakingRequest: "student"})}
                 state={{ from: student.programs }}
               >
                 {`Programs (${student.programs.length})`}

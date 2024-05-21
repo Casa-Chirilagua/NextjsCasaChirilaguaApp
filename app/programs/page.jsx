@@ -53,8 +53,10 @@ const page = () => {
   const config = ProgramConfig();
 
   let content;
-
-  if (loadingProgramError) {
+  if (isLoadingPrograms) {
+    content = <div>Loading...</div>;
+  }
+  else if (loadingProgramError) {
     content = <div>Error fetching data...</div>;
   } else {
     content = (

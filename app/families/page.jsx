@@ -49,8 +49,10 @@ const page = () => {
 
   const config = FamilyConfig();
   let content;
-
-  if (loadingFamiliesError) {
+  if (isLoadingFamilies) {
+    content = <div>Loading...</div>;
+  }
+  else if (loadingFamiliesError) {
     content = <div>Error fetching data...</div>;
   } else {
     content = (

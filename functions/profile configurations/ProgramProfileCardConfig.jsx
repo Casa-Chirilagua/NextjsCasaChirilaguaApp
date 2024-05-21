@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { RiParentLine } from 'react-icons/ri';
-
+import {generateParamStringForGrid} from '../generateParamStringForGrid';
 function ProgramProfileCardConfig(program) {
   const data = [
     [
@@ -9,7 +9,7 @@ function ProgramProfileCardConfig(program) {
         icon: <RiParentLine className="icon" />,
         text: (
           <Link
-            href={`/students-table/${program.name}/${program._id}/Program`}
+            href={generateParamStringForGrid({objName: program.name, id: program._id, objToRetrieve: "student", objMakingRequest: "program"})}
             state={{ from: program.students }}
           >
             {`Students (${program.students.length})`}
