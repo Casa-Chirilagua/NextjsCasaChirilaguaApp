@@ -87,21 +87,30 @@ const page = () => {
   const [openAddNoteMenu, setOpenAddNoteMenu] = useState(false);
   const [notes, setNotes] = useState([]);
 
+
+  //Form Component
+  const [formComponent, setFormComponent] = useState();
+  const [studentConfigData, setStudentConfigData] = useState();
+  const [fields, setFields] = useState();
+  const [componentsDelete, setComponentsDelete] = useState();
+
+
   /* Fetch students*/
   useEffect(() => {
     doFetchStudent(id);
   }, [doFetchStudent, openModalProfile, id]);
 
-  let fields;
-  let studentConfigData;
-  if (student) {
-    try {
-      studentConfigData = StudentProfileCardConfig(student);
-      fields = StudentConfig(student);
-    } catch (error) {
-      //error);
+  useEffect(() => {
+    if (student) {
+      setStudentConfigData(StudentProfileCardConfig(student));
+      setFields(StudentConfig(student));
     }
-  }
+  }, [student]);
+
+  useEffect(() => {
+    setFormComponent(CreateNewFormWithData(fieldData.form_data, register, control, errors));
+  }, [fieldData])
+
 
   /*
     This function is called when a form is submitted:
@@ -124,9 +133,8 @@ const page = () => {
     reset();
   };
 
-  let formComponent = CreateNewFormWithData(fieldData.form_data, register, control, errors);
-  let componentsDelete = UpdateDeleteComponent(student);
-  
+  // let componentsDelete = UpdateDeleteComponent(student);
+
   /*
   This function is called when the user clicks the delete button:
 
@@ -148,7 +156,7 @@ const page = () => {
   const handleSaveNoteClick = async () => {
     const notesData = {
       id: id,
-      updatedFields: { notes: notes},
+      updatedFields: { notes: notes },
     };
     const studentPromise = doUpdateStudent(notesData);
     SuccessToast(studentPromise, 'Successfully Added Note');

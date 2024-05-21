@@ -70,27 +70,30 @@ const page = () => {
   const [openAddNoteMenu, setOpenAddNoteMenu] = useState(false);
   const [notes, setNotes] = useState([]);
 
-  useEffect(() => {
-    doFetchParent(id);
-  }, [doFetchParent, id]);
-
-
   const [fieldData, setFieldData] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
 
-  let fields;
-  let data;
-  try {
+
+  const [formComponent, setFormComponent] = useState();
+  const [parentConfigData, setParentConfigData] = useState();
+  const [fields, setFields] = useState();
+  const [componentsDelete, setComponentsDelete] = useState();
+
+  useEffect(() => {
+    doFetchParent(id);
+  }, [doFetchParent, id]);
+
+  useEffect(() => {
     if (parent) {
-      data = ParentProfileCardConfig(parent);
-      fields = ParentConfig(parent);
+      setParentConfigData(ParentProfileCardConfig(parent));
+      setFields(ParentConfig(parent));
     }
-  } catch (error) {
-    //error);
-  }
+  }, [parent]);
 
-
+  useEffect(() => {
+    setFormComponent(CreateNewFormWithData(fieldData.form_data, register, control, errors));
+  }, [fieldData])
   /**
    * 
    * Update the field values
@@ -106,8 +109,8 @@ const page = () => {
     reset();
   };
 
-  let components = CreateNewFormWithData(fieldData.form_data, register, control, errors);
-  let componentsDelete = UpdateDeleteComponent(parent);
+  // let components = CreateNewFormWithData(fieldData.form_data, register, control, errors);
+  // let componentsDelete = UpdateDeleteComponent(parent);
 
 
   /*
@@ -154,10 +157,10 @@ const page = () => {
         onSubmit={onSubmit}
         openModal={openModal}
         setOpenModal={setOpenModal}
-        components={components}
+        components={formComponent}
         profileColor={Colors['color-light-green']}
         object={parent}
-        data={data}
+        data={parentConfigData}
         setFieldData={setFieldData}
         headings={headings}
         fields={fields}

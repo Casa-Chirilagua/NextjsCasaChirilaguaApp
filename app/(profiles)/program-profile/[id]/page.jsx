@@ -76,18 +76,28 @@ const page = () => {
   const [openAddNoteMenu, setOpenAddNoteMenu] = useState(false);
   const [notes, setNotes] = useState([]);
 
+  //
+  const [formComponent, setFormComponent] = useState();
+  const [programConfigData, setProgramConfigData] = useState();
+  const [fields, setFields] = useState();
+  const [componentsDelete, setComponentsDelete] = useState();
+
   useEffect(() => {
     doFetchProgram(id);
   }, [doFetchProgram, id]);
 
-  let fields;
-  let data;
-  try {
-    data = ProgramProfileCardConfig(program);
-    fields = ProgramConfig(program);
-  } catch (error) {
-    //error);
-  }
+  useEffect(() => {
+    if (program) {
+      setProgramConfigData(ProgramProfileCardConfig(program));
+      setFields(ProgramConfig(program));
+    }
+
+  }, [program]);
+
+
+  useEffect(() => {
+    setFormComponent(CreateNewFormWithData(fieldData.form_data, register, control, errors));
+  }, [fieldData])
 
   const onSubmit = async (data) => {
     const fieldName = fieldData.database_field_name;
@@ -102,8 +112,7 @@ const page = () => {
     reset();
   };
 
-  let components = CreateNewFormWithData(fieldData.form_data, register, control, errors);
-  let componentsDelete = UpdateDeleteComponent(program);
+  // let componentsDelete = UpdateDeleteComponent(program);
 
   const handleClickFunction = async () => {
     router.push('/programs/table');
@@ -143,10 +152,10 @@ const page = () => {
         onSubmit={onSubmit}
         openModal={openModal}
         setOpenModal={setOpenModal}
-        components={components}
+        components={formComponent}
         profileColor={Colors['color-green']}
         object={program}
-        data={data}
+        data={programConfigData}
         setFieldData={setFieldData}
         headings={headings}
         fields={fields}
