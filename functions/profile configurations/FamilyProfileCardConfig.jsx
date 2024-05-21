@@ -11,7 +11,7 @@ function FamilyProfileCardConfig(family) {
         icon: <RiParentLine className="icon" />,
         text: (
           <Link
-            href={generateParamStringForGrid({objName: family.family_name, id: family._id, objToRetrieve: "student", objMakingRequest: "family"})}
+            href={generateParamStringForGrid({objName: family.family_name, id: family._id, objToRetrieve: "students", objMakingRequest: "family"})}
             state={{ from: family.students }}
           >
             {`Children (${family.students? family.students.length : '0'})`}

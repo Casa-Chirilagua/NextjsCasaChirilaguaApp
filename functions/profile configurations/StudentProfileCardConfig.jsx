@@ -12,7 +12,7 @@ function StudentProfileCardConfig(student) {
             icon: <RiParentLine className="icon" />,
             text: (
               <Link
-                href={generateParamStringForGrid({objName: HandleName(student), id: student._id, objToRetrieve: "parent", objMakingRequest: "student"})}
+                href={generateParamStringForGrid({objName: HandleName(student), id: student._id, objToRetrieve: "parents", objMakingRequest: "student"})}
                 state={{ from: student.parents }}
               >
                 {`Parents (${student.parents.length})`}
@@ -24,7 +24,7 @@ function StudentProfileCardConfig(student) {
             icon: <MdOutlineDiversity2 className="icon"></MdOutlineDiversity2>,
             text: (
               <Link
-                href={generateParamStringForGrid({objName: HandleName(student), id: student._id, objToRetrieve: "program", objMakingRequest: "student"})}
+                href={generateParamStringForGrid({objName: HandleName(student), id: student._id, objToRetrieve: "programs", objMakingRequest: "student"})}
                 state={{ from: student.programs }}
               >
                 {`Programs (${student.programs.length})`}

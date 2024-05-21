@@ -5,7 +5,7 @@ export const GET = async (request, { params }) => {
   await connectDB();
 
   try {
-    const family = await Family.findById(params.id).populate('parents', [
+    const family = await Family.findById(params._id).populate('parents', [
       // Assuming you want to select specific fields, uncomment and adjust as needed.
       // 'name',
       // 'email',

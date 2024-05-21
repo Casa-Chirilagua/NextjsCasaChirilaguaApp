@@ -9,7 +9,7 @@ function ProgramProfileCardConfig(program) {
         icon: <RiParentLine className="icon" />,
         text: (
           <Link
-            href={generateParamStringForGrid({objName: program.name, id: program._id, objToRetrieve: "student", objMakingRequest: "program"})}
+            href={generateParamStringForGrid({objName: program.name, id: program._id, objToRetrieve: "students", objMakingRequest: "program"})}
             state={{ from: program.students }}
           >
             {`Students (${program.students.length})`}

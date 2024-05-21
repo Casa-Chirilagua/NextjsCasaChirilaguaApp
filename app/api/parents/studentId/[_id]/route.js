@@ -9,7 +9,7 @@ export const GET = async (request, { params }) => {
   await connectDB();
 
   try {
-    const student = await Student.findById(params.id).populate('parents', [
+    const student = await Student.findById(params._id).populate('parents', [
       'first_name',
       'middle_name',
       'last_name',

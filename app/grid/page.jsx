@@ -83,11 +83,7 @@ const page = () => {
     loadingProgramByStudentIdError
   ] = useThunk(fetchProgramsByStudentId);
 
-
-
-  let cardGridParams;
   useEffect(() => {
-
     if (objectToRetrieve === "students" && objectMakingRequest === "family") {
       doFetchStudentByFamily(objectId);
     } else if (objectToRetrieve === "students" && objectMakingRequest === "parent") {
@@ -99,12 +95,8 @@ const page = () => {
     } else if (objectToRetrieve === "students" && objectMakingRequest === "program") {
       doFetchStudentsByProgram(objectId);
     } else if (objectToRetrieve === "programs" && objectMakingRequest === "student") {
-      console.log("fetching programs by student id")
       doFetchProgramByStudentId(objectId);
     }
-
-
-    cardGridParams = GenerateCardGridParams(objectToRetrieve, students, parents, programs);
   },
     [
       doFetchStudentsByProgram,
@@ -115,6 +107,12 @@ const page = () => {
       doFetchProgramByStudentId
     ]);
 
+
+  let cardGridParams = GenerateCardGridParams(objectToRetrieve, students, parents, programs);
+
+
+    console.log(cardGridParams);
+
   let content;
   if (loadingStudentByProgramError
     || loadingFamiliesByFamilyError
@@ -123,7 +121,6 @@ const page = () => {
     || loadingParentsByFamilyError
     || loadingProgramByStudentIdError) {
     content = <div>Error fetching data...</div>;
-
   }
   else {
     content = (
@@ -132,7 +129,7 @@ const page = () => {
         <h1
           className="page-title"
         >
-          {`${objectName}'s ${objectMakingRequest}`}
+          {`${objectName}'s ${objectToRetrieve}`}
 
         </h1>
         <CardGrid
@@ -149,8 +146,8 @@ const page = () => {
   )
 }
 
-
 const GenerateCardGridParams = (objectToRetrieve, students, parents, programs) => {
+
   if (objectToRetrieve === "students") {
     return {
       urlParam: 'student-profile',
@@ -162,14 +159,14 @@ const GenerateCardGridParams = (objectToRetrieve, students, parents, programs) =
     return {
       urlParam: 'parent-profile',
       data: parents,
-      color: Colors['color-blue-dark']
+      color: Colors['color-orange']
     }
   }
   else if (objectToRetrieve === "programs") {
     return {
       urlParam: 'program-profile',
       data: programs,
-      color: Colors['color-green-dark']
+      color: Colors['color-green']
     }
   }
   else {

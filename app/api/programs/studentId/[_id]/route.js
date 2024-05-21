@@ -7,11 +7,12 @@ import Student from "@/app/models/Student";
  *  @access Private
  *
  */
-export const GET = async (req, { param }) => {
+export const GET = async (req, { params }) => {
   try {
     await connectDB();
-    console.log(param._id);
-    const student = await Student.findById(param._id).populate("programs");
+    console.log('api/programs/studentId/:id');
+    console.log(params._id);
+    const student = await Student.findById(params._id).populate("programs");
 
     if (!student) {
       return new Response(

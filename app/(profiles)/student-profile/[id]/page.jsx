@@ -124,13 +124,9 @@ const page = () => {
     reset();
   };
 
-
   let formComponent = CreateNewFormWithData(fieldData.form_data, register, control, errors);
-  console.log("Field Data",fieldData.form_data);
   let componentsDelete = UpdateDeleteComponent(student);
   
- 
-
   /*
   This function is called when the user clicks the delete button:
 
