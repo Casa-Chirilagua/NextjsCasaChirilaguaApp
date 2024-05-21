@@ -17,7 +17,7 @@ function GridList({
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedItemsId, setSelectedItemsid] = useState([]);
-  console.log(items);
+  //items);
 
   let labelColor = color ? color : '	#28282B';
   let itemTextColors = itemTextColor ? itemTextColor: '#28282B';
@@ -39,7 +39,7 @@ function GridList({
       }
     });
   } catch (error) {
-    console.log(error);
+    //error);
   }
 
   const handleItemClick = (item) => {
@@ -59,7 +59,7 @@ function GridList({
         setSelectedItemsid([...selectedItemsId, item._id]);
       }
     } catch (error) {
-      console.log(error);
+      //error);
     }
   };
 

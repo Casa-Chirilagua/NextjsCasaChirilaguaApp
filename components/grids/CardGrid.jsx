@@ -150,7 +150,7 @@ function CardGrid({
       </div>
     );
   } catch (error) {
-    console.log(error);
+    //error);
   }
 }
 

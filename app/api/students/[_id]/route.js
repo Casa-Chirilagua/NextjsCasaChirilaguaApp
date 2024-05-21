@@ -20,7 +20,7 @@ export const GET = async (request, { params }) => {
 
     return new Response(JSON.stringify(students), { status: 200 });
   } catch (error) {
-    console.log(error);
+    //error);
     return new Response("GET request failed", { status: 500 });
   }
 };

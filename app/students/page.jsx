@@ -41,7 +41,7 @@ const page = () => {
   useEffect(() => {
     doFetchStudents({ page: page, pageSize: pageSize });
   }, [doFetchStudents, page, pageSize]);
-  console.log(students);
+  //students);
   const config = StudentConfig();
 
   const handlePageChange = (newPage) => {
@@ -79,7 +79,7 @@ const page = () => {
     return <div className="table-with-searchbar">{content}
     </div>;
   } catch (error) {
-    console.log(error);
+    //error);
   }
 }
 

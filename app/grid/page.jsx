@@ -1,7 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 //Next
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 //Redux
 import { useSelector } from 'react-redux';
@@ -11,6 +13,10 @@ import CardGrid from '@/components/grids/CardGrid';
 
 //Data
 import Colors from '@/data/Colors';
+
+//Icons
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+
 
 //Services
 import { fetchStudentsByFamilyId } from '@/lib/features/students/studentsSlice';
@@ -26,14 +32,19 @@ import { useEffect } from 'react';
 //Hooks
 import { useThunk } from '@/lib/hooks/use-thunk';
 
+
+
 const page = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const objectId = searchParams.get("id");
   const objectToRetrieve = searchParams.get("objToRetrieve");
   const objectMakingRequest = searchParams.get("objMakingRequest");
   const objectName = searchParams.get("objName");
 
-  console.log(objectId, objectToRetrieve, objectMakingRequest, objectName);
+  const [cardGridParams, setCardGridParams] = useState({});
+
+  //objectId, objectToRetrieve, objectMakingRequest, objectName);
 
   //Objects
   const { students } = useSelector((state) => state.students);
@@ -108,10 +119,15 @@ const page = () => {
     ]);
 
 
-  let cardGridParams = GenerateCardGridParams(objectToRetrieve, students, parents, programs);
-
-
-    console.log(cardGridParams);
+  useEffect(() => {
+ 
+    const params = GenerateCardGridParams(objectMakingRequest, objectToRetrieve, students, parents, programs);
+    setCardGridParams(params);
+  },
+    [
+      parents,
+      students,
+      programs]);
 
   let content;
   if (loadingStudentByProgramError
@@ -126,6 +142,17 @@ const page = () => {
     content = (
       <>
         {' '}
+        <div className="back-button ">
+          <button
+            onClick={() => router.push(`/${cardGridParams ? cardGridParams.urlParam : ''}/${objectId}`)}
+            className="card-back-button flex flex-row items-center justify-center"
+          >
+            <AiOutlineArrowLeft></AiOutlineArrowLeft> 
+            <h4>
+              {objectName} Profile
+            </h4>
+          </button>
+        </div>
         <h1
           className="page-title"
         >
@@ -140,32 +167,42 @@ const page = () => {
       </>
     );
   }
-
   return (
     <div className="table-with-param-container">{content}</div>
   )
 }
 
-const GenerateCardGridParams = (objectToRetrieve, students, parents, programs) => {
+const GenerateCardGridParams = (objectMakingRequest, objectToRetrieve, students, parents, programs) => {
+  let data;
 
   if (objectToRetrieve === "students") {
+    data = students;
+  }
+  else if (objectToRetrieve === "parents") {
+    data = parents;
+  } 
+  else if (objectToRetrieve === "programs") {
+    data = programs;
+  }
+
+  if (objectMakingRequest === "student") {
     return {
       urlParam: 'student-profile',
-      data: students,
+      data: data,
       color: Colors['color-purple-dark']
     }
   }
-  else if (objectToRetrieve === "parents") {
+  else if (objectMakingRequest === "parent") {
     return {
       urlParam: 'parent-profile',
-      data: parents,
+      data: data,
       color: Colors['color-orange']
     }
   }
-  else if (objectToRetrieve === "programs") {
+  else if (objectMakingRequest === "program") {
     return {
       urlParam: 'program-profile',
-      data: programs,
+      data: data,
       color: Colors['color-green']
     }
   }

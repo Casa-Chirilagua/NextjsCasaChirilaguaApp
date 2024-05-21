@@ -23,7 +23,7 @@ function DataToUpdate(fieldData, fieldName, id, objName, data) {
     }
     return result;
   } catch (error) {
-    console.log(error);
+    //error);
   }
 }
 

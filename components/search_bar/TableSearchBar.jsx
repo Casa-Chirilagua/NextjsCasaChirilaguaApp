@@ -74,7 +74,7 @@ function TableSearchBar({
       </div>
     );
   } catch (error) {
-    console.log(error);
+    //error);
   }
 }
 

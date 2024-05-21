@@ -225,7 +225,7 @@ const page = () => {
           });
         }
       } catch (error) {
-        console.log(error);
+        //error);
       }
     } catch (error) {
       toast.error('An error occurred while registering student', {

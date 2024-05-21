@@ -4,8 +4,8 @@ import { useSession } from "next-auth/react";
 export default function ProfileClient() {
   const { data: session} = useSession();
   const profileImage = session?.user?.image;
-  console.log(profileImage);
-  console.log(session);
+  //profileImage);
+  //session);
 
   return (
     session && (

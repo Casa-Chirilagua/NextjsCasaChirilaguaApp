@@ -37,14 +37,14 @@ const page = () => {
 
   try {
     if (families !== null || families !== undefined) {
-      // console.log(typeof families);
+      // //typeof families);
       families?.map((families) => ({
         ...families,
         id: uuidv4(),
       }));
     }
   } catch (error) {
-    console.log(error);
+    //error);
   }
 
   const config = FamilyConfig();

@@ -191,10 +191,10 @@ function Form({ formData, register, control, errors,classN, color}) {
     if (sinlgleTypes) {
       return renderSingleField(field, register, errors, color);
     } else if (type === 'radio' || type === 'checkbox') {
-      // console.log(hasMoreFields);
+      // //hasMoreFields);
       if (hasMoreFields) {
         let radios = renderRadios(field, register, errors, required, color);
-        console.log(data2);
+        //data2);
 
         try {
           let others;
@@ -224,7 +224,7 @@ function Form({ formData, register, control, errors,classN, color}) {
             );
           }
         } catch (error) {
-          console.log(error);
+          //error);
         }
       } else {
         return renderRadios(field, register, errors, required, color);
@@ -261,7 +261,7 @@ function Form({ formData, register, control, errors,classN, color}) {
       </div>
     );
   } catch (error) {
-    console.log(error);
+    //error);
   }
 }
 

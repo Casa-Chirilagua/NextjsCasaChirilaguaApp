@@ -53,7 +53,7 @@ function StudentDash() {
     doFetchParents({ page: 1});
     doFetchPrograms();
     doFetchFamilies();
-    console.log('fetching data');
+    //'fetching data');
   }, [doFetchParents, doFetchPrograms, doFetchStudents, doFetchFamilies]);
 
   // if (!students) {
@@ -80,7 +80,7 @@ function StudentDash() {
     ).length;
     percentage = (freeReducedStudents / totalStudents) * 100;
   } catch (error) {
-    console.log(error);
+    //error);
   }
 
   // const programData = GenerateProgramData(programs);
@@ -93,10 +93,10 @@ function StudentDash() {
     loadingProgramError ||
     loadingStudentError
   ) {
-    console.log("loadingFamiliesError", loadingFamiliesError);
-    console.log("loadingParentsError", loadingParentsError);
-    console.log("loadingProgramError", loadingProgramError);
-    console.log("isLoadingStudents", loadingStudentError);
+    //"loadingFamiliesError", loadingFamiliesError);
+    //"loadingParentsError", loadingParentsError);
+    //"loadingProgramError", loadingProgramError);
+    //"isLoadingStudents", loadingStudentError);
     content = <div>Error fetching data...</div>;
   } else {
     content = (

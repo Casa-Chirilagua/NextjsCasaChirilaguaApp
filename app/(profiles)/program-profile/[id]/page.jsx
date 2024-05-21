@@ -86,7 +86,7 @@ const page = () => {
     data = ProgramProfileCardConfig(program);
     fields = ProgramConfig(program);
   } catch (error) {
-    console.log(error);
+    //error);
   }
 
   const onSubmit = async (data) => {
@@ -166,7 +166,7 @@ const page = () => {
   try {
     return <div className='primary-container'>{content}</div>;
   } catch (error) {
-    console.log(error);
+    //error);
   }
 }
 

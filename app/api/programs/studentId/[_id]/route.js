@@ -10,8 +10,8 @@ import Student from "@/app/models/Student";
 export const GET = async (req, { params }) => {
   try {
     await connectDB();
-    console.log('api/programs/studentId/:id');
-    console.log(params._id);
+    //'api/programs/studentId/:id');
+    //params._id);
     const student = await Student.findById(params._id).populate("programs");
 
     if (!student) {

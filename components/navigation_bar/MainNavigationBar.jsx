@@ -73,7 +73,7 @@ function NavigationBar() {
       </nav>
     );
   } catch (error) {
-    console.log(error);
+    //error);
   }
 }
 

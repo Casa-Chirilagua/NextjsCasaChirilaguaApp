@@ -64,14 +64,14 @@ function StudentTable({
 
   try {
     if (data && Array.isArray(data)) {
-      // console.log(typeof data);
+      // //typeof data);
       dataWithIds = data?.map((data) => ({
         ...data,
         id: uuidv4(),
       }));
     }
   } catch (error) {
-    console.log(error);
+    //error);
   }
 
   const handleSearch = (event) => {

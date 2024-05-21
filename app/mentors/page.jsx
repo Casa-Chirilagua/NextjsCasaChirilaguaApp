@@ -36,7 +36,7 @@ const page = () => {
       }));
     }
   } catch (error) {
-    console.log(error);
+    //error);
   }
   let config = MentorConfig();
 

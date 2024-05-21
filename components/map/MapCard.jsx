@@ -55,7 +55,7 @@ const MapCard = ({ address }) => {
 
 
       } catch (error) {
-        console.log(error);
+        //error);
 
         setGeocodeError(true);
         setLoading(false);

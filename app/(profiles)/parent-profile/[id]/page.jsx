@@ -87,7 +87,7 @@ const page = () => {
       fields = ParentConfig(parent);
     }
   } catch (error) {
-    console.log(error);
+    //error);
   }
 
 
@@ -178,7 +178,7 @@ const page = () => {
   try {
     return <div className='primary-container'>{content}</div>;
   } catch (error) {
-    console.log(error);
+    //error);
   }
 }
 

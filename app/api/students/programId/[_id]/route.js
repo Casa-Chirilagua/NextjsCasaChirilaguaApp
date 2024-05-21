@@ -12,7 +12,7 @@ import Program from "@/app/models/Program";
 */
 export const GET = async (req, {params}) => {
     try {
-      console.log("GET students by program ID");
+      //"GET students by program ID");
       // Connecting to the database
       await connectDB();
 

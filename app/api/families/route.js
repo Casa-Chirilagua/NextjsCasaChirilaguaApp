@@ -17,7 +17,7 @@ export const GET = async () => {
   
       return new Response(JSON.stringify(families));
     } catch (error) {
-      console.log(error);
+      //error);
       return new Response("Failed to fetch all families", { status: 500 });
     }
   };
