@@ -142,7 +142,7 @@ const page = () => {
     content = (
       <>
         {' '}
-        <div className="back-button ">
+        <div className="back-button mx-24">
           <button
             onClick={() => router.push(`/${cardGridParams ? cardGridParams.urlParam : ''}/${objectId}`)}
             className="card-back-button flex flex-row items-center justify-center"
@@ -154,7 +154,7 @@ const page = () => {
           </button>
         </div>
         <h1
-          className="page-title"
+          className="page-title mx-24"
         >
           {`${objectName}'s ${objectToRetrieve}`}
 

@@ -1,28 +1,30 @@
 .grid-card-container {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 37rem);
-  padding-bottom: 1rem;
+  // background-color: blue;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, 26rem);
+  grid-auto-rows: 36rem;
+  padding-bottom: 2rem;
 
   .grid-card {
     border-radius: 0.75rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-    background-color: white;
     display: grid;
-    grid-template-rows: 3rem 20rem 5rem 6rem;
+    grid-template-rows: repeat(2, 1fr);
     gap: 0.5rem;
-    padding: 1rem;
+    // padding: 1rem;
     .dots-container {
       // background-color: blue;
       width: 100%;
+      border-top-left-radius: 0.75rem;
+      border-top-right-radius: 0.75rem;
       display: flex;
       justify-content: flex-end;
 
       .dots-border-container {
         border-radius: 100%;
-        padding: 0.5rem;
+        // padding: 0.5rem;
         &:hover {
           box-shadow:
             rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -41,10 +43,7 @@
       display: flex;
       justify-content: center;
     }
-    .grid-card-link {
-      display: flex;
-      justify-content: center;
-    }
+  
     &:hover {
       box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     }
@@ -86,7 +85,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    color: black;
+    color: #343a40;
     font-size: 2rem;
 
     &:hover {
@@ -98,8 +97,7 @@
         rgba(0, 0, 0, 0.09) 0px -3px 5px;
     }
   }
-  .grid-card-components-container {
-  }
+
 }
 
 .remove-button-container {
@@ -113,11 +111,11 @@
     border-radius: 1rem;
     padding: 1rem;
     border: none;
-    color: black;
+    color: #343a40;
     font-size: 600;
     font-size: 1.6rem;
     &:hover {
-      background-color: lightgrey;
+      background-color: #e9ecef;
     }
   }
 }

@@ -4,7 +4,7 @@
 import { useState } from 'react';
 
 //Next
-import {useRouter} from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 
@@ -48,21 +48,16 @@ function CardGrid({
 
   try {
     return (
-      <div className="grid-card-container">
+      <div className="grid-card-container mx-24">
         {data ? (
           data.map((item) => {
             return (
               <div
-                style={{
-                  background: `linear-gradient(to top,      white 0%,
-  white 50%,
-  ${color} 50%,
-  ${color} 100%)`,
-                }}
-                className="grid-card"
+                className="grid-card w-96"
               >
                 {' '}
-                <div className="dots-container">
+                <div style={{ backgroundImage: `url(${item.profile_image[0].url})`, opacity:"0.3"}}
+                  className="dots-container bg-cover">
                   <div
                     aria-controls={openPopUpMenu ? 'basic-menu' : undefined}
                     aria-haspopup="true"
@@ -70,10 +65,10 @@ function CardGrid({
                     onClick={handleClick}
                     className="dots-border-container"
                   >
-                    <BsThreeDotsVertical
+                    {/* <BsThreeDotsVertical
                       className="dots-card-grid"
                       style={{ fontSize: '2rem', color: '#E8E8E8' }}
-                    />
+                    /> */}
                   </div>
                   <Menu
                     id="basic-menu"
@@ -95,31 +90,23 @@ function CardGrid({
                     </MenuItem>
                   </Menu>
                 </div>
-                <div className="avatar-card-container">
-                  <Avatar
-                    style={{ height: '20rem', width: '20rem' }}
-                    src={
-                      item.profile_image
-                        ? item.profile_image[0].url
-                        : defaultProfilePicture
-                    }
-                  ></Avatar>
-                </div>
-                <div className="grid-card-link">
+
+                <div className="grid-card-link flex flex-col items-center text-center p-4 gap-4 justify-center text-lg">
                   <Link href={`/${urlParam}/${item._id}`}>
                     {HandleName(item)}
                   </Link>
-                </div>
-                <div className="grid-card-components-container">
-                  <div className="remove-button-container">
-                    {' '}
-                    <button
-                      onClick={() => handleNavigate(urlParam, item._id)}
-                      className="card-remove-button"
-                    >
-                      View Profile
-                    </button>
-                  </div>{' '}
+                  <div className="grid-card-components-container ">
+                    <div className="remove-button-container">
+                      {' '}
+                      <button
+                        onClick={() => handleNavigate(urlParam, item._id)}
+                        className="card-remove-button"
+                      >
+                        View Profile
+                      </button>
+                    </div>{' '}
+                  </div>
+
                 </div>
               </div>
             );

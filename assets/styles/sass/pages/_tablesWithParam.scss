@@ -1,11 +1,6 @@
-.table-with-param-container{
-    // display: flex;
-    // flex-direction: column;
-    background-color: $color-primary-background-grey;
-    min-height: 100vh;
-    width: 100vw;
-    height: auto;
-    // align-items: flex-start;
-    padding-left:2rem;
-    padding-right:2rem;
+.table-with-param-container {
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100vw;
+  height: auto;
 }
