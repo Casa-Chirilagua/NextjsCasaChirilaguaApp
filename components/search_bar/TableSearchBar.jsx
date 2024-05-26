@@ -1,4 +1,10 @@
+'use client'
+
 import React from 'react';
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+
+//Debounce
+import { useDebouncedCallback } from 'use-debounce';
 
 //csv
 import { CSVLink } from 'react-csv';
@@ -14,7 +20,7 @@ import PopUpMenuMain from '../pop up menu/PopUpMenuMain.jsx';
 import { MdOutlineFileDownload } from 'react-icons/md';
 import { IoFilterOutline } from 'react-icons/io5';
 
-function TableSearchBar({
+function TableWithSearchBarBar({
   searchText,
   onChange,
   title,
@@ -22,7 +28,33 @@ function TableSearchBar({
   color,
   idName,
   totalRecords,
+  onSearchTextChange,
 }) {
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+
+  /**
+   * If the search input is changes then we update the search 
+   * params and send the value to the parent component using 
+   * the onSearchTextChange function.
+   * 
+   * @param {*} event 
+   */
+  const handleSearch = useDebouncedCallback((event) => {
+    const params = new URLSearchParams(searchParams);
+    if (event.target.value) {
+      params.set("search", event.target.value);
+    }
+    else {
+      params.delete("search");
+    }
+    router.replace(`${pathname}?${params.toString()}`);
+    onSearchTextChange(event.target.value);
+
+  }, 500);
   try {
     return (
       <div className="search-title-container" id={color}>
@@ -40,8 +72,8 @@ function TableSearchBar({
             className="list-searchbar"
             placeholder="Search..."
             variant="outlined"
-            value={searchText}
-            onChange={onChange}
+            onChange={handleSearch}
+            defaultValue={searchParams.get('search')?.toString()}
           ></input>
         </div>
 
@@ -78,4 +110,4 @@ function TableSearchBar({
   }
 }
 
-export default TableSearchBar;
+export default TableWithSearchBarBar;

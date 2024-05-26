@@ -1,4 +1,5 @@
 import mongoose, {Schema, model, models} from 'mongoose';
+import { PUBLIC_DIR_MIDDLEWARE_CONFLICT } from 'next/dist/lib/constants';
 
 const StudentSchema = new mongoose.Schema({
   name: {  // This is the student's full name
@@ -188,6 +189,10 @@ const StudentSchema = new mongoose.Schema({
         type: String,
         default:
           'https://res.cloudinary.com/dnmsdb199/image/upload/v1697550810/profile_picture_twgc2q.jpg',
+      },
+      public_id: {
+        type: String,
+        default: '',
       },
       filename: {
         type: String,

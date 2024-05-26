@@ -15,6 +15,7 @@ import { useForm } from 'react-hook-form';
 
 //Components
 import FullProfile from "@/components/profile/FullProfile";
+import ConditionalModal from "@/components/modal/ConditionalModal";
 
 //Data
 import Colors from "@/data/Colors";
@@ -28,6 +29,7 @@ import CreateNewFormWithData from '@/functions/CreateNewFormWithData';
 import UpdateDeleteComponent from '@/functions/UpdateDeleteComponent';
 import DataToUpdate from '@/functions/DataToUpdate';
 import SuccessToast from '@/functions/SuccessToast';
+import HandleName from '@/functions/HandleName';
 
 
 //Services
@@ -79,6 +81,13 @@ const page = () => {
   const [parentConfigData, setParentConfigData] = useState();
   const [fields, setFields] = useState();
   const [componentsDelete, setComponentsDelete] = useState();
+
+
+  //Opens modal when editing
+  const [openModalAdd, setOpenModalAdd] = useState(false);
+  const [modalLabelAdd, setModalLabelAdd] = useState();
+
+  const [clickedAddButton, setClickedAddButton] = useState();
 
   useEffect(() => {
     doFetchParent(id);
@@ -146,36 +155,50 @@ const page = () => {
     content = <div>Error fetching data...</div>;
   } else {
     content = (
-      <FullProfile
-        openModalDelete={openModalDelete}
-        setOpenModalDelete={setOpenModalDelete}
-        componentsDelete={componentsDelete}
-        bgModalColor={Colors['color-saleforce-dash-blue']}
-        buttonLabel={'Update'}
-        handleClickFunction={handleDeleteClickFunction}
-        handleSubmit={handleSubmit}
-        onSubmit={onSubmit}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        components={formComponent}
-        profileColor={Colors['color-light-green']}
-        object={parent}
-        data={parentConfigData}
-        setFieldData={setFieldData}
-        headings={headings}
-        fields={fields}
-        mainHeading={'Delete Parent'}
-        subHeading={'This action will permanently remove parent'}
-        deleteButtonLabel={'Delete'}
-        objectType={'parents'}
+      <>
+        <ConditionalModal
+          objectTypeGrid={clickedAddButton}
+          objectTypeToUpdate={'Parents'}
+          objectId={id}
+          loadingToastMessage={`Updating ${parent?.first_name ? HandleName(parent) : ''
+            } ...`}
+          successToastMessage={`Successfully updated ${parent?.first_name ? HandleName(parent) : ''
+            }!`}
+          modalLabel={modalLabelAdd}
+          setOpenModal={setOpenModalAdd}
+          openModal={openModalAdd} />
+        <FullProfile
+          openModalDelete={openModalDelete}
+          setOpenModalDelete={setOpenModalDelete}
+          componentsDelete={componentsDelete}
+          bgModalColor={Colors['color-saleforce-dash-blue']}
+          buttonLabel={'Update'}
+          handleClickFunction={handleDeleteClickFunction}
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          components={formComponent}
+          profileColor={Colors['color-light-green']}
+          object={parent}
+          data={parentConfigData}
+          setFieldData={setFieldData}
+          headings={headings}
+          fields={fields}
+          mainHeading={'Delete Parent'}
+          subHeading={'This action will permanently remove parent'}
+          deleteButtonLabel={'Delete'}
+          objectType={'parents'}
+          setClickedAddButton={setClickedAddButton}
 
-        //Notes
-        handleSaveNoteClick={handleSaveNoteClick}
-        setOpenAddNoteMenu={setOpenAddNoteMenu}
-        openAddNoteMenu={openAddNoteMenu}
-        notes={notes}
-        setNotes={setNotes}
-      />
+          //Notes
+          handleSaveNoteClick={handleSaveNoteClick}
+          setOpenAddNoteMenu={setOpenAddNoteMenu}
+          openAddNoteMenu={openAddNoteMenu}
+          notes={notes}
+          setNotes={setNotes}
+        />
+      </>
     );
   }
   try {

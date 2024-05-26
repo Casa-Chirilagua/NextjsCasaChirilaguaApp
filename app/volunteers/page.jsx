@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 //Components
-import TableSearch from '@/components/tables/TableSearch';
+import TableWithSearchBar from '@/components/tables/TableWithSearchBar';
 
 //Data
 import Colors from '@/data/Colors';
@@ -29,7 +29,7 @@ const page = () => {
   const volunteers = [];
   const config = VolunteerConfig();
   return (
-    <div className='table-with-searchbar'>      <TableSearch
+    <div className='table-with-searchbar'>      <TableWithSearchBar
       searchTitleColor={Colors['color-green']}
       color={'green'}
       config={config}

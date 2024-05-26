@@ -24,7 +24,6 @@ export const GET = async (request) => {
 
     return new Response(JSON.stringify(results));
   } catch (error) {
-    //error);
     return new Response("GET request failed", { status: 500 });
   }
 };

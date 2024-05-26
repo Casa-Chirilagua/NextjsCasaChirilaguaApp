@@ -89,7 +89,7 @@ function ConditionalModal({
       promise = doUpdateStudent(data);
     } else if (objectTypeToUpdate === 'Programs') {
       promise = doUpdateProgram(data);
-    } else if (objectTypeToUpdate === 'Familis') {
+    } else if (objectTypeToUpdate === 'Families') {
       promise = doUpdateFamily(data);
     } else if (objectTypeToUpdate === 'Parents') {
       promise = doUpdateParent(data);

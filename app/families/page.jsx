@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 //Components
-import TableSearch from '@/components/tables/TableSearch';
+import TableWithSearchBar from '@/components/tables/TableWithSearchBar';
 
 //Data
 import Colors from '@/data/Colors';
@@ -56,7 +56,7 @@ const page = () => {
     content = <div>Error fetching data...</div>;
   } else {
     content = (
-      <TableSearch
+      <TableWithSearchBar
         searchTitleColor={Colors['color-purple-dark']}
         config={config}
         data={families}

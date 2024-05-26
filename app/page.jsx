@@ -1,18 +1,19 @@
 'use client';
-import { signOut } from 'next-auth/react';
+import { useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import React from 'react'
 
-const HomePage = () => {
-  const handleSignOut = async () => {
-    await signOut({ redirect: false, callbackUrl: '/login' });
-    window.location.href = '/login'; // Redirect to sign-in page or any other page
-  };
-
+const page = () => {
+  const pathname = usePathname();
+  const router = useRouter();
+    useEffect(() => {
+        if(pathname === '/'){
+            router.push('/dashboard/student');
+        }
+    }, [pathname]);
   return (
-    <div>
-      <button className='bg-red-500' onClick={handleSignOut}>Sign Out</button>
-    </div>
+    <div className='h-screen w-screen text-6xl flex items-center justify-center ]'><h1 className='text-zinc-600'>Home Page Comming soon...</h1></div>
   )
 }
 
-export default HomePage;
-
+export default page

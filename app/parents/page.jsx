@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 //Components
-import TableSearch from '@/components/tables/TableSearch';
+import TableWithSearchBar from '@/components/tables/TableWithSearchBar';
 import Pagination from '@/components/pagination/Pagination';
 
 //Data
@@ -61,7 +61,7 @@ const page = () => {
   else {
     content = (
       <>
-        <TableSearch
+        <TableWithSearchBar
           searchTitleColor={Colors['color-light-green']}
           color={'light-green'}
           config={config}
