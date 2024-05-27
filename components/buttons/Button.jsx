@@ -12,7 +12,7 @@ function Button({ color, bgColor, label, loading, setLookUpItem}) {
         backgroundColor: bgColor,
         color: color,
       }}
-      className="login-button-purple login-button-animated"
+      className="login-button-purple login-button-animated flex items-center justify-center "
       type="submit"
       // onClick={handleLookUpExistingItem}
     >

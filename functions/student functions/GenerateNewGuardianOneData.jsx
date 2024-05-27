@@ -6,7 +6,7 @@
  * @param {*} data 
  * @returns 
  */
-function HandleNewGuardianOneData(newGuardianOne, data) {
+function GenerateNewGuardianOneData(newGuardianOne, data) {
   const fd = new FormData();
 
   if (newGuardianOne) {
@@ -33,4 +33,4 @@ function HandleNewGuardianOneData(newGuardianOne, data) {
   }
 }
 
-export default HandleNewGuardianOneData;
+export default GenerateNewGuardianOneData;

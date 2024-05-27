@@ -6,8 +6,7 @@
  * @param {*} data 
  * @returns 
  */
-function HandleNewGuardianTwoData(newGuardianTwo, data) {
-  const fd = new FormData();
+function GenerateNewGuardianTwoData(newGuardianTwo, data) {
 
   if (newGuardianTwo) {
     const guardianTwoAddress = {
@@ -28,25 +27,7 @@ function HandleNewGuardianTwoData(newGuardianTwo, data) {
       can_receive_text: data.guardian_two_can_recieve_messages,
     };
 
-    // fd.append(
-    //   'name',
-    //   data.guardian_two_first_name +
-    //     ' ' +
-    //     data.guardian_two_middle_name +
-    //     ' ' +
-    //     data.guardian_two_last_name,
-    // );
-    // fd.append('first_name', data.guardian_two_first_name);
-    // fd.append('middle_name', data.guardian_two_middle_name);
-    // fd.append('last_name', data.guardian_two_last_name);
-    // fd.append('phone', data.guardian_two_phone);
-    // fd.append('email', data.guardian_two_email);
-    // fd.append('address', JSON.stringify(guardianTwoAddress));
-    // fd.append('can_receive_text', data.guardian_two_can_recieve_messages);
-    // fd.append('profile_image', data.guardian_two_profile_picture[0]);
-    
-
     return parent2Data;
   }
 }
-export default HandleNewGuardianTwoData;
+export default GenerateNewGuardianTwoData;

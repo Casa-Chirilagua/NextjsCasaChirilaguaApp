@@ -76,7 +76,7 @@ function FullProfile({
           setOpenModal={setOpenModalProfile}
           objectType={objectType}
           id={object ? object._id : ''}
-          img={object ? object.profile_image[0].url : profile_picture}
+          img={object?.profile_image ? object.profile_image[0].url : profile_picture}
           color={profileColor}
           name={object ? fullName : ''}
           data={data}
@@ -96,17 +96,17 @@ function FullProfile({
           <Profile
             setOpenModal={setOpenModal}
             setNameOfJson={setFieldData}
-            name={object ? object.name : ''}
+            name={object?.name? object.name : ''}
             headings={headings ? headings : []}
             fields={fields ? fields : []}
             color={profileColor}
           />
         </form>
 
-        <MapCard address={object ? object.address : {}} />
+        <MapCard address={object?.address? object.address : {}} />
         <Notes
           handleSaveNoteClick={handleSaveNoteClick}
-          object={object}
+          object={object?.notes? object : {}}
           setOpenAddNoteMenu={setOpenAddNoteMenu}
           openAddNoteMenu={openAddNoteMenu}
           setNotes={setNotes}

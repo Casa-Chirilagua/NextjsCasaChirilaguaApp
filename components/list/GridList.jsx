@@ -20,9 +20,9 @@ function GridList({
   //items);
 
   let labelColor = color ? color : '	#28282B';
-  let itemTextColors = itemTextColor ? itemTextColor: '#28282B';
+  let itemTextColors = itemTextColor ? itemTextColor : '#28282B';
   let backgroundColor = bgColor ? bgColor : 'white';
-  let containerBoxshadow = boxShadow? boxShadow:" rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px";
+  let containerBoxshadow = boxShadow ? boxShadow : " rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px";
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -69,12 +69,12 @@ function GridList({
 
   try {
     return (
-      <div style={{boxShadow:containerBoxshadow}} className="grid-list-container">
+      <div style={{ boxShadow: containerBoxshadow }} className="grid-list-container">
         <label style={{ color: labelColor }} className="form-label">
           {label}
         </label>
         <input
-        style={{borderColor: "lightgray"}}
+          style={{ borderColor: "lightgray" }}
           className="search-bar"
           placeholder="  Search..."
           onChange={handleChange}
@@ -82,6 +82,7 @@ function GridList({
         <div className="select-list">
           {filteredItems.map((item) => (
             <div
+              key={item._id}
               className="grid-list-button"
               style={{
                 color: itemTextColors,
@@ -117,11 +118,12 @@ function GridList({
         )}
         {canSelectMultiple && selectedItems && (
           <>
-            <h6 style={{ color:labelColor }}>Selected: </h6>
+            <h6 style={{ color: labelColor }}>Selected: </h6>
             <div className="select-list">
               {selectedItems.map((item) => {
                 return (
                   <div
+                    key={item._id}
                     style={{
                       width: '15rem',
                       color: itemTextColors,
@@ -138,7 +140,7 @@ function GridList({
         )}
       </div>
     );
-  } catch (error) {}
+  } catch (error) { }
 }
 
 export default GridList;

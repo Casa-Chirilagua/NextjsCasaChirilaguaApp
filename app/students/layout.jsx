@@ -11,7 +11,7 @@ const layout = ({ children }) => {
 
   return (
     <div className="primary-container my-custom-background">
-        <SideNav SidebarData={[sideNavigationItems.students, sideNavigationItems.student_registration]} selectedColor={sideNavigationItems.students.color}/>
+        <SideNav SidebarData={[sideNavigationItems.students, sideNavigationItems.student_registration_v2]} selectedColor={sideNavigationItems.students.color}/>
         {children}
     </div>
 

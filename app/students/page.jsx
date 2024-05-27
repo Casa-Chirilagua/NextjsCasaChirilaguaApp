@@ -48,8 +48,6 @@ const page = () => {
   //Handle Search 
   const [searchText, setSearchText] = useState('');
   const [isActive, setIsActive] = useState(true);
-
-
   useEffect(() => {
     if (searchParams.get('search') || searchParams.get('is_active')) {
       doSearchStudents(`search=${searchParams.get('search')}&is_active=${searchParams.get('is_active')}`);

@@ -9,19 +9,15 @@ import Student from "@/app/models/Student";
 export const GET = async (request) => {
   try {
     await connectDB();
-
     const page = request.nextUrl.searchParams.get("page") || 1; // Get page number from query string or or set default to 1
     const total = await Student.countDocuments({});
     const pageSize = await request.nextUrl.searchParams.get("pageSize") || total; // Get page size from query string or set default to 10
     const startIndex = (page - 1) * pageSize; 
     let students = await Student.find({}).skip(startIndex).limit(pageSize);
-
-
     const results ={
       total,
       students,
     }
-
     return new Response(JSON.stringify(results));
   } catch (error) {
     return new Response("GET request failed", { status: 500 });

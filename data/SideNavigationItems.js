@@ -60,6 +60,12 @@ const sideNavigationItems = {
     path: "/students/registration",
     color: Colors["color-purple-dark"],
   },
+  student_registration_v2: {
+    label: "Registration",
+    icon: <AiOutlineForm className="student-registration-icon icon" />,
+    path: "/students/registration-v2",
+    color: Colors["color-purple-dark"],
+  },
   parent_registration: {
     label: "Registration",
     icon: <AiOutlineForm className="parent-registration-icon icon" />,
