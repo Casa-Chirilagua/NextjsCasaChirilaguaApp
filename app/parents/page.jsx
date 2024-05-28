@@ -24,7 +24,6 @@ import { useThunk } from '@/lib/hooks/use-thunk';
 
 //Services
 import { fetchParents, searchParents } from '@/lib/features/parents/parentsSlice';
-import { SearchParamsContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 
 //next
 import { useSearchParams } from 'next/navigation';

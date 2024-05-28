@@ -29,6 +29,7 @@ import { useSearchParams } from 'next/navigation';
 
 const page = () => {
   const searchParams = useSearchParams();
+
   const { families } = useSelector((state) => state.families);
 
   const [doFetchFamilies, isLoadingFamilies, loadingFamiliesError] =
@@ -42,31 +43,21 @@ const page = () => {
 
   useEffect(() => {
     if (searchParams.get('search') || searchParams.get('is_active')) {
-      doSearchFamilies(`search=${searchParams.get('search')}}`);
-
-    }else{
+      console.log("here");
+      doSearchFamilies(`search=${searchParams.get('search')}`);
+    } else {
       doFetchFamilies();
     }
   }, [doFetchFamilies, doSearchFamilies, searchParams]);
 
+  const config = FamilyConfig();
 
   const handleSearchTextChange = (val) => {
     setSearchText(val);
   };
 
-  try {
-    if (families !== null || families !== undefined) {
-      // //typeof families);
-      families?.map((families) => ({
-        ...families,
-        id: uuidv4(),
-      }));
-    }
-  } catch (error) {
-    //error);
-  }
 
-  const config = FamilyConfig();
+
   let content;
   if (isLoadingFamilies) {
     content = <div>Loading...</div>;
@@ -78,7 +69,8 @@ const page = () => {
       <TableWithSearchBar
         searchTitleColor={Colors['color-purple-dark']}
         config={config}
-        data={families}
+        data={families?.families}
+        totalRecords={families?.families?.length}
         title={'Families'}
         searchText={searchText}
         onSearchTextChange={handleSearchTextChange}

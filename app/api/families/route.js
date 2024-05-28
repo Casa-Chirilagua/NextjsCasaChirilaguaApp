@@ -11,11 +11,9 @@ import Family from "@/app/models/Family";
 export const GET = async () => {
     try {
       await connectDB();
-
-
       const families = await Family.find({});
   
-      return new Response(JSON.stringify(families));
+      return new Response(JSON.stringify({status:"success", families}));
     } catch (error) {
       //error);
       return new Response("Failed to fetch all families", { status: 500 });
