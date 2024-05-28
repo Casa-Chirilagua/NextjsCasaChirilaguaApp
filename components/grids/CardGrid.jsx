@@ -58,7 +58,7 @@ function CardGrid({
                 className="grid-card w-96"
               >
                 {' '}
-                <div style={{ backgroundImage: `url(${item.profile_image[0].url})`, opacity: "0.3" }}
+                <div style={{ backgroundImage: `url(${item.profile_image[0].url})`, opacity: "0.8" }}
                   className="dots-container bg-cover">
                   <div
                     aria-controls={openPopUpMenu ? 'basic-menu' : undefined}
