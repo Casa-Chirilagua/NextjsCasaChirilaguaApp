@@ -120,7 +120,7 @@ const page = () => {
 
 
   useEffect(() => {
- 
+
     const params = GenerateCardGridParams(objectMakingRequest, objectToRetrieve, students, parents, programs);
     setCardGridParams(params);
   },
@@ -147,7 +147,7 @@ const page = () => {
             onClick={() => router.push(`/${cardGridParams ? cardGridParams.urlParam : ''}/${objectId}`)}
             className="card-back-button flex flex-row items-center justify-center"
           >
-            <AiOutlineArrowLeft></AiOutlineArrowLeft> 
+            <AiOutlineArrowLeft></AiOutlineArrowLeft>
             <h4>
               {objectName} Profile
             </h4>
@@ -161,6 +161,7 @@ const page = () => {
         </h1>
         <CardGrid
           urlParam={cardGridParams ? cardGridParams.urlParam : ''}
+          urlParamForObject={cardGridParams ? cardGridParams.urlParamForObject : ''}
           data={cardGridParams ? cardGridParams.data : ''}
           color={cardGridParams ? cardGridParams.color : ''}
         />
@@ -174,13 +175,14 @@ const page = () => {
 
 const GenerateCardGridParams = (objectMakingRequest, objectToRetrieve, students, parents, programs) => {
   let data;
+  const urlParamForObject = objectToRetrieve === "students" ? 'student-profile' : objectToRetrieve === "parents" ? 'parent-profile' : 'program-profile';
 
   if (objectToRetrieve === "students") {
     data = students;
   }
   else if (objectToRetrieve === "parents") {
     data = parents;
-  } 
+  }
   else if (objectToRetrieve === "programs") {
     data = programs;
   }
@@ -189,21 +191,24 @@ const GenerateCardGridParams = (objectMakingRequest, objectToRetrieve, students,
     return {
       urlParam: 'student-profile',
       data: data,
-      color: Colors['color-purple-dark']
+      color: Colors['color-purple-dark'],
+      urlParamForObject
     }
   }
   else if (objectMakingRequest === "parent") {
     return {
       urlParam: 'parent-profile',
       data: data,
-      color: Colors['color-orange']
+      color: Colors['color-orange'],
+      urlParamForObject: urlParamForObject,
     }
   }
   else if (objectMakingRequest === "program") {
     return {
       urlParam: 'program-profile',
       data: data,
-      color: Colors['color-green']
+      color: Colors['color-green'],
+      urlParamForObject: urlParamForObject,
     }
   }
   else {

@@ -39,6 +39,7 @@ export const PATCH = async (request, {params}) => {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    return new Response("Failed to upload profile image", { status: 500 });
+    console.log(error);
+    return new Response(error.message, { status: 500 });
   }
 };

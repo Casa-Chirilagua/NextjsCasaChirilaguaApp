@@ -26,6 +26,7 @@ function CardGrid({
   data,
   handleRemove,
   urlParam,
+  urlParamForObject,
   color,
   objectType,
   objectId,
@@ -50,13 +51,14 @@ function CardGrid({
     return (
       <div className="grid-card-container mx-24">
         {data ? (
-          data.map((item) => {
+          data.map((item, index) => {
             return (
               <div
+                key={index}
                 className="grid-card w-96"
               >
                 {' '}
-                <div style={{ backgroundImage: `url(${item.profile_image[0].url})`, opacity:"0.3"}}
+                <div style={{ backgroundImage: `url(${item.profile_image[0].url})`, opacity: "0.3" }}
                   className="dots-container bg-cover">
                   <div
                     aria-controls={openPopUpMenu ? 'basic-menu' : undefined}
@@ -92,14 +94,14 @@ function CardGrid({
                 </div>
 
                 <div className="grid-card-link flex flex-col items-center text-center p-4 gap-4 justify-center text-lg">
-                  <Link href={`/${urlParam}/${item._id}`}>
+                  <Link href={`/${urlParamForObject}/${item._id}`}>
                     {HandleName(item)}
                   </Link>
                   <div className="grid-card-components-container ">
                     <div className="remove-button-container">
                       {' '}
                       <button
-                        onClick={() => handleNavigate(urlParam, item._id)}
+                        onClick={() => handleNavigate(urlParamForObject, item._id)}
                         className="card-remove-button"
                       >
                         View Profile

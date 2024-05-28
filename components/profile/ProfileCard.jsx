@@ -17,6 +17,10 @@ import Colors from '@/data/Colors';
 //Icon
 import { GrAdd } from 'react-icons/gr';
 
+import { toast } from 'react-toastify';
+
+import SuccessToast from '@/functions/SuccessToast';
+
 const PersonCard = ({
   name,
   data,
@@ -41,20 +45,27 @@ const PersonCard = ({
   const onSubmit = async (data) => {
     const fd = new FormData();
     fd.append('profile_image', data.profile_image[0]);
-    fetch(`/api/${objectType}/uploadImage/${id}`, {
-      method: 'PATCH',
-      body: fd,
-    });
-    setOpenModal(false);
+    
+    try {
+      fetch(`/api/${objectType}/uploadImage/${id}`, {
+        method: 'PATCH',
+        body: fd,
+      })
+      toast.success('Profile picture updated successfully');
+      setOpenModal(false);
+
+    } catch (error) {
+      toast.error('Profile picture not updated');
+    }
   };
 
   return (
     <div className="card-container">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        action={`/api/${objectType}/${id}`}
-        method="PATCH"
-        encType="multipart/form-data"
+        // action={`/api/${objectType}/${id}`}
+        // method="PATCH"
+        // encType="multipart/form-data"
       >
         {data
           ? data.map((item, index) => (

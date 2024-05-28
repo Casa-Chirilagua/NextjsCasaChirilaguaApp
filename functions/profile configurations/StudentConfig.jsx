@@ -78,12 +78,30 @@ function StudentConfig(student) {
         hasObject: false,
       },
       'Does the student receive free or reduced lunch?': {
-        value: student.free_and_reduced_lunch? 'Yes' : 'No',
+        value: student.free_and_reduced_lunch ? 'Yes' : 'No',
         name_of_json_field: 'free_and_reduced_lunch',
         database_field_name: 'free_and_reduced_lunch',
         form_data: GetItemByJsonFieldName("free_and_reduced_lunch", StudentInformation),
         hasObject: false,
       },
+      "Graduation date": {
+        value: ConvertToUSADate(student.high_school_graduation_date),
+        name_of_json_field: 'high_school_graduation_date',
+        database_field_name: 'high_school_graduation_date',
+        form_data:
+        {
+          type: 'date',
+          name_of_json_field: 'high_school_graduation_date',
+          placeholder: 'Enter graduation date',
+          required: true,
+          required_message: 'Please select a graduation date',
+          data: {},
+          label: 'Graduation Date',
+          id: '',
+        },
+        hasObject: false,
+      }
+      ,
       "Created at": {
         value: ConvertToUSADate(student.created_at),
         name_of_json_field: 'created_at',
@@ -91,7 +109,7 @@ function StudentConfig(student) {
         form_data: GetItemByJsonFieldName("created_at", StudentInformation),
         hasObject: false,
       },
-      
+
     },
     Address: {
       Street: {
@@ -103,7 +121,7 @@ function StudentConfig(student) {
         objectName: 'address',
       },
       'Address Line 2': {
-        value: student.address 
+        value: student.address
           ? student.address.address_line_2
           : '',
         name_of_json_field: 'address_line_2',
@@ -121,7 +139,7 @@ function StudentConfig(student) {
         objectName: 'address',
       },
       State: {
-        value: student.address? student.address.state : '',
+        value: student.address ? student.address.state : '',
         name_of_json_field: 'state',
         database_field_name: 'state',
         form_data: GetItemByJsonFieldName("state", StudentInformation),

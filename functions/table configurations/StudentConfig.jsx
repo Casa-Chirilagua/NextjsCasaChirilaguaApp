@@ -66,9 +66,9 @@ function StudentConfig() {
     {
       label: 'Enrolled',
       render: (d) => {
-        return <>{d.enrolled ? 'yes' : 'no'}</>;
+        return <>{d.is_active? 'yes' : 'no'}</>;
       },
-      sortValue: (d) => d.enrolled,
+      sortValue: (d) => d.is_active,
     },
   ];
   return config;
