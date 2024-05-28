@@ -213,7 +213,9 @@ const page = () => {
 
                 const [studentResult] = await Promise.all([studentPromise]);
 
-                console.log(studentResult)
+                //Display Success Toast
+                displayToast(studentPromise, 'Successfully registered student!');
+
 
                 //Create Family
                 doCreateFamily(GenerateNewFamilyData(data, parentIds, [studentResult.payload._id]));
