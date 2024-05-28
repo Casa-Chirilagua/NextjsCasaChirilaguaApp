@@ -1,7 +1,7 @@
 'use client'
 
 //React
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 //Redux
 import { useSelector } from 'react-redux';
@@ -22,18 +22,37 @@ import FamilyConfig from '@/functions/table configurations/FamilyConfig';
 import { useThunk } from '@/lib/hooks/use-thunk';
 
 //Services
-import { fetchFamilies } from '@/lib/features/families/familiesSlice';
+import { fetchFamilies, searchFamilies } from '@/lib/features/families/familiesSlice';
+
+//Next
+import { useSearchParams } from 'next/navigation';
 
 const page = () => {
-
+  const searchParams = useSearchParams();
   const { families } = useSelector((state) => state.families);
 
   const [doFetchFamilies, isLoadingFamilies, loadingFamiliesError] =
     useThunk(fetchFamilies);
 
+  const [doSearchFamilies, isLoadingSearchFamilies, loadingSearchFamiliesError] = useThunk(searchFamilies);
+
+  //Handle Search 
+  const [searchText, setSearchText] = useState('');
+  const [isActive, setIsActive] = useState(true);
+
   useEffect(() => {
-    doFetchFamilies();
-  }, [doFetchFamilies]);
+    if (searchParams.get('search') || searchParams.get('is_active')) {
+      doSearchFamilies(`search=${searchParams.get('search')}}`);
+
+    }else{
+      doFetchFamilies();
+    }
+  }, [doFetchFamilies, doSearchFamilies, searchParams]);
+
+
+  const handleSearchTextChange = (val) => {
+    setSearchText(val);
+  };
 
   try {
     if (families !== null || families !== undefined) {
@@ -61,6 +80,8 @@ const page = () => {
         config={config}
         data={families}
         title={'Families'}
+        searchText={searchText}
+        onSearchTextChange={handleSearchTextChange}
       />
     );
   }

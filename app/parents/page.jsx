@@ -23,21 +23,40 @@ import ParentConfig from '@/functions/table configurations/ParentConfig';
 import { useThunk } from '@/lib/hooks/use-thunk';
 
 //Services
-import { fetchParents } from '@/lib/features/parents/parentsSlice';
+import { fetchParents, searchParents } from '@/lib/features/parents/parentsSlice';
+import { SearchParamsContext } from 'next/dist/shared/lib/hooks-client-context.shared-runtime';
 
+//next
+import { useSearchParams } from 'next/navigation';
 
 
 const page = () => {
+  const searchParams = useSearchParams();
+
   const { parents } = useSelector((state) => state.parents);
+
+  //Fetch Parents
   const [doFetchParents, isLoadingParents, loadingParentsError] =
     useThunk(fetchParents);
+
+
+  //Search Parents
+  const [doSearchParents, isLoadingSearchParents, loadingSearchParentsError] = useThunk(searchParents);
+
+  //Handle Search 
+  const [searchText, setSearchText] = useState('');
+  const [isActive, setIsActive] = useState(true);
 
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
 
   useEffect(() => {
-    doFetchParents({ page: page, pageSize: pageSize });
-  }, [doFetchParents, page, pageSize]);
+    if (searchParams.get('search') || searchParams.get('is_active')) {
+      doSearchParents(`search=${searchParams.get('search')}&is_active=${searchParams.get('is_active')}`);
+    } else {
+      doFetchParents({ page: page, pageSize: pageSize });
+    }
+  }, [doSearchParents, searchParams, doFetchParents, page, pageSize]);
 
   const config = ParentConfig();// Table configuration
 
@@ -49,6 +68,10 @@ const page = () => {
     setPageSize(newSize);
     setPage(1);
   }
+
+  const handleSearchTextChange = (val) => {
+    setSearchText(val);
+  };
 
 
   let content;
@@ -66,10 +89,18 @@ const page = () => {
           color={'light-green'}
           config={config}
           data={parents?.parents}
-          totalRecords={parents?.total}
+          totalRecords={parents?.total ? parents.total : parents?.parents?.length}
           title={'Parents'}
+          searchText={searchText}
+          onSearchTextChange={handleSearchTextChange}
         />
-        <Pagination page={page} pageSize={pageSize} totalItems={parents?.total} onPageChange={handlePageChange} onPageSizeChange={handlePageSizeChange} itemName="Parents" />
+        <Pagination
+          page={page}
+          pageSize={pageSize}
+          totalItems={parents?.total}
+          onPageChange={handlePageChange}
+          onPageSizeChange={handlePageSizeChange}
+          itemName="Parents" />
       </>
     );
   }
