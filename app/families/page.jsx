@@ -43,7 +43,6 @@ const page = () => {
 
   useEffect(() => {
     if (searchParams.get('search') || searchParams.get('is_active')) {
-      console.log("here");
       doSearchFamilies(`search=${searchParams.get('search')}`);
     } else {
       doFetchFamilies();
