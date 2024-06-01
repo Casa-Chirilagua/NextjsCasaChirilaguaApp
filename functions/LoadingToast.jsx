@@ -6,7 +6,7 @@ function LoadingToast(isObjectLoading, message) {
 
   useEffect(() => {
     if (isObjectLoading) {
-      loadingToastId.current = toast.loading(message);
+      loadingToastId.current = toast.loading(message,{theme: "colored"});
     } else {
       if (loadingToastId.current) {
         toast.dismiss(loadingToastId.current);

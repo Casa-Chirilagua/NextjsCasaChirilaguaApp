@@ -14,6 +14,6 @@ export const generateAsyncReducerCases = (builder, action, property) => {
     .addCase(action.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
-      state.message = action.error.message;
+      state.message = action.payload ? action.payload : action.error.message;
     });
 };

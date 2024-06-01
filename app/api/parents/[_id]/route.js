@@ -113,11 +113,24 @@ export const PATCH = async (request, { params }) => {
   // Handling dynamic updates for simple fields and nested fields
   for (const [key, value] of Object.entries(body)) {
     if (key === "students" && Array.isArray(value)) {
+      const existingStudents = await Student.find({ _id: { $in: value } });
+      if (existingStudents.length !== value.length) {
+        return new Response(
+          JSON.stringify({
+            status: "fail",
+            message: "Could not find all students with provided IDs",
+          }),
+          {
+            status: 400,
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+      }
       updateOps["$addToSet"] = { [key]: { $each: value } };
     } else if (key.startsWith("remove") && value) {
       const fieldToRemoveFrom = key.replace("remove", "").toLowerCase();
       updateOps["$pull"] = { [fieldToRemoveFrom]: value };
-    } else if (key === "notes" || key === "history") {
+    } else if (key === "notes" ) {
       if (!updateOps["$push"]) updateOps["$push"] = {};
       updateOps["$push"][key] = { $each: value };
     } else {
@@ -148,14 +161,15 @@ export const PATCH = async (request, { params }) => {
       );
     }
 
-    return new Response(JSON.stringify({ status: "success", data: parent }), {
+    return new Response(JSON.stringify({ status: "success", _id: parent._id }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error(error);
+
     return new Response(
-      JSON.stringify({ status: "error", message: "Server Error" }),
+      JSON.stringify({ status: "fail", message: error.message}),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },

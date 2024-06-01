@@ -51,11 +51,17 @@ function HandleStudentData(
   const parents = [parent1Id, parent2Id];
 
   let fullName;
-  if(data.first_name || data.middle_name || data.last_name){
+  if(data.first_name && data.middle_name && data.last_name){
     fullName = data.first_name + ' ' + data.middle_name + ' ' + data.last_name;
   }
-  else{
+  else if (data.first_name && data.last_name){
     fullName = data.first_name + ' ' + data.last_name;
+  }
+  else if (data.first_name){
+    fullName = data.first_name;
+  }
+  else{
+    fullName = '';
   }
 
   const student = {

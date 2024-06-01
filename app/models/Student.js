@@ -1,21 +1,22 @@
-import mongoose, {Schema, model, models} from 'mongoose';
-import { PUBLIC_DIR_MIDDLEWARE_CONFLICT } from 'next/dist/lib/constants';
+import mongoose, { Schema, model, models } from "mongoose";
 
 const StudentSchema = new mongoose.Schema({
-  name: {  // This is the student's full name
+  name: {
+    // This is the student's full name
     type: String,
+    required: [true, "A student must have a name"],
     unique: true,
   },
   first_name: {
     type: String,
-    required: true,
+    required: [true, "A student must have a first name"],
   },
   middle_name: {
     type: String,
   },
   last_name: {
     type: String,
-    required: true,
+    required: [true, "A student must have a last name"],
   },
   date_of_birth: {
     type: Date,
@@ -66,7 +67,8 @@ const StudentSchema = new mongoose.Schema({
   reading_level: {
     type: String,
   },
-  emergency_contact: { // This is the student's emergency contact information
+  emergency_contact: {
+    // This is the student's emergency contact information
     first_name: {
       type: String,
     },
@@ -86,7 +88,8 @@ const StudentSchema = new mongoose.Schema({
       type: String,
     },
   },
-  medical_information: { // This is the student's medical information
+  medical_information: {
+    // This is the student's medical information
     has_allergies: {
       type: Boolean,
     },
@@ -119,7 +122,8 @@ const StudentSchema = new mongoose.Schema({
     },
   },
 
-  health_care: { // This is the student's health care information
+  health_care: {
+    // This is the student's health care information
     policy_number: {
       type: String,
     },
@@ -137,23 +141,8 @@ const StudentSchema = new mongoose.Schema({
     },
   },
 
-  history: [ // This is the student's history
-    {
-      field_edited: {
-        type: String,
-      },
-      old_value: { type: String },
-      edited_by: {
-        type: String,
-      },
-      date_edited: {
-        type: Date,
-        default: Date.now(),
-      },
-    },
-  ],
-
-  notes: [ // This is the student's notes
+  notes: [
+    // This is the student's notes
     {
       description: {
         type: String,
@@ -170,17 +159,17 @@ const StudentSchema = new mongoose.Schema({
   parents: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Parent',
+      ref: "Parent",
     },
   ],
   family: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Family',
+    ref: "Family",
   },
   programs: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Program',
+      ref: "Program",
     },
   ],
   profile_image: [
@@ -188,15 +177,15 @@ const StudentSchema = new mongoose.Schema({
       url: {
         type: String,
         default:
-          'https://res.cloudinary.com/dnmsdb199/image/upload/v1697550810/profile_picture_twgc2q.jpg',
+          "https://res.cloudinary.com/dnmsdb199/image/upload/v1697550810/profile_picture_twgc2q.jpg",
       },
       public_id: {
         type: String,
-        default: '',
+        default: "",
       },
       filename: {
         type: String,
-        default: 'CasaApp/default_z5hjmp',
+        default: "CasaApp/default_z5hjmp",
       },
     },
   ],
@@ -213,10 +202,9 @@ const StudentSchema = new mongoose.Schema({
     default: Date.now(),
   },
   created_by: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    type: String,
   },
 });
 
-const Student = models.Student || model('Student', StudentSchema);
+const Student = models.Student || model("Student", StudentSchema);
 export default Student;

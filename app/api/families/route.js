@@ -20,7 +20,6 @@ export const GET = async () => {
     }
   };
 
-
 /**
  * Register new family
  *
@@ -30,11 +29,7 @@ export const GET = async () => {
  */
 export const POST = async (request) => {
   await connectDB();
-
   const body = await request.json();
-
-  // TODO: Add your validation logic here.
-
   const {
     family_name,
     primary_address,

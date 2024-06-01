@@ -1,23 +1,22 @@
 // const mongoose = require('mongoose');
-import mongoose, {Schema, model, models} from 'mongoose';
-
-
+import mongoose, { Schema, model, models } from "mongoose";
 
 const ParentSchema = new mongoose.Schema({
   name: {
     type: String,
     unique: true,
+    required: [true, "Parent must have a name"],
   },
   first_name: {
     type: String,
-    required: [true, 'Parent must have a first name'],
+    required: [true, "Parent must have a first name"],
   },
   middle_name: {
     type: String,
   },
   last_name: {
     type: String,
-    required: [true, 'Parent must have a last name'],
+    required: [true, "Parent must have a last name"],
   },
   email: {
     type: String,
@@ -48,32 +47,13 @@ const ParentSchema = new mongoose.Schema({
   can_receive_text: {
     type: Boolean,
   },
-  on_whats_app_group_chat:{
+  on_whats_app_group_chat: {
     type: Boolean,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now(),
   },
   is_active: {
     type: Boolean,
     default: true,
   },
-  history: [
-    {
-      field_edited: {
-        type: String,
-      },
-      old_value: { type: String },
-      edited_by: {
-        type: String,
-      },
-      date_edited: {
-        type: Date,
-        default: Date.now(),
-      },
-    },
-  ],
   notes: [
     {
       description: {
@@ -91,19 +71,23 @@ const ParentSchema = new mongoose.Schema({
   students: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Student',
+      ref: "Student",
     },
   ],
   family_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Family',
+    ref: "Family",
   },
   profile_image: [
     {
-      url: { type: String, default: 'https://res.cloudinary.com/dnmsdb199/image/upload/v1697743188/CasaApp/cllcl8x3t79yrjeur0ud.jpg' },
+      url: {
+        type: String,
+        default:
+          "https://res.cloudinary.com/dnmsdb199/image/upload/v1697743188/CasaApp/cllcl8x3t79yrjeur0ud.jpg",
+      },
       filename: {
         type: String,
-        default: 'CasaApp/default_z5hjmp',
+        default: "CasaApp/default_z5hjmp",
       },
     },
   ],
@@ -116,13 +100,10 @@ const ParentSchema = new mongoose.Schema({
     default: Date.now(),
   },
   created_by: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    type: String,
+    ref: "User",
   },
 });
 
-// module.exports = Parent = mongoose.model('Parent', ParentSchema);
-
-
-const Parent = models.Parent || model('Parent', ParentSchema);
+const Parent = models.Parent || model("Parent", ParentSchema);
 export default Parent;

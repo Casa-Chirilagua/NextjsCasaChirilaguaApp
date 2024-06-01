@@ -66,7 +66,24 @@ export const POST = async (request) => {
     });
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ status: 'fail', message: error.toString() }), {
+    const objectName = "Parent";
+
+    if (error.code === 11000) {
+      return new Response(
+        JSON.stringify({
+          status: "fail",
+          message: `${objectName} with name ${error.keyValue.name} already exist`,
+        }),
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
+    
+    return new Response(JSON.stringify({ status: 'fail',  message: error.message }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });

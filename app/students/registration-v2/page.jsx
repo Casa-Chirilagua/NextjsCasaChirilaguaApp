@@ -21,6 +21,9 @@ import GenerateNewGuardianTwoData from '@/functions/student functions/GenerateNe
 import GenerateNewStudentData from '@/functions/student functions/GenerateNewStudentData';
 import GenerateNewFamilyData from '@/functions/student functions/GenerateNewFamilyData';
 import SuccessToast from '@/functions/SuccessToast';
+import LoadingToast from '@/functions/LoadingToast';
+
+
 //Data
 import Colors from '@/data/Colors';
 import StudentInformation from '@/data/Student Form Data/StudentInformation';
@@ -113,34 +116,67 @@ const page = () => {
         doFetchPrograms();
     }, [doFetchParentsWithName, doFetchPrograms]);
 
-
-
     const AddStudentIdToParentAndProgram = (guardianOneId, guardianTwoId, studentId, programIds) => {
 
-        doUpdateParent({
+        const parentPromise1 = doUpdateParent({
             id: guardianOneId,
             updatedFields: { students: studentId },
         });
 
-        doUpdateParent({
+        const parentPrmise2 = doUpdateParent({
             id: guardianTwoId,
             updatedFields: { students: studentId },
         });
 
         programIds.map((programs) => {
-            doUpdateProgram({
+            let progamPromise = doUpdateProgram({
                 id: programs,
                 updatedFields: { students: studentId },
             });
         });
     }
-    const displayToast = async (objectPromise, message) => {
-        const [result] = await Promise.all([objectPromise]);
-        if (result.payload.status === 'success') {
-            toast.success(message);
-        }
-    };
 
+    const displayError = (err) => {
+        toast.error(err, {
+            duration: 30000,
+            theme: "colored",
+
+        });
+    };
+    const createGuardians = async (newGuardianOne, newGuardianTwo, data) => {
+
+        /**
+        * Handle Parent 1 and 2
+        * - Create a new parent 1, 2 and return a promise
+        */
+        const parent1Data = GenerateNewGuardianOneData(newGuardianOne, data);
+        let parent1Promise = doCreateGuardianOne(parent1Data);
+        const parent2Data = GenerateNewGuardianTwoData(newGuardianTwo, data);
+        let parent2Promise = doCreateGuardianTwo(parent2Data);
+
+        // Wait for both parent registrations to complete
+        const [parent1Result, parent2Result] = await Promise.all([
+            parent1Promise,
+            parent2Promise,
+        ]);
+
+        return {
+            parent1Id: parent1Result.payload.parent_id,
+            parent2Id: parent2Result.payload.parent_id,
+        };
+    }
+    const createStudent = async (data, parentIds, programIds) => {
+
+        //Create Student
+        const studentPromise = doCreateStudent(GenerateNewStudentData(
+            data,
+            parentIds.parent1Id,
+            parentIds.parent2Id,
+            programIds,
+        ));
+        
+        return SuccessToast(studentPromise, 'Successfully registered student!');
+    }
 
     /**
      * Submits the application which includes the student, parent, and family data
@@ -160,80 +196,45 @@ const page = () => {
              */
             if (ExistingGuardainOneId && ExistingGuardainTwoId) {
 
-                //Create Student with existing parent id's
-                const studentPromise = doCreateStudent(GenerateNewStudentData(
-                    data,
-                    ExistingGuardainOneId,
-                    ExistingGuardainTwoId,
-                    programIds,
-                ));
-                const [studentResult] = await Promise.all([studentPromise]);
+                const studentPayload = await createStudent(data, [ExistingGuardainOneId, ExistingGuardainTwoId], programIds? programIds: []); //Update the student's family
 
-                //Display Success Toast
-                displayToast(studentPromise, 'Successfully registered student!');
+                if(studentPayload?.status === 'fail') return displayError(studentPayload?.message);
 
-                // Update the student's programs and parents
-                AddStudentIdToParentAndProgram(ExistingGuardainOneId, ExistingGuardainTwoId, [studentResult.payload._id], programIds);
+                //TODO - Handle Errors when updating Parents and Programs
+                AddStudentIdToParentAndProgram(ExistingGuardainOneId, ExistingGuardainTwoId, [studentPayload?._id], programIds? programIds: []); //Update the student's programs and parents
 
-                //Update the student's family
-
-
+                router.push('/students'); //Update the student's family
             }
             else if (newGuardianOne && newGuardianTwo) {
 
-                /**
-                * Handle Parent 1 and 2
-                * - Create a new parent 1, 2 and return a promise
-                */
-                const parent1Data = GenerateNewGuardianOneData(newGuardianOne, data);
-                let parent1Promise = doCreateGuardianOne(parent1Data);
-                const parent2Data = GenerateNewGuardianTwoData(newGuardianTwo, data);
-                let parent2Promise = doCreateGuardianTwo(parent2Data);
-
-                // Wait for both parent registrations to complete
-                const [parent1Result, parent2Result] = await Promise.all([
-                    parent1Promise,
-                    parent2Promise,
-                ]);
-
-                const parentIds = [
-                    parent1Result.payload.parent_id,
-                    parent2Result.payload.parent_id,
-                ];
-
+                //Create Parent 1 and 2
+                const parentIds = await createGuardians(newGuardianOne, newGuardianTwo, data);
 
                 //Create Student
-                const studentPromise = doCreateStudent(GenerateNewStudentData(
-                    data,
-                    parent1Result.payload.parent_id,
-                    parent2Result.payload.parent_id,
-                    programIds,
-                ));
-
-
-                const [studentResult] = await Promise.all([studentPromise]);
-
-                //Display Success Toast
-                displayToast(studentPromise, 'Successfully registered student!');
+                const studentId = await createStudent(data, parentIds, programIds);
 
                 //Create Family
-                doCreateFamily(GenerateNewFamilyData(data, parentIds, [studentResult.payload._id]));
-
+                doCreateFamily(GenerateNewFamilyData(data, [parentIds.parent1Id, parentIds.parent2Id], [studentId._id]));
                 // Update the student's programs and parents
-                AddStudentIdToParentAndProgram(parent1Result.payload.parent_id, parent2Result.payload.parent_id, [studentResult.payload._id], programIds);
+                AddStudentIdToParentAndProgram(parentIds.parent1Id, parentIds.parent2Id, [studentId._id], programIds);
+                router.push('/students');
 
             }
             else if (newGuardianOne || newGuardianTwo) {
 
             }
 
-            router.push('/students');
         } catch (error) {
-            toast.error(error, {
-                duration: 10000,
-            });
+            displayError(error);
         }
     };
+
+    LoadingToast(isCreatingStudent, 'Creating Student...');
+    LoadingToast(isCreatingGuardianOne, 'Creating Guardian One...');
+    LoadingToast(isCreatingGuardianTwo, 'Creating Guardian Two...');
+    LoadingToast(isCreatingFamily, 'Creating Family...');
+    LoadingToast(isUpdatingParent, 'Adding student to parent...');
+    LoadingToast(isUpdatingProgram, 'Adding student to program...');
 
     const handleGuardianOneId = (id) => {
         setGuardianOneId(id);
