@@ -1,5 +1,6 @@
 import connectDB from "@/config/database";
 import Program from "@/app/models/Program";
+import Student from "@/app/models/Student";
 
 /**
  * Get program by ID
@@ -50,7 +51,19 @@ export const PATCH = async (request, { params }) => {
 
   for (const [key, value] of Object.entries(body)) {
     if (key === "students" && Array.isArray(value)) {
-      // Handles adding students without duplicates
+      const existingStudents = await Student.find({ _id: { $in: value } });
+      if (existingStudents.length !== value.length) {
+        return new Response(
+          JSON.stringify({
+            status: "fail",
+            message: "Failed to update program because one or more students do not exist in the database.",
+          }),
+          {
+            status: 400,
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+      }
       updateOptions["$addToSet"] = { [key]: { $each: value } };
     } else if (key.startsWith("remove") && value) {
      

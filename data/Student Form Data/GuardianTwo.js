@@ -2,7 +2,7 @@ import states from "../States";
 const GuardianTwo = {
     title: 'Guardian Two Information',
     fields: [
-      { type: 'section', label: 'GUARDIAN TWO INFORMATION' },
+      { type: 'section', label: 'Guardian Information' },
       {
         type: 'text',
         name_of_json_field: 'guardian_two_first_name',

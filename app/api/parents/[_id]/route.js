@@ -118,7 +118,7 @@ export const PATCH = async (request, { params }) => {
         return new Response(
           JSON.stringify({
             status: "fail",
-            message: "Could not find all students with provided IDs",
+            message: "Failed to update parent because one or more students do not exist in the database.",
           }),
           {
             status: 400,

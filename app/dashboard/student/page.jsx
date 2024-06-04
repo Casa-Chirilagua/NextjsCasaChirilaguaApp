@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from 'uuid';
 // import GridCardsSkeleton from '@/components/skeletons/GridCardsSkeleton';
 import LineGraphCard from '@/components/dashboard_components/LineGraphCard';
 import PieChartCard from '@/components/dashboard_components/PieChartCard';
-import DashboardTable from '@/components/tables/DashboardTable';
 import NumberCard from '@/components/dashboard_components/NumberCard';
 
 //Icons
@@ -53,12 +52,8 @@ function StudentDash() {
     doFetchParents({ page: 1});
     doFetchPrograms();
     doFetchFamilies();
-    //'fetching data');
   }, [doFetchParents, doFetchPrograms, doFetchStudents, doFetchFamilies]);
 
-  // if (!students) {
-  //   return <div>Loading...</div>;
-  // }
   let studentsWithIds;
   let percentage;
   let programWithIds;
@@ -67,7 +62,6 @@ function StudentDash() {
       ...students,
       id: uuidv4(),
     }));
-
     programWithIds = programs?.map((item) => ({
       ...item,
       id: uuidv4(),
@@ -80,94 +74,89 @@ function StudentDash() {
     ).length;
     percentage = (freeReducedStudents / totalStudents) * 100;
   } catch (error) {
-    //error);
+
   }
 
-  // const programData = GenerateProgramData(programs);
   const COLORS = [Colors['color-green'], '#D0F0C0', '#00853E', '#71BC78'];
 
   let content;
-  if (
-    loadingFamiliesError ||
-    loadingParentsError ||
-    loadingProgramError ||
-    loadingStudentError
-  ) {
-    //"loadingFamiliesError", loadingFamiliesError);
-    //"loadingParentsError", loadingParentsError);
-    //"loadingProgramError", loadingProgramError);
-    //"isLoadingStudents", loadingStudentError);
-    content = <div>Error fetching data...</div>;
-  } else {
-    content = (
-      <>
-        <div className="dashboard-page-header"><h1>Student Dashboard</h1><div className="dashboard-subheading">Welcome to the student Dashboard</div></div>
-        <NumberCard
-          labelColor={'black'}
-          numberColor={'black'}
-          backgroundColor={'white'}
-          name={'Students Enrolled'}
-          number={students?.total}
-          icon={MainNavigationItems.students.icon}
-          linkLabel={'Students table'}
-          urlLink={'/students/table'}
-        />
-        <NumberCard
-          labelColor={'white'}
-          numberColor={'white'}
-          backgroundColor={Colors['color-saleforce-dash-blue']}
-          col="3"
-          name={'Free/Reduced Lunch'}
-          number={Math.round(percentage) + '%'}
-          icon={<MdOutlineLunchDining />}
-        />
-        <NumberCard
-          labelColor={'white'}
-          numberColor={'white'}
-          backgroundColor={Colors['color-green']}
-          col="3"
-          name={'Active Parents'}
-          number={parents?.total? parents.total : 0}
-          linkLabel={'Parent table'}
-          urlLink={'/parents'}
-          icon={MainNavigationItems.parents.icon}
-          classN="item--6"
-        />
-        <PieChartCard
-          labelName={'Programs'}
-          data={programWithIds}
-          bgColor={'white'}
-          textColor={'black'}
-          dataKey={'number_of_students'}
-          color={Colors['color-green']}
-          linkLabel={'Program table'}
-          urlLink={'/programs'}
-          colors={COLORS}
-        />
-        <LineGraphCard
-          label={'Enrollment Over Time'}
-          data={students?.students ? students.students : []}
-          lineKey={'enrollment_date'}
-          bgColor={'blue'}
-          labelColor={'black'}
-        />
-        <NumberCard
-          labelColor={'black'}
-          numberColor={'black'}
-          backgroundColor={'white'}
-          col="3"
-          name={'Active Families'}
-          linkLabel={'Families table'}
-          urlLink={'/families'}
-          number={families?.length}
-          icon={MainNavigationItems.families.icon}
-          classN="item--7"
-        />
-      </>
-    );
-  }
+  // if (
+  //   loadingFamiliesError ||
+  //   loadingParentsError ||
+  //   loadingProgramError ||
+  //   loadingStudentError
+  // ) {
+  //   content = <div>Error fetching data...</div>;
+  // } else {
+  //   content = (
 
-  return <div className="dash-container">{content}</div>;
+    // );
+  // }
+
+  return       <>
+  <div className="dashboard-page-header"><h1>Student Dashboard</h1><div className="dashboard-subheading">Welcome to the student Dashboard</div></div>
+  <NumberCard
+    labelColor={'black'}
+    numberColor={'black'}
+    backgroundColor={'white'}
+    name={'Students Enrolled'}
+    number={students?.total? students.total : 0}
+    icon={MainNavigationItems.students.icon}
+    linkLabel={'Students table'}
+    urlLink={'/students/table'}
+  />
+  <NumberCard
+    labelColor={'white'}
+    numberColor={'white'}
+    backgroundColor={Colors['color-saleforce-dash-blue']}
+    col="3"
+    name={'Free/Reduced Lunch'}
+    number={percentage? Math.round(percentage) + '%': "0%"}
+    icon={<MdOutlineLunchDining />}
+  />
+  <NumberCard
+    labelColor={'white'}
+    numberColor={'white'}
+    backgroundColor={Colors['color-green']}
+    col="3"
+    name={'Active Parents'}
+    number={parents?.total? parents.total : 0}
+    linkLabel={'Parent table'}
+    urlLink={'/parents'}
+    icon={MainNavigationItems.parents.icon}
+    classN="item--6"
+  />
+  <PieChartCard
+    labelName={'Programs'}
+    data={programWithIds}
+    bgColor={'white'}
+    textColor={'black'}
+    dataKey={'number_of_students'}
+    color={Colors['color-green']}
+    linkLabel={'Program table'}
+    urlLink={'/programs'}
+    colors={COLORS}
+  />
+  <LineGraphCard
+    label={'Enrollment Over Time'}
+    data={students?.students ? students.students : []}
+    lineKey={'enrollment_date'}
+    bgColor={'blue'}
+    labelColor={'black'}
+  />
+  <NumberCard
+    labelColor={'black'}
+    numberColor={'black'}
+    backgroundColor={'white'}
+    col="3"
+    name={'Active Families'}
+    linkLabel={'Families table'}
+    urlLink={'/families'}
+    number={families?.families? families?.families?.length : 0}
+    icon={MainNavigationItems.families.icon}
+    classN="item--7"
+  />
+</>;
 }
 
 export default StudentDash;

@@ -73,10 +73,7 @@ const page = () => {
   };
 
   let content;
-  if (isLoadingStudents) {
-    content = <div>Loading...</div>;
-  }
-  else if (loadingStudentError) {
+ if (loadingStudentError) {
     content = <div>Error fetching data...</div>;
   } else {
     content = (

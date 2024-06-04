@@ -61,7 +61,6 @@ const page = () => {
         formState: { errors },
     } = useForm();
 
-
     const { parents } = useSelector((state) => state.parents);
     const { programs } = useSelector((state) => state.programs);
     const { students } = useSelector((state) => state.students);
@@ -93,6 +92,7 @@ const page = () => {
     const [doCreateGuardianTwo, isCreatingGuardianTwo, creatingGuardianTwoError] =
         useThunk(register_parent);
 
+    const [doCreateGuardian, isCreatingGuardian, creatingGuardianError] = useThunk(register_parent);
     //Create Student
     const [doCreateStudent, isCreatingStudent, creatingStudentError] =
         useThunk(register_Student);
@@ -116,54 +116,74 @@ const page = () => {
         doFetchPrograms();
     }, [doFetchParentsWithName, doFetchPrograms]);
 
-    const AddStudentIdToParentAndProgram = (guardianOneId, guardianTwoId, studentId, programIds) => {
 
-        const parentPromise1 = doUpdateParent({
-            id: guardianOneId,
-            updatedFields: { students: studentId },
-        });
+    const generatePayloadResultUpdate = async (idsArray, updateFunction, updatedFields) => {
+        let payloadResult;
+        for (const id in idsArray) {
+            const promise = updateFunction({ id: idsArray[id], updatedFields: updatedFields });
+            const [result] = await Promise.all([promise]);
+            payloadResult = result?.payload;
+            if (result?.payload?.status === 'fail') return result.payload;
+        }
+        return payloadResult;
+    }
 
-        const parentPrmise2 = doUpdateParent({
-            id: guardianTwoId,
-            updatedFields: { students: studentId },
-        });
+    const generatePayloadResultCreate = async (datasArray, createFunction) => {
 
-        programIds.map((programs) => {
-            let progamPromise = doUpdateProgram({
-                id: programs,
-                updatedFields: { students: studentId },
-            });
-        });
+        let parentIds = [];
+
+        /**
+         * Create Guardians:
+         * - If the payload is a fail return the payload
+         * - If the payload is a success return the parent ids
+         */
+        for (const index in datasArray) {
+            console.log('Creating Guardian:', datasArray[index])
+            const promise = createFunction(datasArray[index]);
+            const [result] = await Promise.all([promise]);
+            if (result?.payload?.status === 'fail') return result.payload; //If the payload is a fail return the payload
+            parentIds.push(result?.payload?.parent_id); // If the payload is a success push the parent ids
+        }
+        return parentIds;
+    }
+    const AddStudentIdToParentAndProgram = async (guardianIds, studentId, programIds) => {
+
+        /**
+         * Update Guardians and return payload
+         */
+        const payloadParentResult = await generatePayloadResultUpdate(guardianIds, doUpdateParent, { students: studentId });
+        if (payloadParentResult?.status === 'fail') return payloadParentResult;
+
+        /**
+         * Update Programs and return payload
+         */
+        const payloadProgramResult = await generatePayloadResultUpdate(programIds, doUpdateProgram, { students: studentId });
+        return payloadProgramResult;
     }
 
     const displayError = (err) => {
         toast.error(err, {
-            duration: 30000,
+            duration: 50000,
             theme: "colored",
-
         });
     };
-    const createGuardians = async (newGuardianOne, newGuardianTwo, data) => {
+    const createGuardians = async (data) => {
 
+        console.log('createGuardians Function');
+        console.log("Data", data);
         /**
         * Handle Parent 1 and 2
         * - Create a new parent 1, 2 and return a promise
         */
-        const parent1Data = GenerateNewGuardianOneData(newGuardianOne, data);
-        let parent1Promise = doCreateGuardianOne(parent1Data);
-        const parent2Data = GenerateNewGuardianTwoData(newGuardianTwo, data);
-        let parent2Promise = doCreateGuardianTwo(parent2Data);
+        const parent1Data = GenerateNewGuardianOneData(data);
+        console.log("Parent 1 Data", parent1Data);
+        
+        const parent2Data = GenerateNewGuardianTwoData(data);
+        console.log("Parent 2 Data", parent2Data);
 
-        // Wait for both parent registrations to complete
-        const [parent1Result, parent2Result] = await Promise.all([
-            parent1Promise,
-            parent2Promise,
-        ]);
-
-        return {
-            parent1Id: parent1Result.payload.parent_id,
-            parent2Id: parent2Result.payload.parent_id,
-        };
+        const results = await generatePayloadResultCreate([parent1Data, parent2Data], doCreateGuardian);
+        if (results?.status === 'fail') return results;
+        return results;
     }
     const createStudent = async (data, parentIds, programIds) => {
 
@@ -174,13 +194,12 @@ const page = () => {
             parentIds.parent2Id,
             programIds,
         ));
-        
+
         return SuccessToast(studentPromise, 'Successfully registered student!');
     }
 
     /**
      * Submits the application which includes the student, parent, and family data
-     * 
      * 
      * 
      * @param {*} data 
@@ -196,27 +215,37 @@ const page = () => {
              */
             if (ExistingGuardainOneId && ExistingGuardainTwoId) {
 
-                const studentPayload = await createStudent(data, [ExistingGuardainOneId, ExistingGuardainTwoId], programIds? programIds: []); //Update the student's family
+                const studentPayload = await createStudent(data, [ExistingGuardainOneId, ExistingGuardainTwoId], programIds ? programIds : []); //Update the student's family
 
-                if(studentPayload?.status === 'fail') return displayError(studentPayload?.message);
+                if (studentPayload?.status === 'fail') return displayError(studentPayload?.message);
 
-                //TODO - Handle Errors when updating Parents and Programs
-                AddStudentIdToParentAndProgram(ExistingGuardainOneId, ExistingGuardainTwoId, [studentPayload?._id], programIds? programIds: []); //Update the student's programs and parents
+                const payload = await AddStudentIdToParentAndProgram([ExistingGuardainOneId, ExistingGuardainTwoId], [studentPayload?._id], programIds ? programIds : []); //Update the student's programs and parents
+
+                if (payload?.status === 'fail') return displayError(payload?.message);
+
+                if (payload?.status === 'success') toast.success(payload?.message, { duration: 50000, theme: "colored" });
 
                 router.push('/students'); //Update the student's family
             }
             else if (newGuardianOne && newGuardianTwo) {
 
+                console.log('Creating new parents');
                 //Create Parent 1 and 2
-                const parentIds = await createGuardians(newGuardianOne, newGuardianTwo, data);
+                const parentPayloads = await createGuardians(data);
+                console.log('Parent Payloads:', parentPayloads);
+                if (parentPayloads?.status === 'fail') return displayError(parentPayloads?.message);
 
                 //Create Student
-                const studentId = await createStudent(data, parentIds, programIds);
+                const studentId = await createStudent(data, parentPayloads, programIds);
 
                 //Create Family
-                doCreateFamily(GenerateNewFamilyData(data, [parentIds.parent1Id, parentIds.parent2Id], [studentId._id]));
+                doCreateFamily(GenerateNewFamilyData(data, parentPayloads, [studentId._id]));
+
                 // Update the student's programs and parents
-                AddStudentIdToParentAndProgram(parentIds.parent1Id, parentIds.parent2Id, [studentId._id], programIds);
+                const payload = AddStudentIdToParentAndProgram(parentPayloads, [studentId._id], programIds);
+
+                if (payload?.status === 'fail') return displayError(payload?.message);
+
                 router.push('/students');
 
             }
@@ -230,8 +259,7 @@ const page = () => {
     };
 
     LoadingToast(isCreatingStudent, 'Creating Student...');
-    LoadingToast(isCreatingGuardianOne, 'Creating Guardian One...');
-    LoadingToast(isCreatingGuardianTwo, 'Creating Guardian Two...');
+    LoadingToast(isCreatingGuardian, 'Creating Guardian...');
     LoadingToast(isCreatingFamily, 'Creating Family...');
     LoadingToast(isUpdatingParent, 'Adding student to parent...');
     LoadingToast(isUpdatingProgram, 'Adding student to program...');

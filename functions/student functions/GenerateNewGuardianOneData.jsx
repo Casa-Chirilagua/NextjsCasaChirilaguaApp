@@ -1,4 +1,6 @@
 
+
+import HandleName from "../HandleName";
 /**
  * Generats new the first guardian data from the data provided.
  * 
@@ -6,31 +8,33 @@
  * @param {*} data 
  * @returns 
  */
-function GenerateNewGuardianOneData(newGuardianOne, data) {
-  const fd = new FormData();
+function GenerateNewGuardianOneData(data) {
 
-  if (newGuardianOne) {
-    let guardainOneAddress = {
-      street: data.mothers_street,
-      address_line_two: data.mothers_address_line_2,
-      city: data.mothers_city,
-      state: data.state,
-      zip: data.mothers_zip,
-    };
+const fullName = HandleName({ first_name: data.guardian_one_first_name ? data.guardian_one_first_name : "", middle_name: data.guardian_one_middle_name ? data.guardian_one_middle_name : "", last_name: data.guardian_one_last_name ? data.guardian_one_last_name : "" });
 
-    const parent1Data = {
-      name: data.guardian_one_first_name + ' ' + data.guardian_one_last_name,
-      first_name: data.guardian_one_first_name,
-      middle_name: data.guardian_one_middle_name,
-      last_name: data.guardian_one_last_name,
-      phone: data.guardian_one_phone,
-      email: data.guardian_one_email,
-      address: guardainOneAddress,
-      can_receive_text: data.guardian_one_can_recieve_messages,
-    };
+  let guardainOneAddress = {
+    street: data?.mothers_street? data.mothers_street : "",
+    address_line_two: data?.mothers_address_line_2? data.mothers_address_line_2 : "",
+    city: data?.mothers_city? data?.mothers_city : "",
+    state: data?.state? data.state : "",
+    zip: data?.mothers_zip? data.mothers_zip : "",
+  };
 
-    return parent1Data;
-  }
+  const parent1Data = {
+    name: fullName,
+    first_name: data?.guardian_one_first_name? data.guardian_one_first_name : "",
+    middle_name: data?.guardian_one_middle_name? data.guardian_one_middle_name : "",
+    last_name: data?.guardian_one_last_name? data.guardian_one_last_name : "",
+    phone: data?.guardian_one_phone? data.guardian_one_phone : "",
+    email: data?.guardian_one_email? data.guardian_one_email : "",
+    address: guardainOneAddress,
+    can_receive_text: data.guardian_one_can_recieve_messages? data.guardian_one_can_recieve_messages : false,
+  };
+
+
+
+  return parent1Data;
+
 }
 
 export default GenerateNewGuardianOneData;

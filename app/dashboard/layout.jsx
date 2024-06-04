@@ -7,7 +7,8 @@ const layout = ({ children }) => {
     const { data: session } = useSession();
     return (
         session && <div className='primary-container my-custom-background'>
-            <SideNav SidebarData={[sideNavigationItems.student_Dashboard, sideNavigationItems.volunteer_Dashboard, sideNavigationItems.program_Dashboard, sideNavigationItems.parent_Dashboard, sideNavigationItems.mentor_Dashboard]} selectedColor={sideNavigationItems.dashboard.color} />
+            {/* <SideNav SidebarData={[sideNavigationItems.student_Dashboard, sideNavigationItems.volunteer_Dashboard, sideNavigationItems.program_Dashboard, sideNavigationItems.parent_Dashboard, sideNavigationItems.mentor_Dashboard]} selectedColor={sideNavigationItems.dashboard.color} /> */}
+            <SideNav SidebarData={[sideNavigationItems.student_Dashboard]} selectedColor={sideNavigationItems.dashboard.color} />
             {children}
         </div>
     )

@@ -143,8 +143,9 @@ function renderRadios(field, register, errors, required, color, key) {
           id: id,
         };
         return (
-          <div className="radios-item" key={index}>
+          <div className="radios-item p-2 flex items-center" key={index}>
             <input
+
               style={{
                 borderColor: color,
                 marginRight: '1rem',
@@ -235,16 +236,8 @@ function Form({ formData, register, control, errors, classN, color }) {
     } else if (type === 'section') {
       const { label } = field;
       return (
-        <div className="section" style={{ borderBottom: '2rem' }} key={index}>
-          {' '}
-          <h4
-            style={{
-              color: color,
-              height: '5rem',
-            }}
-          >
+        <div className="form-section font-normal text-5xl flex items-center justify-center " style={{ borderBottom: '2rem' }} key={index}>
             {label}
-          </h4>
         </div>
       );
     } else {
@@ -253,7 +246,7 @@ function Form({ formData, register, control, errors, classN, color }) {
   });
   try {
     return (
-      <div className={classN} key={uuidv4()}>
+      <div className={`${classN} px-24 pb-12`} key={uuidv4()}>
         {renderedRows}
       </div>
     );
