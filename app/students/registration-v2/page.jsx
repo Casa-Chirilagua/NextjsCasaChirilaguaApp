@@ -23,10 +23,12 @@ import GenerateNewFamilyData from '@/functions/student functions/GenerateNewFami
 import SuccessToast from '@/functions/SuccessToast';
 import LoadingToast from '@/functions/LoadingToast';
 
-
 //Data
 import Colors from '@/data/Colors';
 import StudentInformation from '@/data/Student Form Data/StudentInformation';
+import EmergencyContact from '@/data/Student Form Data/EmergencyContact';
+import MedicalInsurance from '@/data/Student Form Data/MedicalInsurance';
+import MedicalInformation from '@/data/Student Form Data/MedicalInformation';
 import GuardianOne from '@/data/Student Form Data/GuardianOne';
 import GuardianTwo from '@/data/Student Form Data/GuardianTwo';
 
@@ -274,11 +276,35 @@ const page = () => {
         content = <div>Error fetching data...</div>;
     } else {
         content = (
-            <>
+            <div className='w-full h-full flex flex-col gap-10 '>
                 <Form
                     classN="form-container"
                     key={uuidv4()}
                     formData={StudentInformation}
+                    register={register}
+                    control={control}
+                    errors={errors}
+                />
+                <Form
+                    classN="form-container"
+                    key={uuidv4()}
+                    formData={EmergencyContact}
+                    register={register}
+                    control={control}
+                    errors={errors}
+                />
+                <Form
+                    classN="form-container"
+                    key={uuidv4()}
+                    formData={MedicalInsurance}
+                    register={register}
+                    control={control}
+                    errors={errors}
+                />
+                <Form
+                    classN="form-container"
+                    key={uuidv4()}
+                    formData={MedicalInformation}
                     register={register}
                     control={control}
                     errors={errors}
@@ -342,13 +368,13 @@ const page = () => {
                     color={'white'}
                     label={'submit'}
                 />
-            </>
+            </div>
         );
     }
     try {
         return (
             <div className="primary-container" style={{ paddingTop: '3rem' }}>
-                <div className="subtitle-container">
+                <div className="subtitle-container w-full mx-[15%] ">
                     <form
                         onSubmit={handleSubmit(onSubmit)}
                         method="POST"

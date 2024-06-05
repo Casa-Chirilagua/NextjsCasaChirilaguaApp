@@ -14,7 +14,7 @@ function ParentProfileCardConfig(parent) {
             href={generateParamStringForGrid({objName: HandleName(parent), id: parent._id, objToRetrieve: "students", objMakingRequest: "parent"})}
             state={{ from: parent.students }}
           >
-            {`Children (${parent.students.length})`}
+            {`Children (${parent?.students?.length? parent.students.length: 0})`}
           </Link>
         ),
       },

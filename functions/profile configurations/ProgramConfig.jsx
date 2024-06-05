@@ -9,14 +9,14 @@ function ProgramConfig(program) {
   const fields = {
     'Program Information': {
       Name: {
-        value: program.name ? program.name : '',
+        value: program?.name ? program.name : '',
         name_of_json_field: 'name',
         database_field_name: 'name',
         form_data: GetItemByJsonFieldName("name", Program),
         hasObject: false,
       },
       Description: {
-        value: program.description ? program.description : '',
+        value: program?.description ? program.description : '',
         name_of_json_field: 'description',
         database_field_name: 'description',
         form_data: GetItemByJsonFieldName("description", Program),
@@ -46,14 +46,14 @@ function ProgramConfig(program) {
     },
     Capacity: {
       'Volunteer Capacity': {
-        value: program.volunteer_capacity ? program.volunteer_capacity : '',
+        value: program?.volunteer_capacity ? program.volunteer_capacity : '',
         name_of_json_field: 'volunteer_capacity',
         database_field_name: 'volunteer_capacity',
         form_data: GetItemByJsonFieldName("volunteer_capacity", Program),
         hasObject: false,
       },
       'Program Capacity': {
-        value: program.program_capacity ? program.program_capacity : '',
+        value: program?.program_capacity ? program.program_capacity : '',
         name_of_json_field: 'program_capacity',
         database_field_name: 'program_capacity',
         form_data: GetItemByJsonFieldName("program_capacity", Program),
@@ -62,7 +62,7 @@ function ProgramConfig(program) {
     },
     'Additional Information': {
       When: {
-        value: program.when? program.when: '' ,
+        value: program?.when? program.when: '' ,
         name_of_json_field: 'when',
         database_field_name: 'when',
         form_data: GetItemByJsonFieldName("when", Program),
@@ -76,28 +76,28 @@ function ProgramConfig(program) {
         hasObject: false,
       },
       Location: {
-        value: program.location? program.location: '',
+        value: program?.location? program.location: '',
         name_of_json_field: 'location',
         database_field_name: 'location',
         form_data: GetItemByJsonFieldName("location", Program),
         hasObject: false,
       },
       Responsibility: {
-        value: program.responsibility ?program.responsibility :'',
+        value: program?.responsibility ?program.responsibility :'',
         name_of_json_field: 'responsibility',
         database_field_name: 'responsibility',
         form_data: GetItemByJsonFieldName("responsibility", Program),
         hasObject: false,
       },
       'Additional Notes': {
-        value: program.additional_notes? program.additional_notes :'',
+        value: program?.additional_notes? program.additional_notes :'',
         name_of_json_field: 'additional_notes',
         database_field_name: 'additional_notes',
         form_data: GetItemByJsonFieldName("additional_notes", Program),
         hasObject: false,
       },
       Training: {
-        value: program.training? program.training: '' ,
+        value: program?.training? program.training: '' ,
         name_of_json_field: 'training',
         database_field_name: 'training',
         form_data: GetItemByJsonFieldName("training", Program),

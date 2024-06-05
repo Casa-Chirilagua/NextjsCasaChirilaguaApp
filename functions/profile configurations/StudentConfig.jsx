@@ -22,70 +22,70 @@ function StudentConfig(student) {
   const fields = {
     'Personal Information': {
       'First Name': {
-        value: student.first_name ? student.first_name : '',
+        value: student?.first_name ? student.first_name : '',
         name_of_json_field: 'first_name',
         database_field_name: 'first_name',
         form_data: GetItemByJsonFieldName("first_name", StudentInformation),
         hasObject: false,
       },
       'Middle Name': {
-        value: student.middle_name ? student.middle_name : '',
+        value: student?.middle_name ? student.middle_name : '',
         name_of_json_field: 'middle_name',
         database_field_name: 'middle_name',
         form_data: GetItemByJsonFieldName("middle_name", StudentInformation),
         hasObject: false,
       },
       'Last Name': {
-        value: student.last_name ? student.last_name : '',
+        value: student?.last_name ? student.last_name : '',
         name_of_json_field: 'last_name',
         database_field_name: 'last_name',
         form_data: GetItemByJsonFieldName("last_name", StudentInformation),
         hasObject: false,
       },
       Email: {
-        value: student.email ? student.email : '',
+        value: student?.email ? student.email : '',
         name_of_json_field: 'email',
         database_field_name: 'email',
         form_data: GetItemByJsonFieldName("email", StudentInformation),
         hasObject: false,
       },
       Phone: {
-        value: student.phone ? student.phone : '',
+        value: student?.phone ? student.phone : '',
         name_of_json_field: 'phone',
         database_field_name: 'phone',
         form_data: GetItemByJsonFieldName("phone", StudentInformation),
         hasObject: false,
       },
       Grade: {
-        value: student.grade ? student.grade : '',
+        value: student?.grade ? student.grade : '',
         name_of_json_field: 'grade',
         database_field_name: 'grade',
         form_data: GetItemByJsonFieldName("grade", StudentInformation),
         hasObject: false,
       },
       School: {
-        value: student.school ? student.school : '',
+        value: student?.school ? student.school : '',
         name_of_json_field: 'school',
         database_field_name: 'school',
         form_data: GetItemByJsonFieldName("school", StudentInformation),
         hasObject: false,
       },
       'Date of birth': {
-        value: ConvertToUSADate(student.date_of_birth),
+        value: ConvertToUSADate(student?.date_of_birth),
         name_of_json_field: 'date_of_birth',
         database_field_name: 'date_of_birth',
         form_data: GetItemByJsonFieldName("date_of_birth", StudentInformation),
         hasObject: false,
       },
       'Does the student receive free or reduced lunch?': {
-        value: student.free_and_reduced_lunch ? 'Yes' : 'No',
+        value: student?.free_and_reduced_lunch ? 'Yes' : 'No',
         name_of_json_field: 'free_and_reduced_lunch',
         database_field_name: 'free_and_reduced_lunch',
         form_data: GetItemByJsonFieldName("free_and_reduced_lunch", StudentInformation),
         hasObject: false,
       },
       "Graduation date": {
-        value: ConvertToUSADate(student.high_school_graduation_date),
+        value: ConvertToUSADate(student?.high_school_graduation_date),
         name_of_json_field: 'high_school_graduation_date',
         database_field_name: 'high_school_graduation_date',
         form_data:
@@ -103,7 +103,7 @@ function StudentConfig(student) {
       }
       ,
       "Created at": {
-        value: ConvertToUSADate(student.created_at),
+        value: ConvertToUSADate(student?.created_at),
         name_of_json_field: 'created_at',
         database_field_name: 'created_at',
         form_data: GetItemByJsonFieldName("created_at", StudentInformation),
@@ -113,7 +113,7 @@ function StudentConfig(student) {
     },
     Address: {
       Street: {
-        value: student.address ? student.address.street : '',
+        value: student?.address ? student.address.street : '',
         name_of_json_field: 'street',
         database_field_name: 'street',
         form_data: GetItemByJsonFieldName("street", StudentInformation),
@@ -121,7 +121,7 @@ function StudentConfig(student) {
         objectName: 'address',
       },
       'Address Line 2': {
-        value: student.address
+        value: student?.address
           ? student.address.address_line_2
           : '',
         name_of_json_field: 'address_line_2',
@@ -131,7 +131,7 @@ function StudentConfig(student) {
         objectName: 'address',
       },
       City: {
-        value: student.address ? student.address.city : '',
+        value: student?.address ? student.address.city : '',
         name_of_json_field: 'city',
         database_field_name: 'city',
         form_data: GetItemByJsonFieldName("city", StudentInformation),
@@ -139,7 +139,7 @@ function StudentConfig(student) {
         objectName: 'address',
       },
       State: {
-        value: student.address ? student.address.state : '',
+        value: student?.address ? student.address.state : '',
         name_of_json_field: 'state',
         database_field_name: 'state',
         form_data: GetItemByJsonFieldName("state", StudentInformation),
@@ -147,7 +147,7 @@ function StudentConfig(student) {
         objectName: 'address',
       },
       Zip: {
-        value: student.address ? student.address.zip : '',
+        value: student?.address ? student.address.zip : '',
         name_of_json_field: 'zip',
         database_field_name: 'zip',
         form_data: GetItemByJsonFieldName("zip", StudentInformation),
@@ -157,7 +157,7 @@ function StudentConfig(student) {
     },
     'Emergency Contact': {
       Name: {
-        value: student.emergency_contact
+        value: student?.emergency_contact
           ? student.emergency_contact.first_name
           : '',
         name_of_json_field: 'emergency_first_name',
@@ -167,7 +167,7 @@ function StudentConfig(student) {
         objectName: 'emergency_contact',
       },
       'Last Name': {
-        value: student.emergency_contact
+        value: student?.emergency_contact
           ? student.emergency_contact.last_name
           : '',
         name_of_json_field: 'emergency_last_name',
@@ -177,7 +177,7 @@ function StudentConfig(student) {
         objectName: 'emergency_contact',
       },
       Phone: {
-        value: student.emergency_contact
+        value: student?.emergency_contact
           ? student.emergency_contact.phone
           : '',
         name_of_json_field: 'emergency_phone',
@@ -187,7 +187,7 @@ function StudentConfig(student) {
         objectName: 'emergency_contact',
       },
       Relationship: {
-        value: student.emergency_contact
+        value: student?.emergency_contact
           ? student.emergency_contact.relationship
           : '',
         name_of_json_field: 'relationship',
@@ -199,7 +199,7 @@ function StudentConfig(student) {
     },
     'Medical Insurance': {
       'Policy Number': {
-        value: student.health_care
+        value: student?.health_care
           ? student.health_care.policy_number
           : '',
         name_of_json_field: 'policy_number',
@@ -209,7 +209,7 @@ function StudentConfig(student) {
         objectName: 'health_care',
       },
       'Primary doctor first name': {
-        value: student.health_care
+        value: student?.health_care
           ? student.health_care.first_name
           : '',
         name_of_json_field: 'first_name',
@@ -219,7 +219,7 @@ function StudentConfig(student) {
         objectName: 'health_care',
       },
       'Primary doctor last name': {
-        value: student.health_care ? student.health_care.last_name : '',
+        value: student?.health_care ? student.health_care.last_name : '',
         name_of_json_field: 'last_name',
         database_field_name: 'last_name',
         form_data: GetItemByJsonFieldName("last_name", StudentInformation),
@@ -227,7 +227,7 @@ function StudentConfig(student) {
         objectName: 'health_care',
       },
       'Doctors phone number': {
-        value: student.health_care ? student.health_care.phone : '',
+        value: student?.health_care ? student.health_care.phone : '',
         name_of_json_field: 'doctors_phone',
         database_field_name: 'phone',
         form_data: GetItemByJsonFieldName("doctors_phone", StudentInformation),
@@ -237,7 +237,7 @@ function StudentConfig(student) {
     },
     'Medical Information': {
       'Does the student have allergies': {
-        value: student.medical_information
+        value: student?.medical_information
           ? studentBooleanCheck(student.medical_information.has_allergies)
           : '',
         name_of_json_field: 'has_allergies',
@@ -247,7 +247,7 @@ function StudentConfig(student) {
         objectName: 'medical_information',
       },
       'Allergy Description': {
-        value: student.medical_information
+        value: student?.medical_information
           ? student.medical_information.allergy_description
           : '',
         name_of_json_field: 'allergy_description',
@@ -257,7 +257,7 @@ function StudentConfig(student) {
         objectName: 'medical_information',
       },
       'Does the student have epilepsy': {
-        value: student.medical_information
+        value: student?.medical_information
           ? studentBooleanCheck(student.medical_information.has_epilepsy)
           : '',
         name_of_json_field: 'has_epilepsy',
@@ -267,7 +267,7 @@ function StudentConfig(student) {
         objectName: 'medical_information',
       },
       'Epilepsy Description': {
-        value: student.medical_information
+        value: student?.medical_information
           ? studentBooleanCheck(student.medical_information.epilepsy_description)
           : '',
         name_of_json_field: 'epilepsy_description',
@@ -277,7 +277,7 @@ function StudentConfig(student) {
         objectName: 'medical_information',
       },
       'Does the student have asthma': {
-        value: student.medical_information
+        value: student?.medical_information
           ? studentBooleanCheck(student.medical_information.has_asthma)
           : '',
         name_of_json_field: 'has_asthma',
@@ -287,8 +287,8 @@ function StudentConfig(student) {
         objectName: 'medical_information',
       },
       'Asthma Description': {
-        value: student.medical_information
-          ? student.medical_information.asthma_description
+        value: student?.medical_information
+          ? student?.medical_information.asthma_description
           : '',
         name_of_json_field: 'asthma_description',
         database_field_name: 'asthma_description',
@@ -297,7 +297,7 @@ function StudentConfig(student) {
         objectName: 'medical_information',
       },
       'Does the student have food restrictions': {
-        value: student.medical_information
+        value: student?.medical_information
           ? studentBooleanCheck(student.medical_information.has_food_restrictions)
           : '',
         name_of_json_field: 'has_food_restrictions',
@@ -307,7 +307,7 @@ function StudentConfig(student) {
         objectName: 'medical_information',
       },
       'Food Description': {
-        value: student.medical_information
+        value: student?.medical_information
           ? student.medical_information.food_description
           : '',
         name_of_json_field: 'food_description',
@@ -317,7 +317,7 @@ function StudentConfig(student) {
         objectName: 'medical_information',
       },
       'Does the student have other restrictions': {
-        value: student.medical_information
+        value: student?.medical_information
           ? studentBooleanCheck(student.medical_information.has_other_restrictions)
           : '',
         name_of_json_field: 'has_other_restrictions',
@@ -327,7 +327,7 @@ function StudentConfig(student) {
         objectName: 'medical_information',
       },
       'Other restrictions description': {
-        value: student.medical_information
+        value: student?.medical_information
           ? student.medical_information.other_restrictions_description
           : '',
         name_of_json_field: 'other_restrictions_description',

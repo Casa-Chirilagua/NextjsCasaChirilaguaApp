@@ -5,25 +5,25 @@ function FamilyConfig(family) {
   const fields = {
     'Family Information': {
       Name: {
-        value: family.family_name,
+        value: family?.family_name? family.family_name: '',
         name_of_json_field: 'family_name',
         database_field_name: 'family_name',
         hasObject: false,
       },
       Email: {
-        value: family.primary_email,
+        value: family?.primary_email? family.primary_email: '',
         name_of_json_field: 'primary_email',
         database_field_name: 'primary_email',
         hasObject: false,
       },
       Phone: {
-        value: family.primary_phone,
+        value: family?.primary_phone? family.primary_phone: '',
         name_of_json_field: 'primary_phone',
         database_field_name: 'primary_phone',
         hasObject: false,
       },
       'Date Created': {
-        value: family.createdAt,
+        value: family?.createdAt? family.createdAt: '',
         name_of_json_field: 'createdAt',
         database_field_name: 'createdAt',
         hasObject: false,
@@ -31,28 +31,28 @@ function FamilyConfig(family) {
     },
     Address: {
       Street: {
-        value: family.primary_address?.street,
+        value: family?.primary_address?.street? family.primary_address.street: '',
         name_of_json_field: 'street',
         database_field_name: 'street',
         hasObject: true,
         objectName: 'primary_address',
       },
       City: {
-        value: family.primary_address?.city,
+        value: family?.primary_address?.city? family.primary_address.city: '',
         name_of_json_field: 'city',
         database_field_name: 'city',
         hasObject: true,
         objectName: 'primary_address',
       },
       State: {
-        value: family.primary_address?.state,
+        value: family?.primary_address?.state? family.primary_address.state: '',
         name_of_json_field: 'state',
         database_field_name: 'state',
         hasObject: true,
         objectName: 'primary_address',
       },
       Zip: {
-        value: family.primary_address?.zip,
+        value: family?.primary_address?.zip? family.primary_address.zip: '',
         name_of_json_field: 'zip',
         database_field_name: 'zip',
         hasObject: true,

@@ -1,4 +1,6 @@
 import React from 'react'
+import NumberCardSkeleton from  '@/components/skeletons/NumberCardSkeleton'
+import BarChartCardSkeleton from '@/components/skeletons/BarChartCardSkeleton'
 
 const loading = () => {
   return (
