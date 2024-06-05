@@ -234,7 +234,6 @@ const page = () => {
 
                 //Create Family Payload
                 const familyPayload = await createFamily(data, parentPayloads, studentPayload._id);
-                console.log(familyPayload);
                 if (familyPayload?.status === 'fail') return displayError(familyPayload?.message);
 
                 // Update the student's programs and parents
