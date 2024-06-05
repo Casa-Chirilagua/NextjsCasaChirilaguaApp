@@ -63,7 +63,24 @@ export const POST = async (request) => {
     });
   } catch (error) {
     console.error('Error creating new family:', error);
-    return new Response(JSON.stringify({ status: 'fail', data: error }), {
+
+    const objectName = "Family";
+
+    if (error.code === 11000) {
+      return new Response(
+        JSON.stringify({
+          status: "fail",
+          message: `${objectName} with name ${error.keyValue.family_name} already exist`,
+        }),
+        {
+          status: 400,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
+    return new Response(JSON.stringify({ status: 'fail', message: error.message}), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });

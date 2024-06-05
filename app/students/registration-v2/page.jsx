@@ -84,14 +84,6 @@ const page = () => {
     const [doFetchPrograms, isLoadingPrograms, loadingProgramError] =
         useThunk(fetchPrograms);
 
-    // Create Guardian One
-    const [doCreateGuardianOne, isCreatingGuardianOne, creatingGuardianOneError] =
-        useThunk(register_parent);
-
-    // Create Guardian Two
-    const [doCreateGuardianTwo, isCreatingGuardianTwo, creatingGuardianTwoError] =
-        useThunk(register_parent);
-
     const [doCreateGuardian, isCreatingGuardian, creatingGuardianError] = useThunk(register_parent);
     //Create Student
     const [doCreateStudent, isCreatingStudent, creatingStudentError] =
@@ -138,7 +130,6 @@ const page = () => {
          * - If the payload is a success return the parent ids
          */
         for (const index in datasArray) {
-            console.log('Creating Guardian:', datasArray[index])
             const promise = createFunction(datasArray[index]);
             const [result] = await Promise.all([promise]);
             if (result?.payload?.status === 'fail') return result.payload; //If the payload is a fail return the payload
@@ -169,18 +160,12 @@ const page = () => {
     };
     const createGuardians = async (data) => {
 
-        console.log('createGuardians Function');
-        console.log("Data", data);
         /**
         * Handle Parent 1 and 2
         * - Create a new parent 1, 2 and return a promise
         */
         const parent1Data = GenerateNewGuardianOneData(data);
-        console.log("Parent 1 Data", parent1Data);
-        
         const parent2Data = GenerateNewGuardianTwoData(data);
-        console.log("Parent 2 Data", parent2Data);
-
         const results = await generatePayloadResultCreate([parent1Data, parent2Data], doCreateGuardian);
         if (results?.status === 'fail') return results;
         return results;
@@ -197,6 +182,14 @@ const page = () => {
 
         return SuccessToast(studentPromise, 'Successfully registered student!');
     }
+
+    const createFamily = async (data, parentIds, studentId) => {
+        //Create Family
+        const familyPromise = doCreateFamily(GenerateNewFamilyData(data, parentIds, studentId));
+        const payload = await SuccessToast(familyPromise, 'Successfully registered family!');
+        return payload;
+    }
+
 
     /**
      * Submits the application which includes the student, parent, and family data
@@ -229,25 +222,25 @@ const page = () => {
             }
             else if (newGuardianOne && newGuardianTwo) {
 
-                console.log('Creating new parents');
                 //Create Parent 1 and 2
                 const parentPayloads = await createGuardians(data);
-                console.log('Parent Payloads:', parentPayloads);
                 if (parentPayloads?.status === 'fail') return displayError(parentPayloads?.message);
 
                 //Create Student
-                const studentId = await createStudent(data, parentPayloads, programIds);
+                const studentPayload = await createStudent(data, parentPayloads, programIds);
+                if (studentPayload?.status === 'fail') return displayError(studentPayload?.message);
 
-                //Create Family
-                doCreateFamily(GenerateNewFamilyData(data, parentPayloads, [studentId._id]));
+                //Create Family Payload
+                const familyPayload = await createFamily(data, parentPayloads, studentPayload._id);
+                console.log(familyPayload);
+                if (familyPayload?.status === 'fail') return displayError(familyPayload?.message);
 
                 // Update the student's programs and parents
-                const payload = AddStudentIdToParentAndProgram(parentPayloads, [studentId._id], programIds);
-
+                const payload = await AddStudentIdToParentAndProgram(parentPayloads, [studentPayload._id], programIds);
                 if (payload?.status === 'fail') return displayError(payload?.message);
+                if (payload?.status === 'success') toast.success(payload?.message, { duration: 50000, theme: "colored" });
 
                 router.push('/students');
-
             }
             else if (newGuardianOne || newGuardianTwo) {
 
