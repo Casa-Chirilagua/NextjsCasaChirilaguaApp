@@ -7,7 +7,10 @@
   min-height: 100vh;
   transition: 600ms;
   padding: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;    @include respond(phone) {
+  // border: 1px solid rgb(221, 221, 221);
+  border-right: 1px solid rgba(221, 221, 221, 0.162);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;   
+   @include respond(phone) {
     min-width: 8rem;
     padding: 1rem;
   }
