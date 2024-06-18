@@ -12,7 +12,7 @@ function ProgramProfileCardConfig(program) {
             href={generateParamStringForGrid({objName: program.name, id: program._id, objToRetrieve: "students", objMakingRequest: "program"})}
             state={{ from: program.students }}
           >
-            {`Students (${program?.students?.length? student.students.length: 0})`}
+            {`Students (${program?.students?.length? program.students.length: 0})`}
           </Link>
         ),
       },
