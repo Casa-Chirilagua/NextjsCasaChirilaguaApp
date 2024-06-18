@@ -237,7 +237,7 @@ function Form({ formData, register, control, errors, classN, color }) {
       const { label } = field;
       return (
         <div className="form-section font-normal text-5xl flex items-center justify-center " style={{ borderBottom: '2rem' }} key={index}>
-            {label}
+          {label}
         </div>
       );
     } else {
@@ -246,12 +246,13 @@ function Form({ formData, register, control, errors, classN, color }) {
   });
   try {
     return (
-      <div className={`${classN} px-24 p-12`} key={uuidv4()}>
+      <div className={`${classN} px-24 pt-8 pb-24 rounded-r-[12px]`} key={uuidv4()}>
         {renderedRows}
       </div>
+
     );
   } catch (error) {
-    //error);
+    throw new Error(error);
   }
 }
 

@@ -69,7 +69,7 @@ function GridList({
 
   try {
     return (
-      <div style={{ boxShadow: containerBoxshadow }} className="grid-list-container">
+      <div style={{ boxShadow:'none'}} className="grid-list-container">
         <label style={{ color: labelColor }} className="form-label">
           {label}
         </label>

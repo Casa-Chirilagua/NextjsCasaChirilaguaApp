@@ -11,6 +11,7 @@ import Form from '@/components/form/Form';
 import Button from '@/components/buttons/Button';
 import GuardianHandler from '@/components/form/GuardianHandler';
 import LookUpItemHandler from '@/components/search items/LookUpItemHandler';
+import FormNavigation from '@/components/form_navigation/FormNavigation';
 
 //Unique ID
 import { v4 as uuidv4 } from 'uuid';
@@ -49,19 +50,27 @@ import { fetchPrograms } from '@/lib/features/programs/programsSlice';
 import { updateProgramById } from '@/lib/features/program/programSlice';
 import { updateParentById } from '@/lib/features/parent/parentSlice';
 
-//Thunk
+//Hooks
 import { useThunk } from '@/hooks/use-thunk';
+import { useMultistepForm } from '@/hooks/useMultistepForm';
+
+
+//React-icons
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
+
 
 const page = () => {
 
-    const router = useRouter();
+    const [formData, setFormData] = useState({});
 
     const {
         control,
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({ defaultValues: formData });
+
+    const router = useRouter();
 
     const { parents } = useSelector((state) => state.parents);
     const { programs } = useSelector((state) => state.programs);
@@ -81,25 +90,20 @@ const page = () => {
         isLoadingParentsWithName,
         loadingParentsError,
     ] = useThunk(fetchParentsWithName);
-
     //Fetch Programs
     const [doFetchPrograms, isLoadingPrograms, loadingProgramError] =
         useThunk(fetchPrograms);
-
     const [doCreateGuardian, isCreatingGuardian, creatingGuardianError] = useThunk(register_parent);
     //Create Student
     const [doCreateStudent, isCreatingStudent, creatingStudentError] =
         useThunk(register_Student);
-
     //Create Family
     const [doCreateFamily, isCreatingFamily, creatingFamilyError] =
         useThunk(registerFamily);
-
     //Update Parent
     const [doUpdateParent, isUpdatingParent, updatingParentError] = useThunk(
         updateParentById,
     );
-
     //Update Program
     const [doUpdateProgram, isUpdatingProgram, updatingProgramError] = useThunk(
         updateProgramById,
@@ -153,7 +157,6 @@ const page = () => {
         const payloadProgramResult = await generatePayloadResultUpdate(programIds, doUpdateProgram, { students: studentId });
         return payloadProgramResult;
     }
-
     const displayError = (err) => {
         toast.error(err, {
             duration: 50000,
@@ -184,14 +187,12 @@ const page = () => {
 
         return SuccessToast(studentPromise, 'Successfully registered student!');
     }
-
     const createFamily = async (data, parentIds, studentId) => {
         //Create Family
         const familyPromise = doCreateFamily(GenerateNewFamilyData(data, parentIds, studentId));
         const payload = await SuccessToast(familyPromise, 'Successfully registered family!');
         return payload;
     }
-
 
     /**
      * Submits the application which includes the student, parent, and family data
@@ -270,113 +271,178 @@ const page = () => {
         setProgramIds(ids);
     };
 
+    const updateFormData = (data) => {
+        setFormData(data);
+        next();
+    };
+
+    const sections = [{
+        title: 'Student Information',
+        sectionData:
+            <Form
+                classN="form-container"
+                key={uuidv4()}
+                formData={StudentInformation}
+                register={register}
+                control={control}
+                errors={errors}
+            />
+    },
+    {
+        title: 'Emergency Contact',
+        sectionData:
+            <Form
+                classN="form-container"
+                key={uuidv4()}
+                formData={EmergencyContact}
+                register={register}
+                control={control}
+                errors={errors}
+            />
+    },
+    {
+        title: 'Medical Insurance',
+        sectionData:
+            <Form
+                classN="form-container"
+                key={uuidv4()}
+                formData={MedicalInsurance}
+                register={register}
+                control={control}
+                errors={errors}
+            />
+    },
+    {
+        title: 'Medical Information',
+        sectionData:
+
+            <Form
+                classN="form-container"
+                key={uuidv4()}
+                formData={MedicalInformation}
+                register={register}
+                control={control}
+                errors={errors}
+            />
+
+    },
+    {
+        title: 'Guardian One',
+        sectionData:
+
+            <GuardianHandler
+                key={"GuardianOne"}
+                handleItemId={handleGuardianOneId}
+                title="Add Guardian 1 (Primary Contact):"
+                guardians={parents}
+                guardianComponent={GuardianOne}
+                selectGuardianLabel="Select or Search for Guardian"
+                form={
+                    <Form
+                        classN="form-container"
+                        key={"GuardianOneForm"}
+                        formData={GuardianOne}
+                        register={register}
+                        control={control}
+                        errors={errors}
+                    />
+                }
+                setNewGuardian={setNewGuardianOne}
+                setLookUpGuardian={setLookUpGuardianOne}
+                newGuardian={newGuardianOne}
+                lookUpGuardian={lookUpGuardianOne}
+                canSelectMultiple={false}
+            />
+
+    },
+    {
+        title: 'Guardian Two',
+        sectionData:
+
+            <GuardianHandler
+                key={"GuardianTwo"}
+                handleItemId={handleGuardianTwoId}
+                title="Add Guardian 2:"
+                guardians={parents}
+                selectGuardianLabel="Select or Search for Guardian"
+                form={
+                    <Form
+                        classN="form-container"
+                        key={'GuardianTwoForm'}
+                        formData={GuardianTwo}
+                        register={register}
+                        control={control}
+                        errors={errors}
+                    />
+                }
+                setNewGuardian={setNewGuardianTwo}
+                setLookUpGuardian={setLookUpGuardianTwo}
+                newGuardian={newGuardianTwo}
+                lookUpGuardian={lookUpGuardianTwo}
+                canSelectMultiple={false}
+            />
+
+    },
+    {
+        title: 'Programs',
+        sectionData: <LookUpItemHandler
+            buttonLabel="Look Up Program"
+            title="Add programs:"
+            items={programs}
+            handleItemId={handleProgramIds}
+            selectItemLabel="Select Programs"
+            canSelectMultiple={true}
+        />
+    },
+    // {
+    //     title: 'Confirmation',
+    //     sectionData:
+    //         <div className="form-container"><div className="text-2xl">Please review the information before submitting</div></div>
+    // }
+    ];
+
+    const { currentStepIndex, currentStep, steps, next, previous, isLastStep, isFirstStep, getStep, goToStep} = useMultistepForm(sections);
+
     let content;
     if (loadingParentsError || loadingProgramError) {
         content = <div>Error fetching data...</div>;
     } else {
         content = (
-            <div className='w-full h-full flex flex-col gap-10 '>
-                <Form
-                    classN="form-container"
-                    key={uuidv4()}
-                    formData={StudentInformation}
-                    register={register}
-                    control={control}
-                    errors={errors}
-                />
-                <Form
-                    classN="form-container"
-                    key={uuidv4()}
-                    formData={EmergencyContact}
-                    register={register}
-                    control={control}
-                    errors={errors}
-                />
-                <Form
-                    classN="form-container"
-                    key={uuidv4()}
-                    formData={MedicalInsurance}
-                    register={register}
-                    control={control}
-                    errors={errors}
-                />
-                <Form
-                    classN="form-container"
-                    key={uuidv4()}
-                    formData={MedicalInformation}
-                    register={register}
-                    control={control}
-                    errors={errors}
-                />
-                <GuardianHandler
-                    key={"GuardianOne"}
-                    handleItemId={handleGuardianOneId}
-                    title="Add Guardian 1 (Primary Contact):"
-                    guardians={parents}
-                    guardianComponent={GuardianOne}
-                    selectGuardianLabel="Select or Search for Guardian"
-                    form={
-                        <Form
-                            classN="form-container"
-                            key={"GuardianOneForm"}
-                            formData={GuardianOne}
-                            register={register}
-                            control={control}
-                            errors={errors}
-                        />
-                    }
-                    setNewGuardian={setNewGuardianOne}
-                    setLookUpGuardian={setLookUpGuardianOne}
-                    newGuardian={newGuardianOne}
-                    lookUpGuardian={lookUpGuardianOne}
-                    canSelectMultiple={false}
-                />
-                <GuardianHandler
-                    key={"GuardianTwo"}
-                    handleItemId={handleGuardianTwoId}
-                    title="Add Guardian 2:"
-                    guardians={parents}
-                    selectGuardianLabel="Select or Search for Guardian"
-                    form={
-                        <Form
-                            classN="form-container"
-                            key={'GuardianTwoForm'}
-                            formData={GuardianTwo}
-                            register={register}
-                            control={control}
-                            errors={errors}
-                        />
-                    }
-                    setNewGuardian={setNewGuardianTwo}
-                    setLookUpGuardian={setLookUpGuardianTwo}
-                    newGuardian={newGuardianTwo}
-                    lookUpGuardian={lookUpGuardianTwo}
-                    canSelectMultiple={false}
-                />
-                <LookUpItemHandler
-                    buttonLabel="Look Up Program"
-                    title="Add programs:"
-                    items={programs}
-                    handleItemId={handleProgramIds}
-                    selectItemLabel="Select Programs"
-                    canSelectMultiple={true}
-                />{' '}
-                <Button
-                    loading={isCreatingStudent}
-                    bgColor={Colors['color-purple-dark']}
-                    color={'white'}
-                    label={'submit'}
-                />
-            </div>
+            <div className='w-full h-full min-h-screen grid gap-10  grid-cols-[22%_1fr] grid-rows-[1fr_10rem] primary-border'>
+                <FormNavigation currentStepIndex={currentStepIndex} steps={steps} sections={sections} goToStep={goToStep} />
+                {currentStep?.sectionData}
+                <div style={{ color: "#212529" }} className="w-full grid-cols-2 grid gap-[40%] col-start-2 col-end-3 px-20 items-center">
+                    {!isFirstStep && <button
+                        type='button'
+                        className="h-[5rem] w-full p-6 border transition ease-in delay-500 bg-white text-4xl rounded-xl border-zinc-200 hover:bg-zinc-100 md:hover:bg-zinc-100 hover:text-white md:hover:text-white flex flex-row items-center justify-center text-center"
+                        onClick={previous}
+                    >
+                        <IoChevronBack color={"#495057"} />
+                    </button>}
+                    {!isLastStep && <button
+                        type='submit'
+                        className=" h-[5rem] w-full p-6 border transition ease-in delay-500 bg-white  text-4xl rounded-xl border-zinc-200 hover:bg-zinc-100 md:hover:bg-zinc-100 hover:text-white md:hover:text-white col-start-2 col-end-3 flex flex-row items-center justify-center text-center"
+                    >
+                        <IoChevronForward color={"#495057"} />
+                    </button>}
+                    {isLastStep && <Button
+                        loading={isCreatingStudent}
+                        bgColor={Colors['color-purple-dark']}
+                        color={'white'}
+                        label={'Register'}
+                    />}
+                </div>
+
+            </div >
         );
     }
     try {
         return (
             <div className="primary-container" style={{ paddingTop: '3rem' }}>
-                <div className="subtitle-container w-full mx-[15%] ">
+                <div className="subtitle-container w-full  mx-[4%]">
                     <form
-                        onSubmit={handleSubmit(onSubmit)}
-                        method="POST"
+                        onSubmit={isLastStep ? handleSubmit(onSubmit) : handleSubmit(updateFormData)}
+                        method={isLastStep ? "POST" : ""}
                         encType="multipart/form-data"
                     >
                         {content}

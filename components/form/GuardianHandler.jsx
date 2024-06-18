@@ -15,8 +15,6 @@ function GuardianHandler({
   newGuardian,
   lookUpGuardian
 }) {
-  // const [newGuardian, setNewGuardian] = useState(false);
-  // const [lookUpGuardian, setLookUpGuardian] = useState(false);
 
   const handleAddNewGuardian = (event) => {
     event.preventDefault();
@@ -30,26 +28,22 @@ function GuardianHandler({
     setLookUpGuardian(true);
   };
   return (
-    <div className='flex flex-col gap-6'>
-      <div style={{
-        paddingTop: '1rem', border: `1px solid rgb(221, 221, 221)`,
-        borderRadius: `12px`,
-        boxShadow: `rgba(0, 0, 0, 0.12) 0px 6px 16px`
-      }} className="" >
+    <div className='flex flex-col gap-6 mt-20'>
+      <div  className="" >
         <div className="flex flex-row text-center items-center justify-center  py-6">
-          <div style={{ width: "100%", color: "#343a40" }} className="text-4xl font-normal">{title}</div>
+          <div style={{ width: "100%", color: "#343a40" }} className="text-5xl font-normal">{title}</div>
         </div>
-        <div style={{color: "#343a40"}}className="button-container my-20 px-20 ">
+        <div style={{ color: "#343a40" }} className="button-container my-10 px-20 ">
 
           <button
-            className="p-6  bg-zinc-100  text-2xl rounded-md font-normal border-black md:border-black hover:bg-black md:hover:bg-black hover:text-white md:hover:text-white"
+            className="p-6 transition ease-in delay-500 bg-zinc-100  text-2xl rounded-md border-black md:border-black hover:bg-black md:hover:bg-black hover:text-white md:hover:text-white"
             onClick={handleAddNewGuardian}
           >
             Add new guardian
           </button>
 
           <button
-            className="p-6  bg-zinc-100  text-2xl rounded-md font-normal border-black md:border-black hover:bg-black md:hover:bg-black hover:text-white md:hover:text-white"
+            className="p-6 transition ease-in-out delay-500 bg-zinc-100  text-2xl rounded-md font-normal border-black md:border-black hover:bg-black md:hover:bg-black hover:text-white md:hover:text-white"
             onClick={handleLookUpExistingGuardian}
           >
             Look up existing guardian
@@ -58,9 +52,8 @@ function GuardianHandler({
       </div>
       {newGuardian && form}
       {lookUpGuardian && (
-        <div className="grids-container">
+        <div className="mx-8">
           <GridList handleItemId={handleItemId} items={guardians ? guardians : []} label={selectGuardianLabel} />
-          {/* Additional logic based on guardian type */}
         </div>
       )}
     </div>

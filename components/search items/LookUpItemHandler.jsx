@@ -17,11 +17,11 @@ function LookUpItemHandler({
     setLookUpItem(true);
   };
   return (
-    <div style={{ paddingTop: '1rem' }}>
-      <h4 className="page-title">{title}</h4>
-      <div className="button-container">
+    <div className='mt-20 mx-6'>
+      <div style={{ width: "100%", color: "#343a40" }} className="text-5xl font-normal text-center pb-20">{title}</div>
+      <div className=" button-container">
         <button
-          className="login-button-purple login-button-animated"
+          className="p-6 mx-20 transition ease-in delay-500 bg-zinc-100  text-2xl rounded-md border-black md:border-black hover:bg-black md:hover:bg-black hover:text-white md:hover:text-white"
           onClick={handleLookUpExistingItem}
         >
           {buttonLabel}
@@ -29,7 +29,7 @@ function LookUpItemHandler({
       </div>
 
       {lookUpItem && (
-        <div className="grids-container">
+        <div className="mx-8">
           <GridList
             handleItemId={handleItemId}
             items={items}
