@@ -1,5 +1,8 @@
 'use client'
 
+import { useRouter } from 'next/navigation';
+
+
 //React
 import { useRef, useState, useEffect } from 'react';
 
@@ -40,6 +43,9 @@ const page = () => {
     formState: { errors },
   } = useForm();
 
+  const router = useRouter();
+
+
   const [doCreateProgram, isCreatingProgram, creatingProgramError] =
     useThunk(register_program);
 
@@ -48,6 +54,7 @@ const page = () => {
       const programData = GenerateNewProgramData(data);
       const programPromise = doCreateProgram(programData);
       SuccessToast(programPromise, 'Successfully submitted application!');
+      router.push('/programs');
     } catch (err) {
       toast.error('An error occurred while creating while creating program');
     }
@@ -59,25 +66,30 @@ const page = () => {
       method="POST"
       encType="multipart/form-data"
     >
-      <Form
-        // color={Colors['color-green']}
-        classN="form-container"
-        key={uuidv4()}
-        formData={ProgramData}
-        register={register}
-        control={control}
-        errors={errors}
-      />
-      <Button
-        bgColor={Colors['color-green']}
-        color={'white'}
-        label={'submit'}
-      />
+      <div className='w-full h-full min-h-screen grid gap-10 grid-cols-[1fr] grid-rows-[1fr_8rem] primary-border'>
+        <Form
+          // color={Colors['color-green']}
+          classN="form-container"
+          key={uuidv4()}
+          formData={ProgramData}
+          register={register}
+          control={control}
+          errors={errors}
+        />
+        <div className="flex flex-col items-center mx-20">
+          <Button
+            bgColor={Colors['color-green']}
+            color={'white'}
+            label={'submit'}
+          />
+        </div>
+
+      </div>
     </form>
   );
   return (
     <div className="primary-container" style={{ paddingTop: '3rem' }}>
-      <div className="subtitle-container">{content || <RegistrationSkeleton/> }</div>
+      <div className="subtitle-container w-full  mx-[20%]">{content || <RegistrationSkeleton />}</div>
     </div>
   );
 }

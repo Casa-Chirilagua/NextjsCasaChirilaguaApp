@@ -1,4 +1,6 @@
 'use client'
+//Next
+import { useRouter } from 'next/navigation';
 
 //React
 import { useRef, useState, useEffect } from 'react';
@@ -37,6 +39,8 @@ const page = () => {
     formState: { errors },
   } = useForm();
 
+  const router = useRouter();
+
   const [doCreateParent, isCreatingParent, creatingParentError] =
     useThunk(register_parent);
   const loadingToastId = useRef(null);
@@ -51,6 +55,7 @@ const page = () => {
       const parentData = GenerateNewGuardianOneData(true, data);
       const parentPromise = doCreateParent(parentData);
       SuccessToast(parentPromise, 'Successfully created parent');
+      router.push('/parents');
     } catch (err) {
       toast.error('An error occurred while creating while creating parent');
     }
@@ -67,29 +72,33 @@ const page = () => {
       }
     }
   }, [isCreatingParent]);
-  
+
   return (
     <div className="primary-container" style={{ paddingTop: '3rem' }}>
-      <div className="subtitle-container">
+      <div className="subtitle-container w-full  mx-[20%]">
         <form
           onSubmit={handleSubmit(onSubmit)}
           method="POST"
           encType="multipart/form-data"
         >
-          <Form
-            // color={Colors['color-light-green']}
-            classN="form-container"
-            key={uuidv4()}
-            formData={GuardianOne}
-            register={register}
-            control={control}
-            errors={errors}
-          />
-          <Button
-            bgColor={Colors['color-light-green']}
-            color={'white'}
-            label={'submit'}
-          />
+          <div className='w-full h-full min-h-screen grid gap-10 grid-cols-[1fr] grid-rows-[1fr_10rem] primary-border'>
+            <Form
+              // color={Colors['color-light-green']}
+              classN="form-container"
+              key={uuidv4()}
+              formData={GuardianOne}
+              register={register}
+              control={control}
+              errors={errors}
+            />
+            <div className="flex flex-col items-center mx-20">
+              <Button
+                bgColor={Colors['color-light-green']}
+                color={'white'}
+                label={'submit'}
+              />
+            </div>
+          </div>
         </form>
       </div>
     </div>

@@ -8,7 +8,7 @@ function Button({ color, bgColor, label, loading, setLookUpItem}) {
   return (
     <button
       disabled={loading}
-      className="p-6 transition text-white ease-in delay-500 bg-green-700  text-2xl rounded-xl  hover:bg-green-900 md:hover:bg-green-800 hover:text-white md:hover:text-white flex items-center justify-center "
+      className="p-6 w-full transition text-white ease-in delay-500 bg-green-700  text-2xl rounded-xl  hover:bg-green-900 md:hover:bg-green-800 hover:text-white md:hover:text-white flex items-center justify-center"
       type="submit"
     >
       {loading ? <GoSync className="animate-spin" /> : label}

@@ -246,7 +246,7 @@ function Form({ formData, register, control, errors, classN, color }) {
   });
   try {
     return (
-      <div className={`${classN} px-24 pt-8 pb-24 rounded-r-[12px]`} key={uuidv4()}>
+      <div className={`${classN} px-24 pt-8 pb-24 rounded-[12px]`} key={uuidv4()}>
         {renderedRows}
       </div>
 

@@ -1,6 +1,5 @@
 'use client'
 
-
 //Next
 import { useRouter } from 'next/navigation';
 //React
@@ -439,7 +438,7 @@ const page = () => {
     try {
         return (
             <div className="primary-container" style={{ paddingTop: '3rem' }}>
-                <div className="subtitle-container w-full  mx-[4%]">
+                <div className="subtitle-container w-full mx-[4%]">
                     <form
                         onSubmit={isLastStep ? handleSubmit(onSubmit) : handleSubmit(updateFormData)}
                         method={isLastStep ? "POST" : ""}
