@@ -1,12 +1,13 @@
 import states from '../States';
 import grades from '../Grades';
+
 const StudentInformation = {
   fields: [
     { type: 'section', label: 'Student Information' },
     {
       type: 'text',
       name_of_json_field: 'first_name',
-      placeholder: 'Enter First Name',
+      placeholder: 'John',
       required: true,
       required_message: 'Please enter a first name',
       data: {},
@@ -16,7 +17,7 @@ const StudentInformation = {
     {
       type: 'text',
       name_of_json_field: 'middle_name',
-      placeholder: 'Enter Midddle Name',
+      placeholder: 'Alex',
       required: false,
       data: {},
       label: 'Middle Name (optional)',
@@ -25,7 +26,7 @@ const StudentInformation = {
     {
       type: 'text',
       name_of_json_field: 'last_name',
-      placeholder: 'Enter Last Name',
+      placeholder: 'Doe',
       required: true,
       required_message: 'Please enter a last name',
       data: {},
@@ -35,7 +36,7 @@ const StudentInformation = {
     {
       type: 'phone',
       name_of_json_field: 'phone',
-      placeholder: 'Enter Mobile Phone',
+      placeholder: '571-123-4567',
       required: true,
       required_message: 'Please enter a phone number.',
       data: {},
@@ -46,7 +47,7 @@ const StudentInformation = {
     {
       type: 'date',
       name_of_json_field: 'date_of_birth',
-      placeholder: 'Enter Date of Birth',
+      placeholder: '05/24/1999',
       required: true,
       required_message: 'Please select your date of birth.',
       data: {},
@@ -55,7 +56,7 @@ const StudentInformation = {
     },
     {
       type: 'text',
-      name_of_json_field: 'street',
+      name_of_json_field: 'address.street',
       placeholder: '1234 Main St',
       required: true,
       required_message: 'Please enter your street address.',
@@ -66,8 +67,8 @@ const StudentInformation = {
 
     {
       type: 'text',
-      name_of_json_field: 'address_line_2',
-      placeholder: 'Apartment, studio, floor',
+      name_of_json_field: 'address.address_line_2',
+      placeholder: 'Apt 302',
       required: false,
       required_message: '', // Not applicable for non-required fields
       data: {},
@@ -77,8 +78,8 @@ const StudentInformation = {
 
     {
       type: 'text',
-      name_of_json_field: 'city',
-      placeholder: 'City',
+      name_of_json_field: 'address.city',
+      placeholder: 'Alexandria',
       required: true,
       required_message: 'Please enter a city',
       data: {},
@@ -87,8 +88,8 @@ const StudentInformation = {
     },
     {
       type: 'select',
-      name_of_json_field: 'state',
-      placeholder: 'State',
+      name_of_json_field: 'address.state',
+      placeholder: 'Virginia',
       required: true,
       required_message: 'Please select a state',
       data: states,
@@ -97,8 +98,8 @@ const StudentInformation = {
     },
     {
       type: 'text',
-      name_of_json_field: 'zip',
-      placeholder: 'Zip Code',
+      name_of_json_field: 'address.zip',
+      placeholder: '22305',
       required: true,
       required_message: 'Please enter a city',
       data: {},
@@ -108,18 +109,17 @@ const StudentInformation = {
     {
       type: 'text',
       name_of_json_field: 'email',
-      placeholder: 'Email',
+      placeholder: 'example@gmail.com',
       required: false,
       required_message: 'Please enter your email.',
       data: {},
       label: 'Email (optional)',
       id: '',
     },
-
     {
       type: 'select',
       name_of_json_field: 'grade',
-      placeholder: 'Grade',
+      placeholder: '8',
       required: true,
       required_message: '', // The message can be left empty for select fields
       data: grades,
@@ -139,7 +139,7 @@ const StudentInformation = {
     {
       type: 'text',
       name_of_json_field: 'school',
-      placeholder: 'School',
+      placeholder: 'Mount Vernon High School',
       required: true,
       required_message: 'Please enter a school.',
       data: {},
@@ -149,6 +149,7 @@ const StudentInformation = {
     {
       type: 'radio',
       label: 'Does the student get free or reduced lunch? (optional)',
+      name_of_json_field: 'free_and_reduced_lunch',
       data: [
         {
           id: 'ReducedLunch1',
@@ -164,10 +165,6 @@ const StudentInformation = {
         },
       ],
     },
-
-    
-    
-    
   ],
 };
 

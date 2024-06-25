@@ -1,6 +1,7 @@
 
 /**
- * Looks for a field in the dataToBeSearched object that has a name_of_json_field property that matches the jsonFieldName parameter.
+ * Looks for a field in the dataToBeSearched object that has a 
+ * name_of_json_field property that matches the jsonFieldName parameter.
  * 
  * @param {*} jsonFieldName 
  * @param {*} dataToBeSearched 

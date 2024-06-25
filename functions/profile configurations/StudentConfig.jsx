@@ -6,8 +6,16 @@ import GetItemByJsonFieldName from "../student functions/GetItemByJsonFieldName"
 
 //Data
 import StudentInformation from "../../data/Student Form Data/StudentInformation";
+import EmergencyContact from "@/data/Student Form Data/EmergencyContact";
+import MedicalInformation from "@/data/Student Form Data/MedicalInformation";
+import MedicalInsurance from "@/data/Student Form Data/MedicalInsurance";
+
 
 function StudentConfig(student) {
+
+  const allFormData = { fields: [ ...StudentInformation.fields, ...EmergencyContact.fields, ...MedicalInformation.fields, ...MedicalInsurance.fields ] };
+
+  console.log(allFormData);
 
   const studentBooleanCheck = (value) => {
     if (value === true) {
@@ -24,177 +32,150 @@ function StudentConfig(student) {
       'First Name': {
         value: student?.first_name ? student.first_name : '',
         name_of_json_field: 'first_name',
-        database_field_name: 'first_name',
-        form_data: GetItemByJsonFieldName("first_name", StudentInformation),
-        hasObject: false,
+        form_data: GetItemByJsonFieldName("first_name", allFormData),
+        can_edit: true,
       },
       'Middle Name': {
         value: student?.middle_name ? student.middle_name : '',
         name_of_json_field: 'middle_name',
-        database_field_name: 'middle_name',
-        form_data: GetItemByJsonFieldName("middle_name", StudentInformation),
-        hasObject: false,
+        form_data: GetItemByJsonFieldName("middle_name", allFormData),
+        can_edit: true,
       },
       'Last Name': {
         value: student?.last_name ? student.last_name : '',
         name_of_json_field: 'last_name',
-        database_field_name: 'last_name',
-        form_data: GetItemByJsonFieldName("last_name", StudentInformation),
-        hasObject: false,
+        form_data: GetItemByJsonFieldName("last_name", allFormData),
+        can_edit: true,
       },
       Email: {
         value: student?.email ? student.email : '',
         name_of_json_field: 'email',
-        database_field_name: 'email',
-        form_data: GetItemByJsonFieldName("email", StudentInformation),
-        hasObject: false,
+        form_data: GetItemByJsonFieldName("email", allFormData),
+        can_edit: true,
       },
       Phone: {
         value: student?.phone ? student.phone : '',
         name_of_json_field: 'phone',
-        database_field_name: 'phone',
-        form_data: GetItemByJsonFieldName("phone", StudentInformation),
-        hasObject: false,
+        form_data: GetItemByJsonFieldName("phone", allFormData),
+        can_edit: true,
       },
       Grade: {
         value: student?.grade ? student.grade : '',
         name_of_json_field: 'grade',
-        database_field_name: 'grade',
-        form_data: GetItemByJsonFieldName("grade", StudentInformation),
-        hasObject: false,
+        form_data: GetItemByJsonFieldName("grade", allFormData),
+        can_edit: true,
       },
       School: {
         value: student?.school ? student.school : '',
         name_of_json_field: 'school',
-        database_field_name: 'school',
-        form_data: GetItemByJsonFieldName("school", StudentInformation),
-        hasObject: false,
+        form_data: GetItemByJsonFieldName("school", allFormData),
+        can_edit: true,
       },
       'Date of birth': {
         value: ConvertToUSADate(student?.date_of_birth),
         name_of_json_field: 'date_of_birth',
-        database_field_name: 'date_of_birth',
-        form_data: GetItemByJsonFieldName("date_of_birth", StudentInformation),
-        hasObject: false,
+        form_data: GetItemByJsonFieldName("date_of_birth", allFormData),
+        can_edit: true,
       },
       'Does the student receive free or reduced lunch?': {
         value: student?.free_and_reduced_lunch ? 'Yes' : 'No',
         name_of_json_field: 'free_and_reduced_lunch',
-        database_field_name: 'free_and_reduced_lunch',
-        form_data: GetItemByJsonFieldName("free_and_reduced_lunch", StudentInformation),
-        hasObject: false,
+        form_data: GetItemByJsonFieldName("free_and_reduced_lunch", allFormData),
+        can_edit: true,
       },
       "Graduation date": {
         value: ConvertToUSADate(student?.high_school_graduation_date),
         name_of_json_field: 'high_school_graduation_date',
-        database_field_name: 'high_school_graduation_date',
-        form_data:
-        {
-          type: 'date',
-          name_of_json_field: 'high_school_graduation_date',
-          placeholder: 'Enter graduation date',
-          required: true,
-          required_message: 'Please select a graduation date',
-          data: {},
-          label: 'Graduation Date',
-          id: '',
+        form_data: {
+          fields: [
+            {
+              type: 'date',
+              name_of_json_field: 'high_school_graduation_date',
+              placeholder: 'Enter graduation date',
+              required: true,
+              required_message: 'Please select a graduation date',
+              data: {},
+              label: 'Graduation Date',
+              id: '',
+            }]
         },
-        hasObject: false,
+        can_edit: true,
       }
       ,
       "Created at": {
         value: ConvertToUSADate(student?.created_at),
         name_of_json_field: 'created_at',
-        database_field_name: 'created_at',
-        form_data: GetItemByJsonFieldName("created_at", StudentInformation),
-        hasObject: false,
+        form_data: GetItemByJsonFieldName("created_at", allFormData),
+        can_edit: false,
       },
 
     },
     Address: {
       Street: {
         value: student?.address ? student.address.street : '',
-        name_of_json_field: 'street',
-        database_field_name: 'street',
-        form_data: GetItemByJsonFieldName("street", StudentInformation),
-        hasObject: true,
-        objectName: 'address',
+        name_of_json_field: 'address.street',
+        form_data: GetItemByJsonFieldName("address.street", allFormData),
+        can_edit: true,
       },
       'Address Line 2': {
         value: student?.address
           ? student.address.address_line_2
           : '',
-        name_of_json_field: 'address_line_2',
-        database_field_name: 'address_line_2',
-        form_data: GetItemByJsonFieldName("address_line_2", StudentInformation),
-        hasObject: true,
-        objectName: 'address',
+        name_of_json_field: 'address.address_line_2',
+        form_data: GetItemByJsonFieldName("address.address_line_2", allFormData),
+        can_edit: true,
       },
       City: {
         value: student?.address ? student.address.city : '',
-        name_of_json_field: 'city',
-        database_field_name: 'city',
-        form_data: GetItemByJsonFieldName("city", StudentInformation),
-        hasObject: true,
-        objectName: 'address',
+        name_of_json_field: 'address.city',
+        form_data: GetItemByJsonFieldName("address.city", allFormData),
+        can_edit: true,
       },
       State: {
         value: student?.address ? student.address.state : '',
-        name_of_json_field: 'state',
-        database_field_name: 'state',
-        form_data: GetItemByJsonFieldName("state", StudentInformation),
-        hasObject: true,
-        objectName: 'address',
+        name_of_json_field: 'address.state',
+        form_data: GetItemByJsonFieldName("address.state", allFormData),
+        can_edit: true,
       },
       Zip: {
         value: student?.address ? student.address.zip : '',
-        name_of_json_field: 'zip',
-        database_field_name: 'zip',
-        form_data: GetItemByJsonFieldName("zip", StudentInformation),
-        hasObject: true,
-        objectName: 'address',
+        name_of_json_field: 'address.zip',
+        form_data: GetItemByJsonFieldName("address.zip", allFormData),
+        can_edit: true,
       },
     },
     'Emergency Contact': {
-      Name: {
+      'First Name': {
         value: student?.emergency_contact
           ? student.emergency_contact.first_name
           : '',
-        name_of_json_field: 'emergency_first_name',
-        database_field_name: 'first_name',
-        form_data: GetItemByJsonFieldName("emergency_first_name", StudentInformation),
-        hasObject: true,
-        objectName: 'emergency_contact',
+        name_of_json_field: 'emergency_contact.first_name',
+        form_data: GetItemByJsonFieldName("emergency_contact.first_name", allFormData),
+        can_edit: true,
       },
       'Last Name': {
         value: student?.emergency_contact
           ? student.emergency_contact.last_name
           : '',
-        name_of_json_field: 'emergency_last_name',
-        database_field_name: 'last_name',
-        form_data: GetItemByJsonFieldName("emergency_last_name", StudentInformation),
-        hasObject: true,
-        objectName: 'emergency_contact',
+        name_of_json_field: 'emergency_contact.last_name',
+        form_data: GetItemByJsonFieldName("emergency_contact.last_name", allFormData),
+        can_edit: true,
       },
       Phone: {
         value: student?.emergency_contact
           ? student.emergency_contact.phone
           : '',
-        name_of_json_field: 'emergency_phone',
-        database_field_name: 'phone',
-        form_data: GetItemByJsonFieldName("emergency_phone", StudentInformation),
-        hasObject: true,
-        objectName: 'emergency_contact',
+        name_of_json_field: 'emergency_contact.phone',
+        form_data: GetItemByJsonFieldName("emergency_contact.phone", allFormData),
+        can_edit: true,
       },
       Relationship: {
         value: student?.emergency_contact
           ? student.emergency_contact.relationship
           : '',
-        name_of_json_field: 'relationship',
-        database_field_name: 'relationship',
-        form_data: GetItemByJsonFieldName("relationship", StudentInformation),
-        hasObject: true,
-        objectName: 'emergency_contact',
+        name_of_json_field: 'emergency_contact.relationship',
+        form_data: GetItemByJsonFieldName("emergency_contact.relationship", allFormData),
+        can_edit: true,
       },
     },
     'Medical Insurance': {
@@ -202,37 +183,29 @@ function StudentConfig(student) {
         value: student?.health_care
           ? student.health_care.policy_number
           : '',
-        name_of_json_field: 'policy_number',
-        database_field_name: 'policy_number',
-        form_data: GetItemByJsonFieldName("policy_number", StudentInformation),
-        hasObject: true,
-        objectName: 'health_care',
+        name_of_json_field: 'health_care.policy_number',
+        form_data: GetItemByJsonFieldName("health_care.policy_number", allFormData),
+        can_edit: true,
       },
       'Primary doctor first name': {
-        value: student?.health_care
-          ? student.health_care.first_name
+        value: student?.health_care?.doctor_first_name
+          ? student.health_care.doctor_first_name
           : '',
-        name_of_json_field: 'first_name',
-        database_field_name: 'first_name',
-        form_data: GetItemByJsonFieldName("first_name", StudentInformation),
-        hasObject: true,
-        objectName: 'health_care',
+        name_of_json_field: 'health_care.doctor_first_name',
+        form_data: GetItemByJsonFieldName("health_care.doctor_first_name", allFormData),
+        can_edit: true,
       },
       'Primary doctor last name': {
-        value: student?.health_care ? student.health_care.last_name : '',
-        name_of_json_field: 'last_name',
-        database_field_name: 'last_name',
-        form_data: GetItemByJsonFieldName("last_name", StudentInformation),
-        hasObject: true,
-        objectName: 'health_care',
+        value: student?.health_care?.doctor_last_name ? student.health_care.doctor_last_name : '',
+        name_of_json_field: 'health_care.doctor_last_name',
+        form_data: GetItemByJsonFieldName("health_care.doctor_last_name", allFormData),
+        can_edit: true,
       },
       'Doctors phone number': {
-        value: student?.health_care ? student.health_care.phone : '',
-        name_of_json_field: 'doctors_phone',
-        database_field_name: 'phone',
-        form_data: GetItemByJsonFieldName("doctors_phone", StudentInformation),
-        hasObject: true,
-        objectName: 'health_care',
+        value: student?.health_care?.phone ? student.health_care.phone : '',
+        name_of_json_field: 'health_care.phone',
+        form_data: GetItemByJsonFieldName("health_care.phone", allFormData),
+        can_edit: true,
       },
     },
     'Medical Information': {
@@ -240,101 +213,81 @@ function StudentConfig(student) {
         value: student?.medical_information
           ? studentBooleanCheck(student.medical_information.has_allergies)
           : '',
-        name_of_json_field: 'has_allergies',
-        database_field_name: 'has_allergies',
-        form_data: GetItemByJsonFieldName("has_allergies", StudentInformation),
-        hasObject: true,
-        objectName: 'medical_information',
+        name_of_json_field: 'medical_information.has_allergies',
+        form_data: GetItemByJsonFieldName("medical_information.has_allergies", allFormData),
+        can_edit: true,
       },
       'Allergy Description': {
         value: student?.medical_information
           ? student.medical_information.allergy_description
           : '',
-        name_of_json_field: 'allergy_description',
-        database_field_name: 'allergy_description',
-        form_data: GetItemByJsonFieldName("allergy_description", StudentInformation),
-        hasObject: true,
-        objectName: 'medical_information',
+        name_of_json_field: 'medical_information.allergy_description',
+        form_data: GetItemByJsonFieldName("medical_information.allergy_description", allFormData),
+        can_edit: true,
       },
       'Does the student have epilepsy': {
-        value: student?.medical_information
+        value: student?.medical_information?.has_epilepsy
           ? studentBooleanCheck(student.medical_information.has_epilepsy)
           : '',
-        name_of_json_field: 'has_epilepsy',
-        database_field_name: 'has_epilepsy',
-        form_data: GetItemByJsonFieldName("has_epilepsy", StudentInformation),
-        hasObject: true,
-        objectName: 'medical_information',
+        name_of_json_field: 'medical_information.has_epilepsy',
+        form_data: GetItemByJsonFieldName("medical_information.has_epilepsy", allFormData),
+        can_edit: true,
       },
       'Epilepsy Description': {
         value: student?.medical_information
-          ? studentBooleanCheck(student.medical_information.epilepsy_description)
+          ? student.medical_information.epilepsy_description
           : '',
-        name_of_json_field: 'epilepsy_description',
-        database_field_name: 'epilepsy_description',
-        form_data: GetItemByJsonFieldName("epilepsy_description", StudentInformation),
-        hasObject: true,
-        objectName: 'medical_information',
+        name_of_json_field: 'medical_information.epilepsy_description',
+        form_data: GetItemByJsonFieldName("medical_information.epilepsy_description", allFormData),
+        can_edit: true,
       },
       'Does the student have asthma': {
         value: student?.medical_information
           ? studentBooleanCheck(student.medical_information.has_asthma)
           : '',
-        name_of_json_field: 'has_asthma',
-        database_field_name: 'has_asthma',
-        form_data: GetItemByJsonFieldName("has_asthma", StudentInformation),
-        hasObject: true,
-        objectName: 'medical_information',
+        name_of_json_field: 'medical_information.has_asthma',
+        form_data: GetItemByJsonFieldName("medical_information.has_asthma", allFormData),
+        can_edit: true,
       },
       'Asthma Description': {
         value: student?.medical_information
           ? student?.medical_information.asthma_description
           : '',
-        name_of_json_field: 'asthma_description',
-        database_field_name: 'asthma_description',
-        form_data: GetItemByJsonFieldName("asthma_description", StudentInformation),
-        hasObject: true,
-        objectName: 'medical_information',
+        name_of_json_field: 'medical_information.asthma_description',
+        form_data: GetItemByJsonFieldName("medical_information.asthma_description", allFormData),
+        can_edit: true,
       },
       'Does the student have food restrictions': {
         value: student?.medical_information
           ? studentBooleanCheck(student.medical_information.has_food_restrictions)
           : '',
-        name_of_json_field: 'has_food_restrictions',
-        database_field_name: 'has_food_restrictions',
-        form_data: GetItemByJsonFieldName("has_food_restrictions", StudentInformation),
-        hasObject: true,
-        objectName: 'medical_information',
+        name_of_json_field: 'medical_information.has_food_restrictions',
+        form_data: GetItemByJsonFieldName("medical_information.has_food_restrictions", allFormData),
+        can_edit: true,
       },
       'Food Description': {
         value: student?.medical_information
           ? student.medical_information.food_description
           : '',
-        name_of_json_field: 'food_description',
-        database_field_name: 'food_description',
-        form_data: GetItemByJsonFieldName("food_description", StudentInformation),
-        hasObject: true,
-        objectName: 'medical_information',
+        name_of_json_field: 'medical_information.food_description',
+        form_data: GetItemByJsonFieldName("medical_information.food_description", allFormData),
+        can_edit: true,
       },
       'Does the student have other restrictions': {
         value: student?.medical_information
           ? studentBooleanCheck(student.medical_information.has_other_restrictions)
           : '',
-        name_of_json_field: 'has_other_restrictions',
-        database_field_name: 'has_other_restrictions',
-        form_data: GetItemByJsonFieldName("has_other_restrictions", StudentInformation),
-        hasObject: true,
-        objectName: 'medical_information',
+        name_of_json_field: 'medical_information.has_other_restrictions',
+        form_data: GetItemByJsonFieldName("medical_information.has_other_restrictions", allFormData),
+        can_edit: true,
       },
       'Other restrictions description': {
         value: student?.medical_information
           ? student.medical_information.other_restrictions_description
           : '',
-        name_of_json_field: 'other_restrictions_description',
-        database_field_name: 'other_restrictions_description',
-        form_data: GetItemByJsonFieldName("other_restrictions_description", StudentInformation),
-        hasObject: true,
-        objectName: 'medical_information',
+        name_of_json_field: 'medical_information.other_restrictions_description',
+        form_data: GetItemByJsonFieldName("medical_information.other_restrictions_description", allFormData),
+        can_edit: true,
       },
     },
   };

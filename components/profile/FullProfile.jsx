@@ -10,6 +10,8 @@ import ModalClick from '../modal/ModalClick';
 import Notes from './Notes';
 import MapCard from '../map/MapCard';
 
+import HandleName from '@/functions/HandleName';
+
 function FullProfile({
   openModalDelete,
   setOpenModalDelete,
@@ -43,20 +45,8 @@ function FullProfile({
   openAddNoteMenu,
   setNotes,
 }) {
-  let fullName;
-  if (object) {
-    if (object.first_name && object.middle_name && object.last_name) {
-      fullName =
-        object.first_name + ' ' + object.middle_name + ' ' + object.last_name;
-    } else if (object.first_name && object.last_name) {
-      fullName = object.first_name + ' ' + object.last_name;
-    } else if (object.name) {
-      fullName = object.name;
-    } else {
-      fullName = object.family_name;
-    }
-  }
-
+  
+  let fullName = HandleName(object);
   return (
     <>
       {/* Modal which handle delete */}
@@ -76,7 +66,7 @@ function FullProfile({
           setOpenModal={setOpenModalProfile}
           objectType={objectType}
           id={object ? object._id : ''}
-          img={object?.profile_image ? object.profile_image[0].url : profile_picture}
+          img={object?.profile_image ? object.profile_image[0].url : 'https://res.cloudinary.com/dnmsdb199/image/upload/v1697860439/CasaApp/bx5xtnh4pqns9bar8q6g.jpg'}
           color={profileColor}
           name={object ? fullName : ''}
           data={data}

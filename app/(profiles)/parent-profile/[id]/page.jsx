@@ -9,7 +9,6 @@ import { useParams } from "next/navigation";
 import { useSelector } from 'react-redux';
 
 //React
-import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -19,12 +18,10 @@ import ConditionalModal from "@/components/modal/ConditionalModal";
 
 //Data
 import Colors from "@/data/Colors";
-import GuardianOne from '@/data/Student Form Data/GuardianOne';
 
 //Functions
 import ParentConfig from '@/functions/profile configurations/ParentConfig';
 import ParentProfileCardConfig from '@/functions/profile configurations/ParentProfileCardConfig';
-import GetItemByJsonFieldName from '@/functions/student functions/GetItemByJsonFieldName';
 import CreateNewFormWithData from '@/functions/CreateNewFormWithData';
 import UpdateDeleteComponent from '@/functions/UpdateDeleteComponent';
 import DataToUpdate from '@/functions/DataToUpdate';
@@ -39,22 +36,23 @@ import { fetchParentById, updateParentById, deleteParentById } from "@/lib/featu
 import { useThunk } from "@/hooks/use-thunk";
 
 const page = () => {
+
+  const [formData, setFormData] = useState({});
+
   const {
     control,
     register,
     reset,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isSubmitSuccessful },
+  } = useForm({ defaultValues: formData });
 
   const { id } = useParams();
+  const router = useRouter();
 
   const headings = ['Personal Information', 'Address'];
 
-  const router = useRouter();
-
   const { parent } = useSelector((state) => state.parent);
-
 
   //fetch Parent
   const [doFetchParent, isFetchingParent, fetchingParentError] =
@@ -86,12 +84,21 @@ const page = () => {
   //Opens modal when editing
   const [openModalAdd, setOpenModalAdd] = useState(false);
   const [modalLabelAdd, setModalLabelAdd] = useState();
-
+  const [openModalProfile, setOpenModalProfile] = useState(false);
   const [clickedAddButton, setClickedAddButton] = useState();
+
+
+  /**
+   * Resets form after submission
+   */
+  useEffect(() => {
+    reset({});
+  }, [isSubmitSuccessful, reset]);
+
 
   useEffect(() => {
     doFetchParent(id);
-  }, [doFetchParent, id]);
+  }, [doFetchParent, openModalProfile, id]);
 
   useEffect(() => {
     if (parent) {
@@ -103,24 +110,22 @@ const page = () => {
   useEffect(() => {
     setFormComponent(CreateNewFormWithData(fieldData.form_data, register, control, errors));
   }, [fieldData])
+
   /**
    * 
    * Update the field values
    * 
    */
   const onSubmit = async (data) => {
-    const fieldName = fieldData.database_field_name;
-    const objName = fieldData.objectName;
-    let studentData = DataToUpdate(fieldData, fieldName, id, objName, data);
-    let updateParent = doUpdateParent(studentData);
+    const dataToUpdate = DataToUpdate(data, id, fieldData);
+
+    console.log('dataToUpdate', dataToUpdate);
+    let updateParent = doUpdateParent(fieldData ? dataToUpdate : {});
     SuccessToast(updateParent, 'Successfully Updated Parent');
     setOpenModal(false);
-    reset();
   };
 
-  // let components = CreateNewFormWithData(fieldData.form_data, register, control, errors);
   // let componentsDelete = UpdateDeleteComponent(parent);
-
 
   /*
   This function is called when the user clicks the delete button:
@@ -170,6 +175,8 @@ const page = () => {
         <FullProfile
           openModalDelete={openModalDelete}
           setOpenModalDelete={setOpenModalDelete}
+          openModalProfile={openModalProfile}
+          setOpenModalProfile={setOpenModalProfile}
           componentsDelete={componentsDelete}
           bgModalColor={Colors['color-saleforce-dash-blue']}
           buttonLabel={'Update'}

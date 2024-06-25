@@ -160,8 +160,7 @@ export const PATCH = async (request, { params }) => {
         }
       );
     }
-
-    return new Response(JSON.stringify({ status: "success", _id: parent._id }), {
+    return new Response(JSON.stringify({ status: "success", data: parent }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });

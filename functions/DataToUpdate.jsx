@@ -1,30 +1,9 @@
-function DataToUpdate(fieldData, fieldName, id, objName, data) {
-  /**
-   * Represents the data stored in the `fieldData` variable.
-   * @type {any}
-   */
-  const fieldDataCopy = fieldData;
+import { JsonToDotNotation } from "./JsonToDotNoation";
 
-  try {
-    let result;
-
-    /** */
-    if (!fieldDataCopy.hasObject) {
-      result = {
-        id: id,
-        updatedFields: { [fieldName]: data[fieldDataCopy.name_of_json_field] },
-      };
-    } else {
-      result = {
-        id: id,
-        updatedFields:
-          { [`${objName + "." + fieldName}`]: data[fieldDataCopy.name_of_json_field], },
-      };
-    }
-    return result;
-  } catch (error) {
-    //error);
-  }
+function DataToUpdate(data, id, fieldData) {
+  const fieldNameToUpdate = fieldData.name_of_json_field;
+  const result = JsonToDotNotation(data);
+  return {id: id, updatedFields: { [fieldNameToUpdate]: result[fieldNameToUpdate]}};
 }
 
 export default DataToUpdate;

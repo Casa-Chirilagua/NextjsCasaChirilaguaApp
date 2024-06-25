@@ -11,6 +11,7 @@ import { set } from "mongoose";
 // import pin from "@/public/pin.png";
 
 const MapCard = ({ address }) => {
+  console.log(address);
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [viewport, setViewport] = useState({
@@ -34,7 +35,7 @@ const MapCard = ({ address }) => {
     const fetchCoords = async () => {
       try {
         const res = await fromAddress(`${address.street} ${address.city} ${address.state} ${address.zip}`);
-
+        
         //Check for results
         if(res.results.length === 0) {
           //No results found

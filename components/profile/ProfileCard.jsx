@@ -13,13 +13,10 @@ import Modal from '../modal/Modal';
 
 //Data
 import Colors from '@/data/Colors';
+import profile_picture from '@/components/profile/profile_picture.png';
 
 //Icon
-import { GrAdd } from 'react-icons/gr';
-
 import { toast } from 'react-toastify';
-
-import SuccessToast from '@/functions/SuccessToast';
 
 const PersonCard = ({
   name,
@@ -34,6 +31,9 @@ const PersonCard = ({
   setOpenModalAdd,
   setModalLabelAdd,
 }) => {
+
+
+
   const {
     control,
     register,
@@ -122,7 +122,7 @@ const PersonCard = ({
                     <h1>{name}</h1>
                   </div>
                   <div className="profile-card-buttons-container">
-                    {item.map(({ icon, text, objectName }, i) => (
+                    {/* {item.map(({ icon, text, objectName }, i) => (
                       <button
                         key={i}
                         onClick={() => {
@@ -134,7 +134,7 @@ const PersonCard = ({
                       >
                         <GrAdd /> Add {objectName}
                       </button>
-                    ))}
+                    ))} */}
                   </div>
                 </div>
               </div>

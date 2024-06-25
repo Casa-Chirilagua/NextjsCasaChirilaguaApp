@@ -35,14 +35,16 @@ import { fetchProgramById, updateProgramById, deleteProgramById } from "@/lib/fe
 //Thunks
 import { useThunk } from "@/hooks/use-thunk";
 
+
 const page = () => {
+  const [formData, setFormData] = useState({});
   const {
     control,
     register,
     reset,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isSubmitSuccessful },
+  } = useForm({ defaultValues: formData });
 
   const { id } = useParams();
 
@@ -71,6 +73,8 @@ const page = () => {
   const [fieldData, setFieldData] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
+  const [openModalProfile, setOpenModalProfile] = useState(false);
+
 
   // Notes
   const [openAddNoteMenu, setOpenAddNoteMenu] = useState(false);
@@ -82,9 +86,17 @@ const page = () => {
   const [fields, setFields] = useState();
   const [componentsDelete, setComponentsDelete] = useState();
 
+  /**
+ * Resets form after submission
+ */
+  useEffect(() => {
+    reset({});
+  }, [isSubmitSuccessful, reset]);
+
+
   useEffect(() => {
     doFetchProgram(id);
-  }, [doFetchProgram, id]);
+  }, [doFetchProgram, id, openModalProfile]);
 
   useEffect(() => {
     if (program) {
@@ -100,16 +112,10 @@ const page = () => {
   }, [fieldData])
 
   const onSubmit = async (data) => {
-    const fieldName = fieldData.database_field_name;
-    const objName = fieldData.objectName;
-    let programData = DataToUpdate(fieldData, fieldName, id, objName, data);
-    let updateProgram = doUpdateProgram(programData);
-    const [updateProgramResult] = await Promise.all([updateProgram]);
-    if (updateProgramResult.payload.status === 'success') {
-      toast.success('Successfully Updated Program');
-      setOpenModal(false);
-    }
-    reset();
+    const dataToUpdate = DataToUpdate(data, id, fieldData);
+    let updateProgram = doUpdateProgram(fieldData ? dataToUpdate : {});
+    SuccessToast(updateProgram, 'Successfully Updated Program');
+    setOpenModal(false);
   };
 
   // let componentsDelete = UpdateDeleteComponent(program);
@@ -144,6 +150,8 @@ const page = () => {
       <FullProfile
         openModalDelete={openModalDelete}
         setOpenModalDelete={setOpenModalDelete}
+        openModalProfile={openModalProfile}
+        setOpenModalProfile={setOpenModalProfile}
         componentsDelete={componentsDelete}
         bgModalColor={Colors['color-saleforce-dash-blue']}
         buttonLabel={'Update'}

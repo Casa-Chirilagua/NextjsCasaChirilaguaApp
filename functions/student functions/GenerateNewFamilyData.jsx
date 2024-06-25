@@ -1,5 +1,11 @@
-import React from 'react';
 
+import HandleName from '../HandleName';
+
+const handleFamilyName = (data) => {
+  const guardian_one_full_name = HandleName(data.guardian_one);
+  const guardian_two_full_name = HandleName(data.guardian_two);
+  return guardian_one_full_name + ' & ' + guardian_two_full_name + "'s Household";
+}
 
 /**
  * Generates new family data from the data provided.
@@ -12,23 +18,11 @@ import React from 'react';
  */
 function HandleNewFamilyData(data, parents, student) {
 
-  let primary_address = {
-    street: data.mothers_street,
-    address_line_two: data.mothers_address_line_2,
-    city: data.mothers_city,
-    state: data.state,
-    zip: data.mothers_zip,
-  };
-
   const family = {
-    family_name:
-      data.guardian_one_first_name +
-      ' ' +
-      data.guardian_one_last_name +
-      "'s Household",
-    primary_address: primary_address, 
-    primary_email: data.guardian_one_email,
-    primary_phone: data.guardian_one_phone,
+    family_name: handleFamilyName(data),
+    primary_address: data.guardian_one.address, 
+    primary_email: data.guardian_one.email,
+    primary_phone: data.guardian_one.phone,
     parents: parents, // Convert parents to a string
     students: student,
   };

@@ -1,6 +1,6 @@
 import states from '../States';
 
-const GuardianOne = {
+const Guardian = {
   title: 'Guardian Information',
   fields: [
     {
@@ -9,7 +9,7 @@ const GuardianOne = {
     },
     {
       type: 'text',
-      name_of_json_field: 'guardian_one.first_name',
+      name_of_json_field: 'first_name',
       placeholder: 'John',
       required: true,
       required_message: 'Please enter a first name',
@@ -19,7 +19,7 @@ const GuardianOne = {
     },
     {
       type: 'text',
-      name_of_json_field: 'guardian_one.middle_name',
+      name_of_json_field: 'middle_name',
       placeholder: 'Alex',
       data: {},
       label: 'Middle Name',
@@ -27,7 +27,7 @@ const GuardianOne = {
     },
     {
       type: 'text',
-      name_of_json_field: 'guardian_one.last_name',
+      name_of_json_field: 'last_name',
       placeholder: 'Doe',
       required: true,
       required_message: 'Please enter a last name',
@@ -37,7 +37,7 @@ const GuardianOne = {
     },
     {
       type: 'text',
-      name_of_json_field: 'guardian_one.phone',
+      name_of_json_field: 'phone',
       placeholder: '571-123-4567',
       required: true,
       required_message: 'Please enter a phone number.',
@@ -47,7 +47,7 @@ const GuardianOne = {
     },
     {
       type: 'text',
-      name_of_json_field: 'guardian_one.email',
+      name_of_json_field: 'email',
       placeholder: 'example@gmail.com',
       required: false,
       required_message: 'Please enter your email.',
@@ -58,7 +58,7 @@ const GuardianOne = {
 
     {
       type: 'text',
-      name_of_json_field: 'guardian_one.address.street',
+      name_of_json_field: 'address.street',
       placeholder: '1234 Main St',
       required: true,
       required_message: 'Please enter your street address.',
@@ -67,7 +67,7 @@ const GuardianOne = {
     },
     {
       type: 'text',
-      name_of_json_field: 'guardian_one.address.address_line_2',
+      name_of_json_field: 'address.address_line_2',
       placeholder: 'Apt 304',
       required: false,
       required_message: '',
@@ -77,7 +77,7 @@ const GuardianOne = {
     },
     {
       type: 'text',
-      name_of_json_field: 'guardian_one.address.city',
+      name_of_json_field: 'address.city',
       placeholder: 'Alexandria',
       required: true,
       required_message: 'Please enter a city',
@@ -87,7 +87,7 @@ const GuardianOne = {
     },
     {
       type: 'select',
-      name_of_json_field: 'guardian_one.address.state',
+      name_of_json_field: 'address.state',
       placeholder: 'State',
       required: true,
       required_message: 'Please select a state',
@@ -97,7 +97,7 @@ const GuardianOne = {
     },
     {
       type: 'text',
-      name_of_json_field: 'guardian_one.address.zip',
+      name_of_json_field: 'address.zip',
       placeholder: '22305',
       required: true,
       required_message: '',
@@ -109,19 +109,19 @@ const GuardianOne = {
       type: 'radio',
       label: 'Can receive messages?',
       hasMoreFields: false,
-      name_of_json_field: 'guardian_one.can_recieve_messages',
+      name_of_json_field: 'can_recieve_messages',
 
       data: [
         {
           id: 'guardianOneMessages1',
           value: true,
-          name_of_json_field: 'guardian_one.can_recieve_messages',
+          name_of_json_field: 'can_recieve_messages',
           label: 'Yes',
         },
         {
           id: 'guardianOneMessages2',
           value: false,
-          name_of_json_field: 'guardian_one.can_recieve_messages',
+          name_of_json_field: 'can_recieve_messages',
           label: 'No',
         },
       ],
@@ -129,4 +129,4 @@ const GuardianOne = {
   ],
 };
 
-export default GuardianOne;
+export default Guardian;

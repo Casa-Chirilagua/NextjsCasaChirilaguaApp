@@ -91,6 +91,10 @@ const ParentSchema = new mongoose.Schema({
       },
     },
   ],
+  is_primary_contact:{
+    type: Boolean,
+    default: false,
+  },
   created_at: {
     type: Date,
     default: Date.now(),

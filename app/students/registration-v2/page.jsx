@@ -11,6 +11,7 @@ import Button from '@/components/buttons/Button';
 import GuardianHandler from '@/components/form/GuardianHandler';
 import LookUpItemHandler from '@/components/search items/LookUpItemHandler';
 import FormNavigation from '@/components/form_navigation/FormNavigation';
+import ConfirmationPage from '@/components/form/ConfirmationPage';
 
 //Unique ID
 import { v4 as uuidv4 } from 'uuid';
@@ -68,6 +69,7 @@ const page = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({ defaultValues: formData });
+    const { guardian_one, guardian_two, ...studentData } = formData;
 
     const router = useRouter();
 
@@ -175,7 +177,6 @@ const page = () => {
         return results;
     }
     const createStudent = async (data, parentIds, programIds) => {
-
         //Create Student
         const studentPromise = doCreateStudent(GenerateNewStudentData(
             data,
@@ -183,7 +184,6 @@ const page = () => {
             parentIds.parent2Id,
             programIds,
         ));
-
         return SuccessToast(studentPromise, 'Successfully registered student!');
     }
     const createFamily = async (data, parentIds, studentId) => {
@@ -275,9 +275,39 @@ const page = () => {
         next();
     };
 
+    const sectionsWithData = [{
+        title: 'Student Information',
+        data: studentData
+    },
+    {
+        title: 'Emergency Contact',
+        data: formData.emergency_contact,
+    },
+    {
+        title: 'Medical Insurance',
+        data: formData.health_care,
+    },
+    {
+        title: 'Medical Information',
+        data: formData.medical_information,
+    },
+    {
+        title: 'Guardian One',
+        data: formData.guardian_one,
+    },
+    {
+        title: 'Guardian Two',
+        data: formData.guardian_two,
+    },
+    {
+        title: 'Programs',
+        data: "",
+    },
+    ]
+
     const sections = [{
         title: 'Student Information',
-        sectionData:
+        sectionComponents:
             <Form
                 classN="form-container"
                 key={uuidv4()}
@@ -286,10 +316,11 @@ const page = () => {
                 control={control}
                 errors={errors}
             />
+
     },
     {
         title: 'Emergency Contact',
-        sectionData:
+        sectionComponents:
             <Form
                 classN="form-container"
                 key={uuidv4()}
@@ -301,7 +332,7 @@ const page = () => {
     },
     {
         title: 'Medical Insurance',
-        sectionData:
+        sectionComponents:
             <Form
                 classN="form-container"
                 key={uuidv4()}
@@ -313,8 +344,7 @@ const page = () => {
     },
     {
         title: 'Medical Information',
-        sectionData:
-
+        sectionComponents:
             <Form
                 classN="form-container"
                 key={uuidv4()}
@@ -323,11 +353,10 @@ const page = () => {
                 control={control}
                 errors={errors}
             />
-
     },
     {
         title: 'Guardian One',
-        sectionData:
+        sectionComponents:
 
             <GuardianHandler
                 key={"GuardianOne"}
@@ -356,7 +385,7 @@ const page = () => {
     },
     {
         title: 'Guardian Two',
-        sectionData:
+        sectionComponents:
 
             <GuardianHandler
                 key={"GuardianTwo"}
@@ -384,7 +413,7 @@ const page = () => {
     },
     {
         title: 'Programs',
-        sectionData: <LookUpItemHandler
+        sectionComponents: <LookUpItemHandler
             buttonLabel="Look Up Program"
             title="Add programs:"
             items={programs}
@@ -392,15 +421,16 @@ const page = () => {
             selectItemLabel="Select Programs"
             canSelectMultiple={true}
         />
+
     },
     // {
     //     title: 'Confirmation',
-    //     sectionData:
-    //         <div className="form-container"><div className="text-2xl">Please review the information before submitting</div></div>
+    //     sectionComponents: <ConfirmationPage sectionsWithData={sectionsWithData} />
+
     // }
     ];
 
-    const { currentStepIndex, currentStep, steps, next, previous, isLastStep, isFirstStep, getStep, goToStep} = useMultistepForm(sections);
+    const { currentStepIndex, currentStep, steps, next, previous, isLastStep, isFirstStep, getStep, goToStep } = useMultistepForm(sections);
 
     let content;
     if (loadingParentsError || loadingProgramError) {
@@ -409,7 +439,7 @@ const page = () => {
         content = (
             <div className='w-full h-full min-h-screen grid gap-10  grid-cols-[22%_1fr] grid-rows-[1fr_10rem] primary-border'>
                 <FormNavigation currentStepIndex={currentStepIndex} steps={steps} sections={sections} goToStep={goToStep} />
-                {currentStep?.sectionData}
+                {currentStep?.sectionComponents}
                 <div style={{ color: "#212529" }} className="w-full grid-cols-2 grid gap-[40%] col-start-2 col-end-3 px-20 items-center">
                     {!isFirstStep && <button
                         type='button'

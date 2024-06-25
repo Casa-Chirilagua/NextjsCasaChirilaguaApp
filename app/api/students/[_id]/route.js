@@ -41,8 +41,11 @@ export const PATCH = async (request, { params }) => {
   const body = await request.json();
   const updateOptions = { $set: {} };
 
+  console.log(body);
+
 
   for (const [key, value] of Object.entries(body)) {
+    
     if (["parents", "programs"].includes(key) && Array.isArray(value)) {
       updateOptions["$addToSet"] = { [key]: { $each: value } };
     } else if (key.startsWith("remove") && value) {

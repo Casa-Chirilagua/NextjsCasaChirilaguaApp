@@ -31,9 +31,8 @@ const Profile = ({
               <div key={index}>
                 <div
                   style={{ backgroundColor: color }}
-                  className={`profile-heading-container ${
-                    collapsedSections.includes(heading) ? 'collapsed' : ''
-                  }`}
+                  className={`profile-heading-container ${collapsedSections.includes(heading) ? 'collapsed' : ''
+                    }`}
                   onClick={() => toggleSection(heading)}
                 >
                   {collapsedSections.includes(heading) ? (
@@ -47,21 +46,22 @@ const Profile = ({
                   <ul className="field-list">
                     {fields[heading] &&
                       Object.entries(fields[heading]).map(([key, obj]) => (
+
                         <li id={color} key={key} className="row-item">
                           <span className="field-key">{key}</span>
                           <span className="field-value">{obj.value}</span>
                           <div className="edit-icon-container">
-                            <div
+                            {obj.can_edit && <div
                               type="button"
                               className="edit-profile-button"
                               onClick={() => {
                                 setOpenModal(true);
                                 setNameOfJson(obj);
-              
+
                               }}
                             >
                               <RiPencilFill className="edit-icon" />
-                            </div>
+                            </div>}
                           </div>
                         </li>
                       ))}

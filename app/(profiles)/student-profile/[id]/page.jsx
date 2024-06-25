@@ -10,13 +10,11 @@ import { useParams } from "next/navigation";
 import { useSelector } from 'react-redux';
 
 //React
-import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 //Data 
 import Colors from "@/data/Colors";
-import StudentInformation from "@/data/Student Form Data/StudentInformation";
 import StudentProfileHeading from "@/data/StudentProfileHeading";
 
 //Components
@@ -24,12 +22,10 @@ import FullProfile from "@/components/profile/FullProfile";
 import ConditionalModal from "@/components/modal/ConditionalModal";
 
 //Functions
-import GetItemByJsonFieldName from "@/functions/student functions/GetItemByJsonFieldName";
 import StudentConfig from "@/functions/profile configurations/StudentConfig";
 import StudentProfileCardConfig from "@/functions/profile configurations/StudentProfileCardConfig";
 import DataToUpdate from "@/functions/DataToUpdate";
 import CreateNewFormWithData from "@/functions/CreateNewFormWithData";
-import UpdateDeleteComponent from "@/functions/UpdateDeleteComponent";
 import HandleName from "@/functions/HandleName";
 import SuccessToast from "@/functions/SuccessToast";
 
@@ -45,13 +41,17 @@ import {
 import { useThunk } from "@/hooks/use-thunk";
 
 const page = () => {
+
+  const [formData, setFormData] = useState({});
+
   const {
     control,
     register,
     reset,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    formState: { errors, isSubmitSuccessful },
+  } = useForm({ defaultValues: formData });
+
 
   const { id } = useParams();
   const router = useRouter();
@@ -87,13 +87,19 @@ const page = () => {
   const [openAddNoteMenu, setOpenAddNoteMenu] = useState(false);
   const [notes, setNotes] = useState([]);
 
-
   //Form Component
   const [formComponent, setFormComponent] = useState();
   const [studentConfigData, setStudentConfigData] = useState();
   const [fields, setFields] = useState();
   const [componentsDelete, setComponentsDelete] = useState();
 
+
+  /**
+   * Resets form after Submission
+   */
+  useEffect(() => {
+    reset({});
+  }, [isSubmitSuccessful, reset]);
 
   /* Fetch students*/
   useEffect(() => {
@@ -120,17 +126,10 @@ const page = () => {
       fill out the form and submit it.
   */
   const onSubmit = async (data) => {
-    const fieldName = fieldData.database_field_name;
-    const objName = fieldData.objectName;
-    let studentData;
-    if (fieldData) {
-      studentData = DataToUpdate(fieldData, fieldName, id, objName, data);
-    }
-
-    let updateStudent = doUpdateStudent(studentData);
+    const dataToUpdate = DataToUpdate(data, id, fieldData);
+    let updateStudent = doUpdateStudent(fieldData ? dataToUpdate : {});
     SuccessToast(updateStudent, 'Successfully Updated Student');
     setOpenModal(false);
-    reset();
   };
 
   // let componentsDelete = UpdateDeleteComponent(student);
@@ -178,9 +177,9 @@ const page = () => {
             objectTypeGrid={clickedAddButton}
             objectTypeToUpdate={'Students'}
             objectId={id}
-            loadingToastMessage={`Updating ${student.first_name ? HandleName(student) : ''
+            loadingToastMessage={`Updating ${student?.first_name ? HandleName(student) : ''
               } ...`}
-            successToastMessage={`Successfully updated ${student.first_name ? HandleName(student) : ''
+            successToastMessage={`Successfully updated ${student?.first_name ? HandleName(student) : ''
               }!`}
             modalLabel={modalLabelAdd}
             setOpenModal={setOpenModalAdd}

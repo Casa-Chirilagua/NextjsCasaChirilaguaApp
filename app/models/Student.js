@@ -27,6 +27,10 @@ const StudentSchema = new mongoose.Schema({
   phone: {
     type: String,
   },
+  graduated_high_school: {
+    type: Boolean,
+    default: false,
+  },
   high_school_graduation_date: {
     type: Date,
   },
@@ -92,18 +96,23 @@ const StudentSchema = new mongoose.Schema({
     // This is the student's medical information
     has_allergies: {
       type: Boolean,
+      default: false,
     },
     has_epilepsy: {
       type: Boolean,
+      default: false,
     },
     has_asthma: {
       type: Boolean,
+      default: false,
     },
     has_food_restrictions: {
       type: Boolean,
+      default: false,
     },
     has_other_restrictions: {
       type: Boolean,
+      default: false,
     },
     allergy_description: {
       type: String,
@@ -121,19 +130,19 @@ const StudentSchema = new mongoose.Schema({
       type: String,
     },
   },
-
+  has_health_care: {
+    type: Boolean,
+    default: false,
+  },
   health_care: {
     // This is the student's health care information
     policy_number: {
       type: String,
     },
-    first_name: {
+    doctor_first_name: {
       type: String,
     },
-    last_name: {
-      type: String,
-    },
-    doctor_name: {
+    doctor_last_name: {
       type: String,
     },
     phone: {
