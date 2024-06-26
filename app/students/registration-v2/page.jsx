@@ -386,7 +386,6 @@ const page = () => {
     {
         title: 'Guardian Two',
         sectionComponents:
-
             <GuardianHandler
                 key={"GuardianTwo"}
                 handleItemId={handleGuardianTwoId}
