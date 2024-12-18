@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
@@ -53,7 +52,6 @@ const page = () => {
             <button key={index} className="login-button login-button-animated" onClick={() => handleSignIn()}>Sign in</button>
           ))}
         </div>
-
       </div>
     </div>)
 

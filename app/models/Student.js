@@ -149,22 +149,7 @@ const StudentSchema = new mongoose.Schema({
       type: String,
     },
   },
-
-  notes: [
-    // This is the student's notes
-    {
-      description: {
-        type: String,
-      },
-      date_created: {
-        type: Date,
-        default: Date.now(),
-      },
-      original_author: {
-        type: String,
-      },
-    },
-  ],
+ 
   parents: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -181,6 +166,48 @@ const StudentSchema = new mongoose.Schema({
       ref: "Program",
     },
   ],
+  notes: [
+    // This is the student's notes
+    {
+      description: {
+        type: String,
+      },
+      date_created: {
+        type: Date,
+        default: Date.now(),
+      },
+      original_author: {
+        type: String,
+      },
+    },
+  ],
+  programs_v2: [
+    {
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Program",
+      },
+      name: {
+        type: String,
+      },
+      enrollment_status:{
+        type:Boolean,
+        default:false
+      },
+      enrollment_date:{
+        type:Date,
+        default:Date.now()
+      },
+      completed:{
+        type:Boolean,
+        default:false
+      },
+      completion_date:{
+        type:Date
+      },
+    }
+  ],
+
   profile_image: [
     {
       url: {

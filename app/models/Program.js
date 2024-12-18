@@ -95,6 +95,29 @@ const ProgramSchema = new mongoose.Schema({
       ref: "Student",
     },
   ],
+
+  students_v2: [
+    {
+      name: {
+        type: String,
+      },
+      enrollment_status:{
+        type:Boolean,
+        default:false
+      },
+      enrollment_date:{
+        type:Date,
+        default:Date.now()
+      },
+      completed:{
+        type:Boolean,
+        default:false
+      },
+      completion_date:{
+        type:Date
+      },
+    }
+  ],
   
   profile_image: [
     {

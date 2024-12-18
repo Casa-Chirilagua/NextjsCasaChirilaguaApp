@@ -3,9 +3,6 @@ import Student from "@/app/models/Student";
 import Parent from "@/app/models/Parent";
 import Program from "@/app/models/Program";
 import Family from "@/app/models/Family";
-import cloudinary from "@/config/cloudinary";
-
-
 
 /*
     @route GET api/students/:id
@@ -41,20 +38,30 @@ export const PATCH = async (request, { params }) => {
   const body = await request.json();
   const updateOptions = { $set: {} };
 
-  console.log(body);
-
-
+  /**
+   * 
+   * 
+   */
   for (const [key, value] of Object.entries(body)) {
-    
+  
     if (["parents", "programs"].includes(key) && Array.isArray(value)) {
       updateOptions["$addToSet"] = { [key]: { $each: value } };
-    } else if (key.startsWith("remove") && value) {
+
+    } else if(["programs_v2"].includes(key) && Array.isArray(value)){
+      console.log("update Options", updateOptions);
+      console.log("key", key);
+      console.log("value", value);
+      if (!updateOptions["$push"]) updateOptions["$push"] = {};
+      updateOptions["$push"][key] = value;
+        
+    }else if (key.startsWith("remove") && value) {
       const fieldToRemoveFrom = key.replace("remove", "").toLowerCase();
       updateOptions["$pull"] = { [fieldToRemoveFrom]: value };
     } else if (["notes"].includes(key) && Array.isArray(value)) {
       if (!updateOptions["$push"]) updateOptions["$push"] = {};
       updateOptions["$push"][key] = { $each: value };
-    } else {
+    }
+    else {
       // Use dot notation for nested objects to update fields within them
       if (key.includes(".")) {
         // For keys that are already using dot notation
@@ -67,6 +74,7 @@ export const PATCH = async (request, { params }) => {
   }
 
   try {
+    console.log("updateOptions", updateOptions);
     const student = await Student.findByIdAndUpdate(params._id, updateOptions, {
       new: true,
       runValidators: true,

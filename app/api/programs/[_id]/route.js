@@ -49,8 +49,16 @@ export const PATCH = async (request, { params }) => {
   const body = await request.json();
   const updateOptions = { $set: {} };
 
+
+  /**
+   * Loop through the key and value pairs in the request body
+   * 
+   * Example request body: {name: "New Program Name", students: ["student_id_1", "student_id_2"]} 
+   *  - The key is the field to update in the program document (e.g. name, students)
+   *  - The value is the new value to set for the field
+   */
   for (const [key, value] of Object.entries(body)) {
-    if (key === "students" && Array.isArray(value)) {
+    if (["students"].includes(key) && Array.isArray(value)) {
       const existingStudents = await Student.find({ _id: { $in: value } });
       if (existingStudents.length !== value.length) {
         return new Response(
@@ -65,14 +73,19 @@ export const PATCH = async (request, { params }) => {
         );
       }
       updateOptions["$addToSet"] = { [key]: { $each: value } };
-    } else if (key.startsWith("remove") && value) {
-     
+    } else if (["students_v2"].includes(key) && Array.isArray(value)){
+      console.log("key: ", key);
+      console.log("value: ", value);
+    }
+    else if (key.startsWith("remove") && value) {
       const fieldToRemoveFrom = key.replace("remove", "").toLowerCase();
       updateOptions["$pull"] = { [fieldToRemoveFrom]: value };
     } else if (["history", "notes"].includes(key) && Array.isArray(value)) {
+      console.log({ $each: value });
       // Handles adding complex objects to history and notes arrays
       if (!updateOptions["$push"]) updateOptions["$push"] = {};
       updateOptions["$push"][key] = { $each: value };
+      console.log(updateOptions);
     } else {
       // Use dot notation for nested objects to update fields within them
       if (key.includes('.')) {
